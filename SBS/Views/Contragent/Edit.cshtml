@@ -46,10 +46,16 @@
         </form>
     </div>
     <div class="col-md-6">
-        <h5>Addresses</h5>
-        <p>
-            <a asp-controller="Address" asp-action="Create" class="btn btn-primary mt-2">Create New Address</a>
-        </p>
+        <div class="container-fluid btn-group">
+            <div class="col-10">
+                <h5 class="col-4">Addresses</h5>
+            </div>
+            <div class="justify-content-end  col-4">
+                <p>
+                    <a asp-controller="Address" asp-action="Create" class="btn btn-primary mt-2">Create New</a>
+                </p>
+            </div>
+        </div>
         <table class="table">
             <thead>
                 <tr>
