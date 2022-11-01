@@ -1,0 +1,39 @@
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using SBS.Infrastructure.Data.Models;
+using SBS.Infrastructure.Data.Models.Account;
+
+namespace SBS.Infrastructure.Data
+{
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            :base(options)
+        {
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<Address>()
+                .HasOne(a => a.Country)
+                .WithMany(c => c.Addresses)
+                .HasForeignKey(a => a.CountryId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<PartidesInStore>()
+                .HasKey(nameof(PartidesInStore.StoreId), nameof(PartidesInStore.PartideId));
+
+        }
+        public DbSet<Address> Addresses { get; set; } = null!;
+        public DbSet<Article> Articles { get; set; } = null!;
+        public DbSet<City> Cities { get; set; } = null!;
+        public DbSet<Contragent> Contragents { get; set; } = null!;
+        public DbSet<Country> Countries { get; set; } = null!;
+        public DbSet<Store> Stores { get; set; } = null!;
+        public DbSet<Unit> Units { get; set; } = null!;
+        public DbSet<Partide> Partides { get; set; } = null!;
+        public DbSet<PartidesInStore> PartidesInStores { get; set; } = null!;
+    }
+}

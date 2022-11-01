@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SBS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SBS.styles.css" asp-append-version="true" />
+</head>
+
+@{
+    string menuTextColor = "text-white";
+}
+<body>
+
+    <div class="container-fluid" style="background:linear-gradient(to right, #283408,#197696)">
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
+                <div class="container-fluid">
+                    <a class="navbar-brand @menuTextColor" asp-area="" asp-controller="Home" asp-action="Index">SBS</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link @menuTextColor" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @menuTextColor" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                            @if (User?.Identity?.IsAuthenticated ?? false)
+                            {
+                                <li class="dropdown nav-item">
+                                    <button class="btn dropdown-toggle @menuTextColor" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Nomenclatures
+                                    </button>
+                                    <ul class="dropdown-menu" style="background:linear-gradient(to right, #283408,#197696)">
+                                        <li class="nav-item">
+                                            <a class="nav-link @menuTextColor" asp-area="" asp-controller="Article" asp-action="Index">Articles</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link @menuTextColor" asp-area="" asp-controller="Country" asp-action="Index">Countries</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link @menuTextColor" asp-area="" asp-controller="City" asp-action="Index">Cities</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link @menuTextColor" asp-area="" asp-controller="Contragent" asp-action="Index">Contragents</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link @menuTextColor" asp-area="" asp-controller="Store" asp-action="Index">Stores</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link @menuTextColor" asp-area="" asp-controller="Unit" asp-action="Index">Units</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            }
+                        </ul>
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+
+            <!-- Success Dialog Start  text-width:30%;-->
+            <div class="modal fade" id="myModalSuccess" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h2 class="modal-title">Information</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div id="MyModalSuccessAlertBody" class="modal-body alert alert-success">
+                            This is modal body. Your message will appear here.
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Success Dialog End -->
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted" style="background:linear-gradient(to left, #283408, #197696)">
+        <div class="container @menuTextColor">
+            &copy; 2022 - SBS - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="@menuTextColor">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

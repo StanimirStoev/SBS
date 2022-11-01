@@ -1,0 +1,44 @@
+﻿@model SBS.Core.Models.CityViewModelEdit
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>City</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="City" asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div>
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryId" class="control-label">Country</label>
+                <select asp-for="CountryId" class="form-control"
+                        asp-items="@(new SelectList(Model.Countries, nameof(SBS.Core.Models.CountryViewModel.Id), nameof(SBS.Core.Models.CountryViewModel.Name)))">
+                    <option>Select Country</option>
+                </select>
+                <span asp-validation-for="CountryId" class="text-danger"></span>
+            </div>
+            <div>
+                <input type="submit" value="Submit" class="btn btn-primary mt-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

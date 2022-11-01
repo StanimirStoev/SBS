@@ -1,0 +1,56 @@
+﻿@model SBS.Core.Models.ContragentViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Contragent</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Contragent" asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div>
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="VatNumber" class="control-label"></label>
+                <input asp-for="VatNumber" class="form-control" />
+                <span asp-validation-for="VatNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsClient" /> @Html.DisplayNameFor(model => model.IsClient)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsSupplier" /> @Html.DisplayNameFor(model => model.IsSupplier)
+                </label>
+            </div>
+            <div>
+                <input type="submit" value="Create" class="btn btn-primary mt-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

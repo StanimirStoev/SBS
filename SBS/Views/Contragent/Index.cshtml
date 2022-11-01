@@ -1,0 +1,86 @@
+﻿@using SBS.Core.Models
+@using SBS.Tools
+
+@model IEnumerable<ContragentViewModel>
+
+@{
+    ViewData["Title"] = "Contragents";
+    SortHelper sortHelper = (SortHelper)ViewData["sortModel"];
+}
+
+@*link for the icons*@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" />
+
+<h1>Contragents</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary mt-2">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <i class="@sortHelper.GetColumn("FirstName").SortIcon" arial-hidden="true"></i>
+                <a asp-action="Index" asp-route-sortExpression="@sortHelper.GetColumn("FirstName").SortExpression">
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </a>
+            </th>
+            <th>
+                <i class="@sortHelper.GetColumn("LastName").SortIcon" arial-hidden="true"></i>
+                <a asp-action="Index" asp-route-sortExpression="@sortHelper.GetColumn("LastName").SortExpression">
+                    @Html.DisplayNameFor(model => model.LastName)
+                </a>
+            </th>
+            <th>
+                <i class="@sortHelper.GetColumn("VatNumber").SortIcon" arial-hidden="true"></i>
+                <a asp-action="Index" asp-route-sortExpression="@sortHelper.GetColumn("VatNumber").SortExpression">
+                    @Html.DisplayNameFor(model => model.VatNumber)
+                </a>
+            </th>
+            <th>
+                <i class="@sortHelper.GetColumn("IsClient").SortIcon" arial-hidden="true"></i>
+                <a asp-action="Index" asp-route-sortExpression="@sortHelper.GetColumn("IsClient").SortExpression">
+                    @Html.DisplayNameFor(model => model.IsClient)
+                </a>
+            </th>
+            <th>
+                <i class="@sortHelper.GetColumn("IsSupplier").SortIcon" arial-hidden="true"></i>
+                <a asp-action="Index" asp-route-sortExpression="@sortHelper.GetColumn("IsSupplier").SortExpression">
+                    @Html.DisplayNameFor(model => model.IsSupplier)
+                </a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VatNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsClient)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsSupplier)
+                </td>
+                <td>
+                    <a asp-controller="Contragent" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                </td>
+                <td>
+                    <form asp-controller="Contragent" asp-action="Delete" method="post">
+                        <input name="id" type="hidden" value="@item.Id" />
+                        <button class=" btn btn-danger" onclick="return confirm('Are you sure you want to delete atricle: @item.FirstName')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

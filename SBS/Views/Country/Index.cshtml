@@ -1,0 +1,53 @@
+﻿@using SBS.Core.Models
+@model IEnumerable<CountryViewModel>
+
+@{
+    ViewData["Title"] = "Countries";
+}
+
+<h1>Countries</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary mt-2">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsEu)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsEu)
+                </td>
+                <td>
+                    <a asp-controller="Country" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                </td>
+                <td>
+                    <form asp-controller="Country" asp-action="Delete" method="post">
+                        <input name="id" type="hidden" value="@item.Id" />
+                        <button class=" btn btn-danger" onclick="return confirm('Are you sure you want to delete atricle: @item.Name')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

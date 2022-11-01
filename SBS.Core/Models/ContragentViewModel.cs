@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static SBS.Core.Constants.DataConstants.Contragent;
+
+namespace SBS.Core.Models
+{
+    public class ContragentViewModel
+    {
+        public ContragentViewModel()
+        {
+            Addresses = new HashSet<AddressViewModel>();
+        }
+
+        [Key]
+        public Guid Id { get; set; }
+
+        [Required]
+        [Display(Name = "Fist Name")]
+        [StringLength(FirstNameMaxLenght, MinimumLength = FirstNameMinLenght, ErrorMessage = "The field '{0}' must be between {2} and {1} characters lenght.")]
+        public string FirstName { get; set; } = null!;
+
+        [Display(Name ="Last Name")]
+        [StringLength(LastNameMaxLenght, MinimumLength = LastNameMinLenght, ErrorMessage = "The field '{0}' must be between {2} and {1} characters lenght.")]
+        public string LastName { get; set; } = null!;
+
+        public virtual ICollection<AddressViewModel> Addresses { get; set; }
+
+        [Display(Name ="Vat Number")]
+        [StringLength(VatNumberMaxLenght, MinimumLength = VatNumberMinLenght, ErrorMessage = "The field '{0}' must be between {2} and {1} characters lenght.")]
+        public string VatNumber { get; set; } = null!;
+
+        [Required]
+        [Display(Name = "Client")]
+        public bool IsClient { get; set; } = true;
+
+        [Required]
+        [Display(Name = "Supplier")]
+        public bool IsSupplier { get; set; } = false;
+
+        [Required]
+        public bool IsActive { get; set; } = true;
+    }
+}

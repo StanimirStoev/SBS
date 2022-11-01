@@ -1,0 +1,124 @@
+﻿@using SBS.Core.Models;
+@using SBS.Tools
+
+@model IEnumerable<UnitViewModel>
+
+@{
+    ViewData["Title"] = "Units";
+    SortHelper sortHelper = (SortHelper)ViewData["sortModel"];
+    UnitFilterViewModel filter = (UnitFilterViewModel)ViewBag.UnitFilter;
+    PagerViewModel pager = (PagerViewModel)ViewBag.Pager;
+}
+
+@*link for the icons*@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" />
+
+<div class="container-fluid btn-group">
+    <div class="col-10">
+        <h1 class="col-4">Units</h1>
+    </div>
+    <div class="justify-content-end  col-2">
+        <p>
+            <a asp-action="Create" class="btn btn-primary mt-2">Create New</a>
+        </p>
+    </div>
+</div>
+
+<div class="container btn-group bg-secondary text-info" style="border-radius:10px;">
+    <div class="col-6 p-1 justify-content-end mt-1">
+        <form asp-action="Index" method="get">
+            <span class="btn-group">
+                <label class="m-2">@Html.DisplayNameFor(filter => filter.Name)</label>
+                <input class="form-control m-1" type="text" name="filterName" value="@filter.Name" />
+
+                <label class="m-2">@Html.DisplayNameFor(filter => filter.Description)</label>
+                <input class="form-control m-1" type="text" name="filterDescription" value="@filter.Description" />
+                <span class="m-1 p-1 btn-group btn-primary" style="border-radius :10px;">
+                    <i class="pl-2 fa fa-search align-self-center" aria-hidden="true"></i>
+                    <input class="btn btn-sm text-info" type="submit" value="Search" />
+                </span>
+            </span>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <partial name="_topBar" model="@pager" />
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <i class="@sortHelper.GetColumn("name").SortIcon" arial-hidden="true"></i>
+                <a asp-action="Index" asp-route-sortExpression="@sortHelper.GetColumn("name").SortExpression">
+                    @Html.DisplayNameFor(model => model.Name)
+                </a>
+            </th>
+            <th>
+                <i class="@sortHelper.GetColumn("description").SortIcon" arial-hidden="true"></i>
+                <a asp-action="Index" asp-route-sortExpression="@sortHelper.GetColumn("description").SortExpression">
+                    @Html.DisplayNameFor(model => model.Description)
+                </a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a asp-controller="Unit" asp-action="Edit" asp-route-id="@item.Id">
+                            <span class="btn btn-sm btn-outline-primary">
+                                <i class="fa fa-edit" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                        <a asp-controller="Unit" asp-action="Details" asp-route-id="@item.Id">
+                            <span class="btn btn-sm btn-outline-info">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                        <a asp-controller="Unit" asp-action="Delete" asp-route-id="@item.Id">
+                            <span class="btn btn-sm btn-outline-danger">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="row">
+    <div class="col-12">
+        <partial name="_bottomBar" model="@pager" />
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+
+        function openSuccessModal(strMessage){
+            var myDiv = document.getElementById("MyModalSuccessAlertBody");
+            myDiv.innerHTML = strMessage;
+            $('#myModalSuccess').modal('show');
+        }
+
+        $(document).ready(function(){
+            var msg = "@TempData["SuccessMessage"]";
+            if(msg)
+            openSuccessModal(msg);
+        });
+    </script>
+}

@@ -1,0 +1,86 @@
+﻿@using SBS.Core.Models
+@using SBS.Tools
+
+@model IEnumerable<ArticleViewModel>
+
+@{
+    ViewData["Title"] = "Articles";
+    SortHelper sortHelper = (SortHelper)ViewData["sortModel"];
+}
+
+@*link for the icons*@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" />
+
+<h1>Articles</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary mt-2">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <i class="@sortHelper.GetColumn("name").SortIcon" arial-hidden="true"></i>
+                <a asp-action="Index" asp-route-sortExpression="@sortHelper.GetColumn("name").SortExpression">
+                    @Html.DisplayNameFor(model => model.Name)
+                </a>
+            </th>
+            <th>
+                <i class="@sortHelper.GetColumn("Model").SortIcon" arial-hidden="true"></i>
+                <a asp-action="Index" asp-route-sortExpression="@sortHelper.GetColumn("Model").SortExpression">
+                    @Html.DisplayNameFor(model => model.Model)
+                </a>
+            </th>
+            <th>
+                <i class="@sortHelper.GetColumn("Title").SortIcon" arial-hidden="true"></i>
+                <a asp-action="Index" asp-route-sortExpression="@sortHelper.GetColumn("Title").SortExpression">
+                    @Html.DisplayNameFor(model => model.Title)
+                </a>
+            </th>
+            <th>
+                <i class="@sortHelper.GetColumn("Description").SortIcon" arial-hidden="true"></i>
+                <a asp-action="Index" asp-route-sortExpression="@sortHelper.GetColumn("Description").SortExpression">
+                    @Html.DisplayNameFor(model => model.Description)
+                </a>
+            </th>
+            <th>
+                <i class="@sortHelper.GetColumn("DeliveryNumber").SortIcon" arial-hidden="true"></i>
+                <a asp-action="Index" asp-route-sortExpression="@sortHelper.GetColumn("DeliveryNumber").SortExpression">
+                    @Html.DisplayNameFor(model => model.DeliveryNumber)
+                </a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryNumber)
+                </td>
+                <td>
+                    <div class="btn-group" >
+                        <a asp-controller="Article" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                        <form asp-action="Delete" asp-controller="Article" method="post">
+                            <input name="id" type="hidden" value="@item.Id" />
+                            <button class=" btn btn-danger" onclick="return confirm('Are you sure you want to delete atricle: @item.Model')">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
