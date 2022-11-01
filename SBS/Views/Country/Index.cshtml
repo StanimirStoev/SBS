@@ -5,11 +5,16 @@
     ViewData["Title"] = "Countries";
 }
 
-<h1>Countries</h1>
-
-<p>
-    <a asp-action="Create" class="btn btn-primary mt-2">Create New</a>
-</p>
+<div class="container-fluid btn-group">
+    <div class="col-10">
+        <h1 class="col-4">Countries</h1>
+    </div>
+    <div class="justify-content-end  col-2">
+        <p>
+            <a asp-action="Create" class="btn btn-primary mt-2">Create New</a>
+        </p>
+    </div>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -38,14 +43,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.IsEu)
                 </td>
+
                 <td>
-                    <a asp-controller="Country" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
-                </td>
-                <td>
-                    <form asp-controller="Country" asp-action="Delete" method="post">
-                        <input name="id" type="hidden" value="@item.Id" />
-                        <button class=" btn btn-danger" onclick="return confirm('Are you sure you want to delete atricle: @item.Name')">Delete</button>
-                    </form>
+                    <div class="btn-group">
+                        <a asp-controller="Country" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                        <form asp-controller="Country" asp-action="Delete" method="post">
+                            <input name="id" type="hidden" value="@item.Id" />
+                            <button class=" btn btn-danger" onclick="return confirm('Are you sure you want to delete atricle: @item.Name')">Delete</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
         }

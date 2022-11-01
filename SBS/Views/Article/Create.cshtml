@@ -38,15 +38,12 @@
                 <input asp-for="DeliveryNumber" class="form-control" />
                 <span asp-validation-for="DeliveryNumber" class="text-danger"></span>
             </div>
-            <div >
-                <input type="submit" value="Create" class="btn btn-primary mt-2" />
+            <div class="form-group btn-group mt-2">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a class="btn btn-secondary" asp-action="Index">Back</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
