@@ -25,34 +25,39 @@
     <thead>
         <tr>
             <th>
-                <i class="@sortHelper.GetColumn("name").SortIcon" arial-hidden="true"></i>
+@*                <i class="@sortHelper.GetColumn("name").SortIcon" arial-hidden="true"></i>
                 <a asp-action="Index" asp-route-sortExpression="@sortHelper.GetColumn("name").SortExpression">
                     @Html.DisplayNameFor(model => model.Name)
-                </a>
+                </a>*@
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                <i class="@sortHelper.GetColumn("Model").SortIcon" arial-hidden="true"></i>
+                @*<i class="@sortHelper.GetColumn("Model").SortIcon" arial-hidden="true"></i>
                 <a asp-action="Index" asp-route-sortExpression="@sortHelper.GetColumn("Model").SortExpression">
                     @Html.DisplayNameFor(model => model.Model)
-                </a>
+                </a>*@
+                @Html.DisplayNameFor(model => model.Model)
             </th>
             <th>
-                <i class="@sortHelper.GetColumn("Title").SortIcon" arial-hidden="true"></i>
+@*                <i class="@sortHelper.GetColumn("Title").SortIcon" arial-hidden="true"></i>
                 <a asp-action="Index" asp-route-sortExpression="@sortHelper.GetColumn("Title").SortExpression">
                     @Html.DisplayNameFor(model => model.Title)
-                </a>
+                </a>*@
+                @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                <i class="@sortHelper.GetColumn("Description").SortIcon" arial-hidden="true"></i>
+                @*<i class="@sortHelper.GetColumn("Description").SortIcon" arial-hidden="true"></i>
                 <a asp-action="Index" asp-route-sortExpression="@sortHelper.GetColumn("Description").SortExpression">
                     @Html.DisplayNameFor(model => model.Description)
-                </a>
+                </a>*@
+                @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                <i class="@sortHelper.GetColumn("DeliveryNumber").SortIcon" arial-hidden="true"></i>
+               @* <i class="@sortHelper.GetColumn("DeliveryNumber").SortIcon" arial-hidden="true"></i>
                 <a asp-action="Index" asp-route-sortExpression="@sortHelper.GetColumn("DeliveryNumber").SortExpression">
                     @Html.DisplayNameFor(model => model.DeliveryNumber)
-                </a>
+                </a>*@
+                @Html.DisplayNameFor(model => model.DeliveryNumber)
             </th>
             <th></th>
         </tr>

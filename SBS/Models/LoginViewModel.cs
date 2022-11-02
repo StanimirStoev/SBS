@@ -17,6 +17,7 @@ namespace SBS.Models
         [HiddenInput(DisplayValue = false)]
         public string? ReturnUrl { get; set; }
 
+        [Display(Name="Remember me")]
         public bool RememberMe { get; set; }
     }
 }
