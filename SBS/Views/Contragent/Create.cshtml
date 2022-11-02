@@ -10,9 +10,8 @@
 <hr />
 
 <div class="row">
-
-    <form id="CreateContragentForm" asp-controller="Contragent" asp-action="Create" method="post">
-        <div class="col-md-4">
+    <div class="col-md-4">
+        <form asp-controller="Contragent" asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div>
                 <label asp-for="FirstName" class="control-label"></label>
@@ -39,15 +38,10 @@
                     <input class="form-check-input" asp-for="IsSupplier" /> @Html.DisplayNameFor(model => model.IsSupplier)
                 </label>
             </div>
-        </div>
 
-        <div class="col-md-6">
-            <div class="container-fluid btn-group">
-                <div class="col-10">
-                    <h5 class="col-4">Addresses</h5>
-                </div>
-            </div>
-            <table class="table" id="AddressTable">
+           <h5>Addresses</h5>
+
+            <table class="table table-bordered" id="addressTable">
                 <thead>
                     <tr>
                         <th>
@@ -62,56 +56,63 @@
                         <th>
                             Address Line 2
                         </th>
-                        <th>
+@*                        <th>
                             <button id="btnAddAddressRow" type="button" class="btn btn-sm btn-secondary visible" onclick="AddItem(this)">Add</button>
-                        </th>
+                        </th>*@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.Addresses)
+                    @for(int i = 0; i < Model.Addresses.Count; i++)
                     {
                         <tr>
                             <td>
                                 @*@Html.DisplayFor(modelItem => item.Country.Name)*@
                                 @*<input asp-for="@item.Country.Name" class="form-control"/>*@
-                                <select asp-for="@item.CountryId" class="form-control" asp-items="ViewBag.CountriesList"></select>
+                                <select asp-for="@Model.Addresses[i].CountryId" class="form-control" asp-items="ViewBag.CountriesList"></select>
+                               @* @Html.EditorFor(m => m.Addresses[i].Country, new{htmlAttributes = new{@class = "form-control"}})*@
                             </td>
                             <td>
                                 @*@Html.DisplayFor(modelItem => item.City.Name)*@
                                 @*<input asp-for="@item.City.Name" class="form-control" />*@
-                                <select asp-for="@item.CityId" class="form-control" asp-items="ViewBag.CitiesList"></select>
+                                <select asp-for="@Model.Addresses[i].CityId" class="form-control" asp-items="ViewBag.CitiesList"></select>
+                                @*@Html.EditorFor(m => m.Addresses[i].City, new{htmlAttributes = new{@class = "form-control"}})*@
                             </td>
                             <td>
                                 @*@Html.DisplayFor(modelItem => item.AddressLine1)*@
-                                <input asp-for="@item.AddressLine1" class="form-control" />
-                                <span asp-validation-for="@item.AddressLine1" class="text-danger"></span>
+                                @*  <input asp-for="@item.AddressLine1" class="form-control" />
+                                <span asp-validation-for="@item.AddressLine1" class="text-danger"></span>*@
+                                @Html.EditorFor(m => m.Addresses[i].AddressLine1, new{htmlAttributes = new{@class = "form-control"}})
                             </td>
                             <td>
                                 @*@Html.DisplayFor(modelItem => item.AddressLine2)*@
-                                <input asp-for="@item.AddressLine2" class="form-control" />
-                                <span asp-validation-for="@item.AddressLine2" class="text-danger"></span>
+                                @*<input asp-for="@item.AddressLine2" class="form-control" />
+                                <span asp-validation-for="@item.AddressLine2" class="text-danger"></span>*@
+                                @Html.EditorFor(m => m.Addresses[i].AddressLine2, new{htmlAttributes = new{@class = "form-control"}})
                             </td>
+
+
                             <td>
                                 <div class="btn-group">
                                     @*<a asp-controller="Address" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>*@
-                                    <form asp-controller="Address" asp-action="Delete" method="post">
+                                    @*<form asp-controller="Address" asp-action="Delete" method="post">*@
                                         @*<input name="id" type="hidden" value="@item.Id" />*@
-                                        <button id='btnremove-@item.Id' type="button" class="btn btn-sm btn-danger visible" onclick="DeleteItem(this)">Delete</button>
-                                    </form>
+                                        @*<button id='btnremove-@item.Id' type="button" class="btn btn-sm btn-danger visible" onclick="DeleteItem(this)">Delete</button>
+                                    </form>*@
                                 </div>
                             </td>
+
+
                         </tr>
                     }
                 </tbody>
             </table>
-        </div>
 
-        <div class="form-group btn-group mt-2">
-            <input type="submit" value="Create" class="btn btn-primary" />
-            <a class="btn btn-secondary" asp-action="Index">Back</a>
-        </div>
-    </form>
-
+            <div class="form-group btn-group mt-2">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a class="btn btn-secondary" asp-action="Index">Back</a>
+            </div>
+        </form>
+    </div>
 </div>
 
 @section Scripts {
@@ -168,7 +169,7 @@
             $form.data("validator", null);
 
             $.validator.unobtrusive.parse($form);
-  
+
             $form.validate($form.data("unobtrusiveValidation").options);
 
             window.alert("here");

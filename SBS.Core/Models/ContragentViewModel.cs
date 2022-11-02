@@ -12,7 +12,7 @@ namespace SBS.Core.Models
     {
         public ContragentViewModel()
         {
-            Addresses = new HashSet<AddressViewModel>();
+            Addresses = new List<AddressViewModel>();
         }
 
         [Key]
@@ -27,7 +27,7 @@ namespace SBS.Core.Models
         [StringLength(LastNameMaxLenght, MinimumLength = LastNameMinLenght, ErrorMessage = "The field '{0}' must be between {2} and {1} characters lenght.")]
         public string LastName { get; set; } = null!;
 
-        public virtual ICollection<AddressViewModel> Addresses { get; set; }
+        public virtual List<AddressViewModel> Addresses { get; set; }
 
         [Display(Name ="Vat Number")]
         [StringLength(VatNumberMaxLenght, MinimumLength = VatNumberMinLenght, ErrorMessage = "The field '{0}' must be between {2} and {1} characters lenght.")]

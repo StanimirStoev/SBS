@@ -17,12 +17,12 @@ namespace SBS.Core.Models
         [Required]
         public Guid CountryId { get; set; }
         [ForeignKey(nameof(CountryId))]
-        public virtual CountryViewModel Country { get; set; } = null!;
+        public virtual CountryViewModel? Country { get; set; } = null!;
 
         [Required]
         public Guid CityId { get; set; }
         [ForeignKey(nameof(CityId))]
-        public virtual CityViewModel City { get; set; } = null!;
+        public virtual CityViewModel? City { get; set; } = null!;
 
         [StringLength(AddressLineMaxLenght, MinimumLength = AddressLineMinLenght, ErrorMessage = "The field '{0}' must be between {2} and {1} characters lenght.")]
         public string AddressLine1 { get; set; } = null!;

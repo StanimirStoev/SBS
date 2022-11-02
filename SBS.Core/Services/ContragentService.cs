@@ -27,6 +27,16 @@ namespace SBS.Core.Services
                 IsActive = contragentViewModel.IsActive,
             };
 
+            foreach (AddressViewModel addressViewModel in contragentViewModel.Addresses)
+            {
+                contragent.Addresses.Add(new Address
+                {
+                    CountryId= addressViewModel.CountryId,
+                    CityId = addressViewModel.CityId,
+                    AddressLine1 = addressViewModel.AddressLine1,
+                    AddressLine2 = addressViewModel.AddressLine2,
+                });
+            }
             await repo.AddAsync(contragent);
             await repo.SaveChangesAsync();
         }

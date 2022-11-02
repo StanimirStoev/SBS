@@ -60,7 +60,7 @@ namespace SBS.Controllers
 
         // POST: ContragentController/Create
         [HttpPost]
-       // [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ContragentViewModel viewModel)
         {
             if (!ModelState.IsValid)
