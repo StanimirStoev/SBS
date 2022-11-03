@@ -31,7 +31,7 @@ namespace SBS.Core.Services
             {
                 contragent.Addresses.Add(new Address
                 {
-                    CountryId= addressViewModel.CountryId,
+                    CountryId = addressViewModel.CountryId,
                     CityId = addressViewModel.CityId,
                     AddressLine1 = addressViewModel.AddressLine1,
                     AddressLine2 = addressViewModel.AddressLine2,
@@ -57,7 +57,9 @@ namespace SBS.Core.Services
         public async Task<ContragentViewModel> Get(Guid id)
         {
             ContragentViewModel model = new ContragentViewModel();
-            var contragent = await repo.GetByIdAsync<Contragent>(id);
+            var contragent = await repo.All<Contragent>()
+                .Include(c => c.Addresses)
+                .FirstOrDefaultAsync(c => c.Id == id);
 
 
             if (contragent != null)
@@ -71,6 +73,35 @@ namespace SBS.Core.Services
                     VatNumber = contragent.VatNumber,
                     IsActive = contragent.IsActive,
                 };
+                foreach (Address address in contragent.Addresses)
+                {
+                    var cntry = await repo.GetByIdAsync<Country>(address.CountryId);
+                    var cty = await repo.GetByIdAsync<City>(address.CityId);
+
+                    model.Addresses.Add(new AddressViewModel()
+                    {
+                        Id = address.Id,
+                        CountryId = address.CountryId,
+                        Country = new CountryViewModel() 
+                        { 
+                            Id = cntry.Id,
+                            Name = cntry.Name,
+                            Code = cntry.Code,
+                            IsEu = cntry.IsEu,
+                            IsActive = cntry.IsActive
+                        },
+                        CityId = address.CityId,
+                        City = new CityViewModel()
+                        {
+                            Id = cty.Id,
+                            Name= cty.Name,
+                            IsActive = cty.IsActive,
+                        },
+                        AddressLine1 = address.AddressLine1,
+                        AddressLine2 = address.AddressLine2,
+                        IsActive = address.IsActive,
+                    });  
+                }
             }
             return model;
         }
