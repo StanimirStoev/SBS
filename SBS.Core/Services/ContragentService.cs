@@ -27,17 +27,23 @@ namespace SBS.Core.Services
                 IsActive = contragentViewModel.IsActive,
             };
 
+            await repo.AddAsync(contragent);
+
             foreach (AddressViewModel addressViewModel in contragentViewModel.Addresses)
             {
+                //Country counry = await repo.GetByIdAsync<Country>(addressViewModel.CountryId);
+                //City city = await repo.GetByIdAsync<City>(addressViewModel.CityId);
                 contragent.Addresses.Add(new Address
                 {
                     CountryId = addressViewModel.CountryId,
+                    //Country = counry,
                     CityId = addressViewModel.CityId,
+                    //City = city,
                     AddressLine1 = addressViewModel.AddressLine1,
                     AddressLine2 = addressViewModel.AddressLine2,
                 });
             }
-            await repo.AddAsync(contragent);
+            
             await repo.SaveChangesAsync();
         }
 
@@ -82,8 +88,8 @@ namespace SBS.Core.Services
                     {
                         Id = address.Id,
                         CountryId = address.CountryId,
-                        Country = new CountryViewModel() 
-                        { 
+                        Country = new CountryViewModel()
+                        {
                             Id = cntry.Id,
                             Name = cntry.Name,
                             Code = cntry.Code,
@@ -94,13 +100,13 @@ namespace SBS.Core.Services
                         City = new CityViewModel()
                         {
                             Id = cty.Id,
-                            Name= cty.Name,
+                            Name = cty.Name,
                             IsActive = cty.IsActive,
                         },
                         AddressLine1 = address.AddressLine1,
                         AddressLine2 = address.AddressLine2,
                         IsActive = address.IsActive,
-                    });  
+                    });
                 }
             }
             return model;
@@ -134,6 +140,21 @@ namespace SBS.Core.Services
                 contragent.VatNumber = contragentViewModel.VatNumber;
                 contragent.IsActive = contragentViewModel.IsActive;
 
+                foreach (var adrs in contragentViewModel.Addresses)
+                {
+                    if (!contragent.Addresses.Any(c => c.Id == adrs.Id))
+                    {
+                        contragent.Addresses.Add(new Address()
+                        {
+                            Id = adrs.Id,
+                            CountryId = adrs.CountryId,
+                            CityId = adrs.CityId,
+                            AddressLine1 = adrs.AddressLine1,
+                            AddressLine2 = adrs.AddressLine2,
+                            IsActive = adrs.IsActive,
+                        });
+                    }
+                }
                 await repo.SaveChangesAsync();
             }
         }

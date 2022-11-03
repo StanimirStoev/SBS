@@ -57,15 +57,15 @@ namespace SBS.Core.Services
                     AddressLine2 = address.AddressLine2,
                     Country = new CountryViewModel()
                     {
-                        Id = address.Country.Id,
-                        Code = address.Country.Code,
-                        IsEu = address.Country.IsEu,
-                        Name = address.Country.Name,
+                        Id = address.CountryId,
+                        //Code = address.Country.Code,
+                        //IsEu = address.Country.IsEu,
+                        //Name = address.Country.Name,
                     },
                     City = new CityViewModel()
                     {
-                        Id = address.City.Id,
-                        Name = address.City.Name,
+                        Id = address.CityId,
+                        //Name = address.City.Name,
                     },
                     IsActive = address.IsActive,
                 };
