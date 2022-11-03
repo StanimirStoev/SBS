@@ -43,7 +43,7 @@ namespace SBS.Core.Services
                     AddressLine2 = addressViewModel.AddressLine2,
                 });
             }
-            
+
             await repo.SaveChangesAsync();
         }
 
@@ -67,11 +67,11 @@ namespace SBS.Core.Services
                 .Include(c => c.Addresses)
                 .FirstOrDefaultAsync(c => c.Id == id);
 
-
             if (contragent != null)
             {
                 model = new ContragentViewModel()
                 {
+                    Id = id,
                     FirstName = contragent.FirstName,
                     LastName = contragent.LastName,
                     IsClient = contragent.IsClient,
@@ -130,7 +130,10 @@ namespace SBS.Core.Services
 
         public async Task Update(ContragentViewModel contragentViewModel)
         {
-            var contragent = await repo.GetByIdAsync<Contragent>(contragentViewModel.Id);
+
+            var contragent = await repo.All<Contragent>()
+                .Include(c => c.Addresses)
+                .FirstOrDefaultAsync(c => c.Id == contragentViewModel.Id);
             if (contragent != null)
             {
                 contragent.FirstName = contragentViewModel.FirstName;
@@ -140,20 +143,18 @@ namespace SBS.Core.Services
                 contragent.VatNumber = contragentViewModel.VatNumber;
                 contragent.IsActive = contragentViewModel.IsActive;
 
+                contragent.Addresses.Clear();
                 foreach (var adrs in contragentViewModel.Addresses)
                 {
-                    if (!contragent.Addresses.Any(c => c.Id == adrs.Id))
+                    contragent.Addresses.Add(new Address()
                     {
-                        contragent.Addresses.Add(new Address()
-                        {
-                            Id = adrs.Id,
-                            CountryId = adrs.CountryId,
-                            CityId = adrs.CityId,
-                            AddressLine1 = adrs.AddressLine1,
-                            AddressLine2 = adrs.AddressLine2,
-                            IsActive = adrs.IsActive,
-                        });
-                    }
+                        Id = adrs.Id,
+                        CountryId = adrs.CountryId,
+                        CityId = adrs.CityId,
+                        AddressLine1 = adrs.AddressLine1,
+                        AddressLine2 = adrs.AddressLine2,
+                        IsActive = adrs.IsActive,
+                    });
                 }
                 await repo.SaveChangesAsync();
             }

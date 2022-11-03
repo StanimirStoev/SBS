@@ -7,7 +7,7 @@ namespace SBS.Infrastructure.Data.Models
     {
         public Contragent()
         {
-            Addresses = new HashSet<Address>();
+            Addresses = new List<Address>();
         }
 
         [Key]
@@ -20,7 +20,7 @@ namespace SBS.Infrastructure.Data.Models
         [StringLength(LastNameMaxLenght)]
         public string LastName { get; set; } = null!;
 
-        public virtual ICollection<Address> Addresses { get; set; }
+        public virtual List<Address> Addresses { get; set; }
 
 
         [StringLength(VatNumberMaxLenght)]

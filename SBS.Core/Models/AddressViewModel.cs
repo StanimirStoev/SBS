@@ -32,5 +32,6 @@ namespace SBS.Core.Models
 
         [Required]
         public bool IsActive { get; set; } = true;
+
     }
 }

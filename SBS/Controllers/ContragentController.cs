@@ -69,6 +69,8 @@ namespace SBS.Controllers
                 return View(viewModel);
             }
 
+            viewModel.Addresses.RemoveAll(a => a.IsActive == false);
+
             await service.Add(viewModel);
 
             try

@@ -27,9 +27,9 @@ namespace SBS.Infrastructure.Data.Models
         [Required]
         public bool IsActive { get; set; } = true;
 
-        //public Guid? ContragentId { get; set; }
-        //[ForeignKey(nameof(ContragentId))]
-        //public virtual Contragent? Contragent { get; set; }
+        public Guid? ContragentId { get; set; }
+        [ForeignKey(nameof(ContragentId))]
+        public virtual Contragent? Contragent { get; set; }
 
         //public Guid? StoreId { get; set; }
         //[ForeignKey(nameof(StoreId))]
