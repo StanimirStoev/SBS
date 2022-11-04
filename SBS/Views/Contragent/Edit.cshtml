@@ -9,106 +9,112 @@
 <h4>Contragent</h4>
 <hr />
 
-<div class="row">
-    <div class="col-md-12">
-        <form asp-controller="Contragent" asp-action="Edit" method="post">
-            <div class="col-md-4">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div>
-                    <label asp-for="FirstName" class="control-label"></label>
-                    <input asp-for="FirstName" class="form-control" />
-                    <span asp-validation-for="FirstName" class="text-danger"></span>
-                </div>
-                <div>
-                    <label asp-for="LastName" class="control-label"></label>
-                    <input asp-for="LastName" class="form-control" />
-                    <span asp-validation-for="LastName" class="text-danger"></span>
-                </div>
-                <div>
-                    <label asp-for="VatNumber" class="control-label"></label>
-                    <input asp-for="VatNumber" class="form-control" />
-                    <span asp-validation-for="VatNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="IsClient" /> @Html.DisplayNameFor(model => model.IsClient)
-                    </label>
-                </div>
-                <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="IsSupplier" /> @Html.DisplayNameFor(model => model.IsSupplier)
-                    </label>
-                </div>
+<form asp-controller="Contragent" asp-action="Edit" method="post">
+
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-5">
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
-
-            <h5>Addresses</h5>
-            <table class="table table-bordered" id="addressTable">
-                <thead>
-                    <tr>
-                        <th>
-                            Country Name
-                        </th>
-                        <th>
-                            City Name
-                        </th>
-                        <th>
-                            Address Line 1
-                        </th>
-                        <th>
-                            Address Line 2
-                        </th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.Addresses.Count; i++)
-                    {
-                        <tr>
-                            <td>
-                                <select asp-for="@Model.Addresses[i].CountryId" class="form-control" asp-items="ViewBag.CountriesList"></select>
-                            </td>
-                            <td>
-                                <select asp-for="@Model.Addresses[i].CityId" class="form-control" asp-items="ViewBag.CitiesList"></select>
-                            </td>
-                            <td>
-                                <span asp-validation-for="@Model.Addresses[i].AddressLine1" class="text-danger"></span>
-                                @Html.EditorFor(m => m.Addresses[i].AddressLine1, new{htmlAttributes = new{@class = "form-control"}})
-                            </td>
-                            <td>
-                                <span asp-validation-for="@Model.Addresses[i].AddressLine2" class="text-danger"></span>
-                                @Html.EditorFor(m => m.Addresses[i].AddressLine2, new{htmlAttributes = new{@class = "form-control"}})
-                            </td>
-
-                            <td>
-                                <button id="dummybtn--@i" type="button" class="btn btn-sm btn-secondary invisible">Dummy</button>
-                                <button id="addbtn--@i" type="button" class="btn btn-sm btn-secondary visible"
-                                    onclick="AddItm(this)">
-                                    Add
-                                </button>
-                                <button id="btnremove--@i" type="button" class="btn btn-sm btn-secondary invisible"
-                                    onclick="DeleteItm(this)">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-
-            <input type="hidden" id="hdnLastIndex" value="0" />
-            <div class="form-group btn-group mt-2">
-                <input type="submit" value="Edit" class="btn btn-primary" />
-                <a class="btn btn-secondary" asp-action="Index">Back</a>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
-        </form>
+        </div>
+
+        <div class="form-group col-2"></div>
+
+        <div class="col-5">
+            <div class="form-group">
+                <label asp-for="VatNumber" class="control-label"></label>
+                <input asp-for="VatNumber" class="form-control" />
+                <span asp-validation-for="VatNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsClient" /> @Html.DisplayNameFor(model => model.IsClient)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsSupplier" /> @Html.DisplayNameFor(model => model.IsSupplier)
+                </label>
+            </div>
+        </div>
     </div>
-</div>
+
+    <div class="col-12 ml-5">
+        <h5>Addresses</h5>
+        <table id="addressTable" class="table table-borderless table-sm mb-0 pb-0">
+            <thead>
+                <tr>
+                    <th>
+                        Country Name
+                    </th>
+                    <th>
+                        City Name
+                    </th>
+                    <th>
+                        Address Line 1
+                    </th>
+                    <th>
+                        Address Line 2
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Addresses.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            <select asp-for="@Model.Addresses[i].CountryId" class="form-control" asp-items="ViewBag.CountriesList"></select>
+                        </td>
+                        <td>
+                            <select asp-for="@Model.Addresses[i].CityId" class="form-control" asp-items="ViewBag.CitiesList"></select>
+                        </td>
+                        <td>
+                            <span asp-validation-for="@Model.Addresses[i].AddressLine1" class="text-danger"></span>
+                            @Html.EditorFor(m => m.Addresses[i].AddressLine1, new{htmlAttributes = new{@class = "form-control"}})
+                        </td>
+                        <td>
+                            <span asp-validation-for="@Model.Addresses[i].AddressLine2" class="text-danger"></span>
+                            @Html.EditorFor(m => m.Addresses[i].AddressLine2, new{htmlAttributes = new{@class = "form-control"}})
+                            <input asp-for="@Model.Addresses[i].Id" id="addressId--@i" class="form-control visually-hidden invisible" type="text" />
+                        </td>
+                        <td>
+                            @*<button id="dummybtn--@i" type="button" class="btn btn-sm btn-secondary invisible">Dummy</button>*@
+                            <input asp-for="@Model.Addresses[i].IsActive" class="form-control visually-hidden invisible" size="5" type="text" id="IsActive--@i" />
+                            <button id="addbtn--@i" type="button" class="btn btn-sm btn-secondary @((i < Model.Addresses.Count -1) ? "invisible":"visible")"
+                                onclick="AddItm(this)">
+                                Add
+                            </button>
+                            <button id="btnremove--@i" type="button" class="btn btn-sm btn-danger @((i < Model.Addresses.Count -1) ? "visible":"invisible") "
+                                onclick="DeleteItm(this)">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <input type="hidden" id="hdnLastIndex" value="0" />
+    <div class="form-group btn-group mt-2">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a class="btn btn-secondary" asp-action="Index">Back</a>
+    </div>
+</form>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-
     <script>
 
         function AddItm(btn) {
@@ -118,7 +124,8 @@
             var rows = table.getElementsByTagName('tr');
             var rowOuterHtml = rows[rows.length - 1].outerHTML;
 
-            var lastRowIdx = document.getElementById('hdnLastIndex').value;
+            //var lastRowIdx = document.getElementById('hdnLastIndex').value;
+            var lastRowIdx = btn.id.replaceAll('addbtn--', '');
 
             var nextRoIdx = eval(lastRowIdx) + 1;
 
@@ -141,11 +148,35 @@
             var addbtn = document.getElementById(btnAddId);
             addbtn.classList.add("invisible");
             addbtn.classList.remove("visible");
+
+            var x = document.getElementsByTagName("INPUT");
+            for(var cnt = 0; cnt < x.length; cnt++){
+                if (x[cnt].id == "addressId--" + nextRoIdx){
+                    window.alert(x[cnt].id + '' + x[cnt].value);
+                    x[cnt].value = '00000000-0000-0000-0000-000000000000';
+                }
+                //if (x[cnt].id.indexOf('_' + nextRoIdx + '_') > 0){
+                    
+                //    if (x[cnt].type == "text"){
+                //        window.alert(x[cnt].id);
+                //        x[cnt].value = '';
+                //    }
+                //    if (x[cnt].type == "number") {
+                //        x[cnt].value = 0;
+                //    }
+                //}
+            }
         }
 
         function DeleteItm(btn) {
 
-            $(btn).closest('tr').remove();
+            //$(btn).closest('tr').remove();
+            var btnIdx = btn.id.replaceAll('btnremove--', '');
+            var idIsActive = "IsActive--" + btnIdx;
+            var idIsActive = document.querySelector("[id='" + idIsActive + "']");
+            idIsActive.value = false;
+
+            $(btn).closest('tr').hide();
         }
     </script>
 }

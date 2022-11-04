@@ -3,6 +3,7 @@ using SBS.Core.Contract;
 using SBS.Core.Models;
 using SBS.Infrastructure.Data.Common;
 using SBS.Infrastructure.Data.Models;
+using System.Linq;
 
 namespace SBS.Core.Services
 {
@@ -31,14 +32,10 @@ namespace SBS.Core.Services
 
             foreach (AddressViewModel addressViewModel in contragentViewModel.Addresses)
             {
-                //Country counry = await repo.GetByIdAsync<Country>(addressViewModel.CountryId);
-                //City city = await repo.GetByIdAsync<City>(addressViewModel.CityId);
                 contragent.Addresses.Add(new Address
                 {
                     CountryId = addressViewModel.CountryId,
-                    //Country = counry,
                     CityId = addressViewModel.CityId,
-                    //City = city,
                     AddressLine1 = addressViewModel.AddressLine1,
                     AddressLine2 = addressViewModel.AddressLine2,
                 });
@@ -143,19 +140,46 @@ namespace SBS.Core.Services
                 contragent.VatNumber = contragentViewModel.VatNumber;
                 contragent.IsActive = contragentViewModel.IsActive;
 
-                contragent.Addresses.Clear();
+                List<Guid> deletedIds = new List<Guid>();
                 foreach (var adrs in contragentViewModel.Addresses)
                 {
-                    contragent.Addresses.Add(new Address()
+                    Address address = contragent.Addresses.FirstOrDefault(a => a.Id == adrs.Id);
+                    if (address != null)
                     {
-                        Id = adrs.Id,
-                        CountryId = adrs.CountryId,
-                        CityId = adrs.CityId,
-                        AddressLine1 = adrs.AddressLine1,
-                        AddressLine2 = adrs.AddressLine2,
-                        IsActive = adrs.IsActive,
-                    });
+                        if(adrs.IsActive)
+                        {
+                            address.AddressLine1 = adrs.AddressLine1;
+                            address.AddressLine2 = adrs.AddressLine2;
+                            address.CityId = adrs.CityId;
+                            address.CountryId = adrs.CountryId;
+                        }
+                        else
+                        {
+                            deletedIds.Add(adrs.Id);
+                        }
+                    }
+                    else
+                    {
+                        contragent.Addresses.Add(new Address()
+                        {
+                            Id = adrs.Id,
+                            CountryId = adrs.CountryId,
+                            CityId = adrs.CityId,
+                            AddressLine1 = adrs.AddressLine1,
+                            AddressLine2 = adrs.AddressLine2,
+                            IsActive = adrs.IsActive,
+                        });
+                    }
                 }
+
+                for(int i = contragent.Addresses.Count -1; i >= 0 ; i--)
+                {
+                    if (deletedIds.Contains(contragent.Addresses[i].Id))
+                    {
+                        contragent.Addresses.Remove(contragent.Addresses[i]);
+                    }
+                }
+
                 await repo.SaveChangesAsync();
             }
         }
