@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SBS.Core.Contract;
 using SBS.Core.Models;
 
@@ -7,10 +8,17 @@ namespace SBS.Controllers
     public class StoreController : Controller
     {
         private readonly IStoreService service;
+        private readonly ICountryService countryService;
+        private readonly ICityService cityService;
 
-        public StoreController(IStoreService service)
+        public StoreController(
+            IStoreService service, 
+            ICountryService countryService, 
+            ICityService cityService)
         {
             this.service = service;
+            this.countryService = countryService;
+            this.cityService = cityService;
         }
 
         // GET: ContragentController
@@ -25,9 +33,14 @@ namespace SBS.Controllers
 
         // GET: ContragentController/Create
         [HttpGet]
-        public ActionResult Create()
+        public async Task<ActionResult> CreateAsync()
         {
             var model = new StoreViewModel();
+            model.Address = new AddressViewModel();
+
+            ViewBag.CountriesList = await GetCountries();
+            ViewBag.CitiesList = await GetCities();
+
             return View(model);
         }
 
@@ -59,6 +72,9 @@ namespace SBS.Controllers
         public async Task<ActionResult> Edit(Guid id)
         {
             var store = await service.Get(id);
+
+            ViewBag.CountriesList = await GetCountries();
+            ViewBag.CitiesList = await GetCities();
 
             if (store != null)
             {
@@ -106,6 +122,38 @@ namespace SBS.Controllers
             {
                 return View();
             }
+        }
+
+        private async Task<IEnumerable<SelectListItem>> GetCountries()
+        {
+            var result = new List<SelectListItem>();
+
+            IEnumerable<CountryViewModel> countryList = await countryService.GetAll();
+
+            result = countryList.Select(x => new SelectListItem()
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name,
+            }).ToList();
+
+            result.Insert(0, new SelectListItem() { Value = "", Text = "Select Country" });
+            return result;
+        }
+
+        private async Task<IEnumerable<SelectListItem>> GetCities()
+        {
+            var result = new List<SelectListItem>();
+
+            IEnumerable<CityViewModel> countryList = await cityService.GetAll();
+
+            result = countryList.Select(x => new SelectListItem()
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name,
+            }).ToList();
+
+            result.Insert(0, new SelectListItem() { Value = "", Text = "Select City" });
+            return result;
         }
     }
 }

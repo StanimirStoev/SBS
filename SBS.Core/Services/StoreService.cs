@@ -23,6 +23,26 @@ namespace SBS.Core.Services
                 Name = storeViewModel.Name,
                 Description=storeViewModel.Description,
             };
+            if (storeViewModel.Address != null)
+            {
+                if (store.Address == null)
+                {
+                    store.Address = new Address();
+                }
+
+                store.AddressId = storeViewModel.AddressId;
+                store.Address.CountryId = storeViewModel.Address.CountryId;
+                store.Address.CityId = storeViewModel.Address.CityId;
+                store.Address.AddressLine1 = storeViewModel.Address.AddressLine1;
+                store.Address.AddressLine2 = storeViewModel.Address.AddressLine2;
+            }
+            else
+            {
+                if (store.Address != null || store.AddressId != null)
+                {
+                    store.Address.IsActive = false;
+                }
+            }
 
             await repo.AddAsync(store);
             await repo.SaveChangesAsync();
@@ -46,15 +66,30 @@ namespace SBS.Core.Services
             StoreViewModel model = new StoreViewModel();
             var store = await repo.GetByIdAsync<Store>(id);
 
-
             if (store != null)
             {
                 model = new StoreViewModel()
                 {
+                    Id=store.Id,
                     Name = store.Name,
                     Description = store.Description,
                     IsActive = store.IsActive,
                 };
+                if(store.AddressId != null || store.Address != null)
+                {
+                    if(store.Address == null)
+                    {
+                        store.Address = await repo.GetByIdAsync<Address>(store.AddressId);
+                    }
+                    model.Address = new AddressViewModel()
+                    {
+                        Id = store.Address.Id,
+                        CityId = store.Address.CityId,
+                        CountryId = store.Address.CountryId,
+                        AddressLine1 = store.Address.AddressLine1,
+                        AddressLine2 = store.Address.AddressLine2,
+                    };
+                }
             }
             return model;
         }
@@ -80,6 +115,26 @@ namespace SBS.Core.Services
                 store.Name = storeViewModel.Name;
                 store.Description = storeViewModel.Description;
                 store.IsActive = storeViewModel.IsActive;
+                if(storeViewModel.Address != null)
+                {
+                    if(store.Address == null)
+                    {
+                        store.Address = new Address();
+                    }
+
+                    store.AddressId = storeViewModel.AddressId;
+                    store.Address.CountryId = storeViewModel.Address.CountryId;
+                    store.Address.CityId = storeViewModel.Address.CityId;
+                    store.Address.AddressLine1 = storeViewModel.Address.AddressLine1;
+                    store.Address.AddressLine2 = storeViewModel.Address.AddressLine2;
+                }
+                else
+                {
+                    if(store.Address != null || store.AddressId != null)
+                    {
+                        store.Address.IsActive = false;
+                    }
+                }
 
                 await repo.SaveChangesAsync();
             }

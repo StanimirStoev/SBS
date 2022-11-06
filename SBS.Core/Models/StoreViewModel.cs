@@ -23,7 +23,7 @@ namespace SBS.Core.Models
 
         public Guid? AddressId { get; set; }
         [ForeignKey(nameof(AddressId))]
-        public virtual Address? Address { get; set; }
+        public virtual AddressViewModel? Address { get; set; }
 
     }
 }
