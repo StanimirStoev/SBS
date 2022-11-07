@@ -39,6 +39,7 @@ builder.Services.AddScoped<IAddressService, AddressService>();
 builder.Services.AddScoped<IContragentService, ContragentService>();
 builder.Services.AddScoped<IStoreService, StoreService>();
 builder.Services.AddScoped<IUnitService, UnitService>();
+builder.Services.AddScoped<IDeliveryService, DeliveryService>();
 
 
 var app = builder.Build();

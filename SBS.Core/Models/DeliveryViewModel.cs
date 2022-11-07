@@ -19,7 +19,7 @@ namespace SBS.Core.Models
         public virtual ContragentViewModel Contragent { get; set; } = null!;
 
         [Required]
-        public DateTime? CreateDatetime { get; set; }
+        public DateTime? CreateDatetime { get; set; } = DateTime.Now;
 
         [Required]
         public Guid StoreId { get; set; }
