@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SBS.Core.Contract;
 using SBS.Core.Models;
+using SBS.Core.Services;
 using SBS.Tools;
 
 namespace SBS.Controllers
@@ -9,10 +11,14 @@ namespace SBS.Controllers
     public class ArticleController : Controller
     {
         private readonly IArticleService articleService;
+        private readonly IUnitService unitService;
 
-        public ArticleController(IArticleService articleService)
+        public ArticleController(
+            IArticleService articleService, 
+            IUnitService unitService)
         {
             this.articleService = articleService;
+            this.unitService = unitService;
         }
 
         // GET: ArticleController
@@ -20,16 +26,8 @@ namespace SBS.Controllers
         public async Task<ActionResult> Index(string sortExpression = "")
         {
             SortHelper sortHelper = new SortHelper();
-            sortHelper.AddColumn("Name");
-            sortHelper.AddColumn("Model");
-            sortHelper.AddColumn("Description");
-            sortHelper.AddColumn("Title");
-            sortHelper.AddColumn("DeliveryNumber");
-            ViewData["sortModel"] = sortHelper;
 
             var articles = await articleService.GetAll();
-
-            //sortHelper.ApplySort(sortExpression, ref articles);
 
             ViewData["Title"] = "Articles";
 
@@ -41,6 +39,9 @@ namespace SBS.Controllers
         public ActionResult Create()
         {
             var model = new ArticleViewModel();
+
+            ViewBag.Units = GetUnits();
+
             return View(model);
         }
 
@@ -119,6 +120,22 @@ namespace SBS.Controllers
             {
                 return View();
             }
+        }
+
+        private async Task<IEnumerable<SelectListItem>> GetUnits()
+        {
+            var result = new List<SelectListItem>();
+
+            IEnumerable<UnitViewModel> countryList = await unitService.GetAll();
+
+            result = countryList.Select(x => new SelectListItem()
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name,
+            }).ToList();
+
+            result.Insert(0, new SelectListItem() { Value = "", Text = "Select Unit" });
+            return result;
         }
     }
 }

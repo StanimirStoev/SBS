@@ -9,6 +9,8 @@ namespace SBS.Core.Contract
 
         Task<List<UnitViewModel>> GetAll(UnitFilterViewModel filter, SortHelper sortHelper, int pageIndex = 1, int pageSize = 5);
 
+        Task<List<UnitViewModel>> GetAll();
+
         Task Add(UnitViewModel unitViewModel);
 
         Task Delete(Guid id);

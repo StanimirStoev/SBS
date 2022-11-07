@@ -93,6 +93,21 @@ namespace SBS.Core.Services
             return unitViewModels;
         }
 
+        public async Task<List<UnitViewModel>> GetAll()
+        {
+            return await repo.AllReadonly<Unit>()
+                .Where(u => u.IsActive)
+                .Select(u => new UnitViewModel()
+                {
+                    Id = u.Id,
+                    Name = u.Name,
+                    Description = u.Description ?? "",
+                    IsActive = u.IsActive,
+                })
+                .ToListAsync();
+
+        }
+
         public int GetCount(UnitFilterViewModel filter)
         {
             IQueryable<Unit> units = repo.AllReadonly<Unit>()

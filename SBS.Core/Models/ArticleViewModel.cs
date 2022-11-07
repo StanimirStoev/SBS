@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using static SBS.Core.Constants.DataConstants.Article;
 
 namespace SBS.Core.Models
@@ -9,7 +10,6 @@ namespace SBS.Core.Models
         {
             //Partides = new HashSet<Partide>();
         }
-
 
         public Guid Id { get; set; }
 
@@ -34,6 +34,9 @@ namespace SBS.Core.Models
         [Required]
         public bool IsActive { get; set; } = true;
 
-        //public virtual ICollection<Partide> Partides { get; set; }
+        [Required]
+        public Guid UnitId { get; set; }
+        [ForeignKey(nameof(UnitId))]
+        public virtual UnitViewModel Unit { get; set; }
     }
 }
