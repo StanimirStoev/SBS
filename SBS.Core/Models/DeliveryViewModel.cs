@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SBS.Infrastructure.Data.Models
+namespace SBS.Core.Models
 {
-    public class Delivery
+    public class DeliveryViewModel
     {
         [Key]
         public Guid Id { get; set; }
@@ -16,17 +16,17 @@ namespace SBS.Infrastructure.Data.Models
         [Required]
         public Guid ContragentId { get; set; }
         [ForeignKey(nameof(ContragentId))]
-        public virtual Contragent Contragent { get; set; } = null!;
+        public virtual ContragentViewModel Contragent { get; set; } = null!;
 
         [Required]
-        public DateTime CreateDatetime { get; set; }
+        public DateTime? CreateDatetime { get; set; }
 
         [Required]
         public Guid StoreId { get; set; }
         [ForeignKey(nameof(StoreId))]
-        public virtual Store Store { get; set; } = null!;
+        public virtual StoreViewModel Store { get; set; } = null!;
 
-        public virtual List<DeliveryDetail> Details { get; set; } = new List<DeliveryDetail>(); 
+        public virtual List<DeliveryDetailViewModel> Details { get; set; } = new List<DeliveryDetailViewModel>();
 
         [Required]
         public bool IsActive { get; set; } = true;

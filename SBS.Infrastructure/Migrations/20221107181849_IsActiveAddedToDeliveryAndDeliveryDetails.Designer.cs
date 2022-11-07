@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SBS.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using SBS.Infrastructure.Data;
 namespace SBS.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221107181849_IsActiveAddedToDeliveryAndDeliveryDetails")]
+    partial class IsActiveAddedToDeliveryAndDeliveryDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -268,7 +270,7 @@ namespace SBS.Infrastructure.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("Addresses", (string)null);
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("SBS.Infrastructure.Data.Models.Article", b =>
@@ -310,7 +312,7 @@ namespace SBS.Infrastructure.Migrations
 
                     b.HasIndex("UnitId");
 
-                    b.ToTable("Articles", (string)null);
+                    b.ToTable("Articles");
                 });
 
             modelBuilder.Entity("SBS.Infrastructure.Data.Models.City", b =>
@@ -334,7 +336,7 @@ namespace SBS.Infrastructure.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("Cities", (string)null);
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("SBS.Infrastructure.Data.Models.Contragent", b =>
@@ -369,7 +371,7 @@ namespace SBS.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contragents", (string)null);
+                    b.ToTable("Contragents");
                 });
 
             modelBuilder.Entity("SBS.Infrastructure.Data.Models.Country", b =>
@@ -396,7 +398,7 @@ namespace SBS.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Countries", (string)null);
+                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("SBS.Infrastructure.Data.Models.Delivery", b =>
@@ -423,7 +425,7 @@ namespace SBS.Infrastructure.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("Deliveries", (string)null);
+                    b.ToTable("Deliveries");
                 });
 
             modelBuilder.Entity("SBS.Infrastructure.Data.Models.DeliveryDetail", b =>
@@ -453,7 +455,7 @@ namespace SBS.Infrastructure.Migrations
 
                     b.HasIndex("DeliveryId");
 
-                    b.ToTable("DeliveryDetails", (string)null);
+                    b.ToTable("DeliveryDetails");
                 });
 
             modelBuilder.Entity("SBS.Infrastructure.Data.Models.PartidesInStore", b =>
@@ -471,7 +473,7 @@ namespace SBS.Infrastructure.Migrations
 
                     b.HasIndex("DeliveryDetailId");
 
-                    b.ToTable("PartidesInStores", (string)null);
+                    b.ToTable("PartidesInStores");
                 });
 
             modelBuilder.Entity("SBS.Infrastructure.Data.Models.Store", b =>
@@ -499,7 +501,7 @@ namespace SBS.Infrastructure.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.ToTable("Stores", (string)null);
+                    b.ToTable("Stores");
                 });
 
             modelBuilder.Entity("SBS.Infrastructure.Data.Models.Unit", b =>
@@ -522,7 +524,7 @@ namespace SBS.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Units", (string)null);
+                    b.ToTable("Units");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
