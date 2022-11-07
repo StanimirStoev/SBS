@@ -3,17 +3,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SBS.Infrastructure.Data.Models
 {
-    public class Partide
+    public class DeliveryDetail
     {
-        public Partide()
-        {
-            PartidesInStores = new HashSet<PartidesInStore>();
-        }
+
         [Key]
         public Guid Id { get; set; }
 
         [Required]
-        public DateTime CreateDatetime { get; set; }
+        public Guid DeliveryId { get; set; }
+        [ForeignKey(nameof(DeliveryId))]
+        public virtual Delivery Delivery { get; set; } = null!;
 
         [Required]
         public Guid ArticleId { get; set; }
@@ -23,7 +22,9 @@ namespace SBS.Infrastructure.Data.Models
         [Required]
         public double Qty { get; set; } = 0;
 
-        public virtual ICollection<PartidesInStore> PartidesInStores { get; set; }
+        [Required]
+        public double Price { get; set; } = 0;
 
+        public virtual ICollection<PartidesInStore> PartidesInStores { get; set; } = new HashSet<PartidesInStore>();
     }
 }

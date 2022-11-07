@@ -11,9 +11,9 @@ namespace SBS.Infrastructure.Data.Models
         public virtual Store Store { get; set; } = null!;
 
         [Required]
-        public Guid PartideId { get; set; }
-        [ForeignKey(nameof(PartideId))]
-        public virtual Partide Partide { get; set; } = null!;
+        public Guid DeliveryDetailId { get; set; }
+        [ForeignKey(nameof(DeliveryDetailId))]
+        public virtual DeliveryDetail DeliveryDetail { get; set; } = null!;
 
         [Required]
         public double Qty { get; set; } = 0;

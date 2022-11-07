@@ -23,7 +23,15 @@ namespace SBS.Infrastructure.Data
                 .OnDelete(DeleteBehavior.NoAction);
 
             builder.Entity<PartidesInStore>()
-                .HasKey(nameof(PartidesInStore.StoreId), nameof(PartidesInStore.PartideId));
+                .HasKey(nameof(PartidesInStore.StoreId), nameof(PartidesInStore.DeliveryDetailId));
+            builder.Entity<PartidesInStore>()
+                .HasOne(ps => ps.Store)
+                .WithMany(s => s.PartidesInStores)
+                .OnDelete(DeleteBehavior.NoAction);
+            builder.Entity<PartidesInStore>()
+                .HasOne(ps => ps.DeliveryDetail)
+                .WithMany(d => d.PartidesInStores)
+                .OnDelete(DeleteBehavior.NoAction);
 
         }
         public DbSet<Address> Addresses { get; set; } = null!;
@@ -33,7 +41,8 @@ namespace SBS.Infrastructure.Data
         public DbSet<Country> Countries { get; set; } = null!;
         public DbSet<Store> Stores { get; set; } = null!;
         public DbSet<Unit> Units { get; set; } = null!;
-        public DbSet<Partide> Partides { get; set; } = null!;
+        public DbSet<Delivery> Deliveries { get; set; } = null!;
+        public DbSet<DeliveryDetail> DeliveryDetails { get; set; } = null!;
         public DbSet<PartidesInStore> PartidesInStores { get; set; } = null!;
     }
 }

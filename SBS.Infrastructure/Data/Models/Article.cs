@@ -8,7 +8,7 @@ namespace SBS.Infrastructure.Data.Models
     {
         public Article()
         {
-            Partides = new HashSet<Partide>();
+            Partides = new HashSet<DeliveryDetail>();
         }
 
         [Key]
@@ -34,6 +34,6 @@ namespace SBS.Infrastructure.Data.Models
         [Required]
         public bool IsActive { get; set; } = true;
 
-        public virtual ICollection<Partide> Partides { get; set; }
+        public virtual ICollection<DeliveryDetail> Partides { get; set; }
     }
 }
