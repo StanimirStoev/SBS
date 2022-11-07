@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using static SBS.Infrastructure.Constants.DataConstants.Article;
 
 
@@ -33,6 +34,11 @@ namespace SBS.Infrastructure.Data.Models
 
         [Required]
         public bool IsActive { get; set; } = true;
+
+        [Required]
+        public Guid UnitId { get; set; }
+        [ForeignKey(nameof(UnitId))]
+        public virtual Unit Unit { get; set; }
 
         public virtual ICollection<DeliveryDetail> Partides { get; set; }
     }
