@@ -6,11 +6,6 @@ namespace SBS.Core.Models
 {
     public class ArticleViewModel
     {
-        public ArticleViewModel()
-        {
-            //Partides = new HashSet<Partide>();
-        }
-
         public Guid Id { get; set; }
 
         [Required]
@@ -37,6 +32,6 @@ namespace SBS.Core.Models
         [Required]
         public Guid UnitId { get; set; }
         [ForeignKey(nameof(UnitId))]
-        public virtual UnitViewModel Unit { get; set; }
+        public virtual UnitViewModel? Unit { get; set; }
     }
 }

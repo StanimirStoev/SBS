@@ -30,6 +30,7 @@ namespace SBS.Core.Services
                 DeliveryNumber = articleViewModel.DeliveryNumber,
                 Description = articleViewModel.Description,
                 Title = articleViewModel.Title,
+                UnitId = articleViewModel.UnitId,
             };
 
             await repo.AddAsync(article);
@@ -68,7 +69,10 @@ namespace SBS.Core.Services
         public async Task<ArticleViewModel> Get(Guid id)
         {
             ArticleViewModel model = new ArticleViewModel();
-            var product = await repo.GetByIdAsync<Article>(id);
+            var product = await repo.All<Article>()
+                .Where(a => a.Id == id)
+                .Include(a => a.Unit)
+                .FirstOrDefaultAsync();
                 
 
             if (product != null)
@@ -82,6 +86,14 @@ namespace SBS.Core.Services
                     Description = product.Description,
                     Model = product.Model,
                     Name = product.Name,
+                    UnitId = product.UnitId,
+                    Unit = new UnitViewModel()
+                    {
+                        Id = product.Unit.Id,
+                        Name = product.Unit.Name,
+                        Description = product.Unit.Description ?? "",
+                        IsActive = product.Unit.IsActive,
+                    },
                 };
             }
             return model;
@@ -98,6 +110,7 @@ namespace SBS.Core.Services
                 article.Description = articleViewModel.Description;
                 article.Title = articleViewModel.Title;
                 article.IsActive = articleViewModel.IsActive;
+                article.UnitId = articleViewModel.UnitId;
 
                 await repo.SaveChangesAsync();
             }

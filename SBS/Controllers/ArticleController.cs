@@ -36,11 +36,11 @@ namespace SBS.Controllers
 
         // GET: ArticleController/Create
         [HttpGet]
-        public ActionResult Create()
+        public async Task<ActionResult> CreateAsync()
         {
             var model = new ArticleViewModel();
 
-            ViewBag.Units = GetUnits();
+            ViewBag.Units = await GetUnits();
 
             return View(model);
         }
@@ -73,6 +73,8 @@ namespace SBS.Controllers
         public async Task<ActionResult> Edit(Guid id)
         {
             var article = await articleService.Get(id);
+
+            ViewBag.Units = await GetUnits();
 
             if (article != null)
             {
