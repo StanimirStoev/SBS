@@ -140,6 +140,43 @@ namespace SBS.Controllers
             }
         }
 
+        // GET: ContragentController/Delete/5
+        [HttpGet]
+        public async Task<ActionResult> Delete(Guid id)
+        {
+            var delivery = await service.Get(id);
+            ViewBag.ContragentsList = await GetContragents();
+            ViewBag.StoresList = await GetStores();
+            ViewBag.ArticlesList = await GetArticles();
+            ViewBag.UnitsList = await GetUnits();
+            //TempData.Keep();
+            if (delivery != null)
+            {
+                return View(delivery);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+        // POST: ContragentController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Delete(DeliveryViewModel viewModel)
+        {
+
+            await service.Delete(viewModel.Id);
+
+            try
+            {
+                TempData["SuccessMessage"] = "Delivery " + viewModel.Id + " deleted successfully!";
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
 
         private async Task<IEnumerable<SelectListItem>> GetContragents()
         {

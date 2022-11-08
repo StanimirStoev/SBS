@@ -1,11 +1,12 @@
 ﻿@model SBS.Core.Models.DeliveryViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Delete";
 }
 
-<h1>Details</h1>
+<h1>Delete</h1>
 
+<h3 class="text-danger">Are you sure you want to delete this?</h3>
 <div>
     <h4>Delivery</h4>
     <hr />
@@ -80,9 +81,12 @@
             </tbody>
         </table>
     </div>
-
-</div>
-<div class="form-group btn-group">
-    <a asp-controller="Delivery" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
-    <a class="btn btn-secondary" asp-action="Index">Back</a>
+    
+    <form asp-action="Delete">
+        <div class="form-group btn-group">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a class="btn btn-secondary" asp-action="Index" asp-route-pg="@TempData["CurrentPage"]">Back</a>
+        </div>
+    </form>
+ 
 </div>
