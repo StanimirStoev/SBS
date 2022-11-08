@@ -117,6 +117,28 @@ namespace SBS.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        // POST: ContragentController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditAsync(DeliveryViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                // if state is not valid - return to continue edit data
+                return View(viewModel);
+            }
+
+            await service.Update(viewModel);
+
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
 
         private async Task<IEnumerable<SelectListItem>> GetContragents()

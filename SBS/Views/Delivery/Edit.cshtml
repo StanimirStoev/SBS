@@ -85,6 +85,8 @@
                             @Html.EditorFor(m => m.Details[i].TotalPrice, new{htmlAttributes = new{@class = "form-control"}})
                         </td>
                         <td>
+                            <input asp-for="@Model.Details[i].Id" hidden />
+                            <input asp-for="@Model.Details[i].DeliveryId" hidden />
                             @*<button id="dummybtn--@i" type="button" class="btn btn-sm btn-secondary invisible">Dummy</button>*@
                             <input asp-for="@Model.Details[i].IsActive" class="form-control visually-hidden invisible" size="5" type="text" id="IsActive--@i" />
                             <button id="addbtn--@i" type="button" class="btn btn-sm btn-secondary visible"

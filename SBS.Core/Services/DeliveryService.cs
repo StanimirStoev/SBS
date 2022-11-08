@@ -30,12 +30,12 @@ namespace SBS.Core.Services
                 StoreId = viewModel.StoreId,
                 IsActive = viewModel.IsActive,
             };
-            foreach(DeliveryDetailViewModel detailViewModel in viewModel.Details)
+            foreach (DeliveryDetailViewModel detailViewModel in viewModel.Details)
             {
-                if(detailViewModel.IsActive)
+                if (detailViewModel.IsActive)
                 {
                     DeliveryDetail? detail = delivery.Details.FirstOrDefault(x => x.Id == detailViewModel.Id);
-                    if(detail != null)
+                    if (detail != null)
                     {
                         detail.ArticleId = detailViewModel.ArticleId;
                         detail.UnitId = detailViewModel.UnitId;
@@ -61,7 +61,7 @@ namespace SBS.Core.Services
                 else
                 {
                     DeliveryDetail? detail = delivery.Details.FirstOrDefault(x => x.Id == detailViewModel.Id);
-                    if(detail != null)
+                    if (detail != null)
                     {
                         delivery.Details.Remove(detail);
                     }
@@ -127,8 +127,9 @@ namespace SBS.Core.Services
                     foreach (DeliveryDetail detail in delivery.Details)
                     {
                         DeliveryDetailViewModel? detailViewmodel = model.Details.FirstOrDefault(d => d.Id == detail.Id);
-                        if(detailViewmodel != null)
+                        if (detailViewmodel != null)
                         {
+                            detailViewmodel.Id = detail.Id;
                             detailViewmodel.DeliveryId = detail.DeliveryId;
                             detailViewmodel.ArticleId = detail.ArticleId;
                             detailViewmodel.UnitId = detail.UnitId;
@@ -148,7 +149,7 @@ namespace SBS.Core.Services
                                 Price = detail.Price,
                                 IsActive = detail.IsActive,
                             });
-                        }    
+                        }
                     }
                 }
             }
@@ -165,7 +166,7 @@ namespace SBS.Core.Services
                 {
                     Id = d.Id,
                     ContragentId = d.ContragentId,
-                    Contragent   = new ContragentViewModel()
+                    Contragent = new ContragentViewModel()
                     {
                         Id = d.Contragent.Id,
                         FirstName = d.Contragent.FirstName,
@@ -208,7 +209,10 @@ namespace SBS.Core.Services
                             detail.ArticleId = detailViewModel.ArticleId;
                             detail.Price = detailViewModel.Price;
                             detail.Qty = detailViewModel.Qty;
-                            detail.DeliveryId = detailViewModel.DeliveryId;
+                            detail.Delivery = delivery;
+                            detail.DeliveryId = delivery.Id;
+                            detail.UnitId = detailViewModel.UnitId;
+                            detail.IsActive = delivery.IsActive;
                         }
                         else
                         {
@@ -218,7 +222,9 @@ namespace SBS.Core.Services
                                 ArticleId = detailViewModel.ArticleId,
                                 Price = detailViewModel.Price,
                                 Qty = detailViewModel.Qty,
-                                DeliveryId = detailViewModel.DeliveryId,
+                                Delivery = delivery,
+                                DeliveryId = delivery.Id,
+                                UnitId = detailViewModel.UnitId,
                                 IsActive = detailViewModel.IsActive,
                             });
                         }
