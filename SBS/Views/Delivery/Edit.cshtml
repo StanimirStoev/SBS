@@ -1,15 +1,15 @@
 ﻿@model SBS.Core.Models.DeliveryViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Create</h1>
+<h1>Edit</h1>
 
-<h4>Delivery</h4>
+<h4>DeliveryViewModel</h4>
 <hr />
 
-<form asp-controller="Delivery" asp-action="Create" method="post">
+<form asp-action="Edit">
     <div class="row">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="col-md-5">
@@ -104,9 +104,10 @@
 
     <input type="hidden" id="hdnLastIndex" value="0" />
     <div class="form-group btn-group mt-2">
-        <input type="submit" value="Create" class="btn btn-primary" />
+        <input type="submit" value="Save" class="btn btn-primary" />
         <a class="btn btn-secondary" asp-action="Index">Back</a>
     </div>
+
 </form>
 
 @section Scripts {

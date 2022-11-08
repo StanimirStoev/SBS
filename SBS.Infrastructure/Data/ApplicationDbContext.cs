@@ -33,6 +33,11 @@ namespace SBS.Infrastructure.Data
                 .WithMany(d => d.PartidesInStores)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            builder.Entity<DeliveryDetail>()
+                .HasOne(d => d.Unit)
+                .WithMany(u => u.DeliveryDetails)
+                .OnDelete(DeleteBehavior.NoAction);
+
         }
         public DbSet<Address> Addresses { get; set; } = null!;
         public DbSet<Article> Articles { get; set; } = null!;

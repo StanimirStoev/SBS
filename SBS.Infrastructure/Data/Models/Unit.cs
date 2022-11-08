@@ -15,6 +15,8 @@ namespace SBS.Infrastructure.Data.Models
         [StringLength(DescriptionMaxLenght)]
         public string? Description { get; set; }
 
+        public virtual List<DeliveryDetail> DeliveryDetails { get; set; } = new List<DeliveryDetail>();
+
         [Required]
         public bool IsActive { get; set; } = true;
     }

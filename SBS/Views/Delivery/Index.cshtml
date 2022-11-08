@@ -4,17 +4,23 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="container-fluid btn-group">
+    <div class="col-10">
+        <h1 class="col-4">Deliveries</h1>
+    </div>
+    <div class="justify-content-end  col-2">
+        <p>
+            <a asp-action="Create" class="btn btn-primary mt-2">Create New</a>
+        </p>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
+            @*            <th>
+            @Html.DisplayNameFor(model => model.Id)
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.ContragentId)
             </th>
@@ -24,36 +30,36 @@
             <th>
                 @Html.DisplayNameFor(model => model.StoreId)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContragentId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateDatetime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StoreId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*            <td>
+            @Html.DisplayFor(modelItem => item.Id)
+            </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contragent.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDatetime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Store.Name)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a asp-controller="Delivery" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                        <a asp-controller="Delivery" asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary">Details</a>
+                        <form asp-controller="Contragent" asp-action="Delete" method="post">
+                            <input name="id" type="hidden" value="@item.Id" />
+                            <button class=" btn btn-danger" onclick="return confirm('Are you sure you want to delete atricle: @item.Id')">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

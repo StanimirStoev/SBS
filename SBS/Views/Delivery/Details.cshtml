@@ -1,0 +1,88 @@
+﻿@model SBS.Core.Models.DeliveryViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Delivery</h4>
+    <hr />
+
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label asp-for="ContragentId" class="control-label">Supplier</label>
+                <select asp-for="ContragentId" class="form-control" asp-items="@ViewBag.ContragentsList" disabled> </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreateDatetime" class="control-label"></label>
+                <input asp-for="CreateDatetime" class="form-control" disabled />
+            </div>
+        </div>
+
+        <div class="form-group col-2"></div>
+
+        <div class="col-5">
+            <div class="form-group">
+                <label asp-for="StoreId" class="control-label">Store</label>
+                <select asp-for="StoreId" class="form-control" asp-items="@ViewBag.StoresList" disabled> </select>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-12 ml-5">
+        <h5>Details</h5>
+        <table id="addressTable" class="table table-borderless table-sm mb-0 pb-0">
+            <thead>
+                <tr>
+                    <th>
+                        Article
+                    </th>
+                    <th>
+                        Quantity
+                    </th>
+                    <th>
+                        Unit
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Total Price
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Details.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            <select asp-for="@Model.Details[i].ArticleId" class="form-control" asp-items="ViewBag.ArticlesList" disabled></select>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => m.Details[i].Qty)
+                        </td>
+                        <td>
+                            <select asp-for="@Model.Details[i].UnitId" class="form-control" asp-items="ViewBag.UnitsList" disabled></select>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => m.Details[i].Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => m.Details[i].TotalPrice)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div class="form-group btn-group">
+    <a class="btn btn-primary" asp-action="Edit" asp-route-pg="@TempData["CurrentPage"]">Edit</a>
+    <a class="btn btn-secondary" asp-action="Index" asp-route-pg="@TempData["CurrentPage"]">Back</a>
+</div>

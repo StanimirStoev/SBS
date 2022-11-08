@@ -20,6 +20,11 @@ namespace SBS.Infrastructure.Data.Models
         public virtual Article Article { get; set; } = null!;
 
         [Required]
+        public Guid UnitId { get; set; }
+        [ForeignKey(nameof(UnitId))]
+        public virtual Unit Unit { get; set; } = null!;
+
+        [Required]
         public double Qty { get; set; } = 0;
 
         [Required]

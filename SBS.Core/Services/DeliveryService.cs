@@ -38,8 +38,10 @@ namespace SBS.Core.Services
                     if(detail != null)
                     {
                         detail.ArticleId = detailViewModel.ArticleId;
+                        detail.UnitId = detailViewModel.UnitId;
                         detail.Price = detailViewModel.Price;
                         detail.Qty = detailViewModel.Qty;
+                        detail.Delivery = delivery;
                         detail.DeliveryId = detailViewModel.DeliveryId;
                     }
                     else
@@ -48,9 +50,10 @@ namespace SBS.Core.Services
                         {
                             Id = detailViewModel.Id,
                             ArticleId = detailViewModel.ArticleId,
+                            UnitId = detailViewModel.UnitId,
                             Price = detailViewModel.Price,
                             Qty = detailViewModel.Qty,
-                            DeliveryId = detailViewModel.DeliveryId,
+                            Delivery = delivery,
                             IsActive = detailViewModel.IsActive,
                         });
                     }
@@ -85,7 +88,11 @@ namespace SBS.Core.Services
         public async Task<DeliveryViewModel> Get(Guid id)
         {
             DeliveryViewModel model = new DeliveryViewModel();
-            var delivery = await repo.GetByIdAsync<Delivery>(id);
+            var delivery = await repo.All<Delivery>()
+                .Include(d => d.Details)
+                .Include(d => d.Store)
+                .Include(d => d.Contragent)
+                .FirstOrDefaultAsync(p => p.Id == id);
 
             if (delivery != null)
             {
@@ -93,8 +100,26 @@ namespace SBS.Core.Services
                 {
                     Id = delivery.Id,
                     ContragentId = delivery.ContragentId,
+                    Contragent = new ContragentViewModel()
+                    {
+                        Id = delivery.Contragent.Id,
+                        FirstName = delivery.Contragent.FirstName,
+                        LastName = delivery.Contragent.LastName,
+                        IsActive = delivery.Contragent.IsActive,
+                        VatNumber = delivery.Contragent.VatNumber,
+                        IsClient = delivery.Contragent.IsClient,
+                        IsSupplier = delivery.Contragent.IsSupplier,
+                    },
                     CreateDatetime = delivery.CreateDatetime,
                     StoreId = delivery.StoreId,
+                    Store = new StoreViewModel()
+                    {
+                        Id = delivery.Store.Id,
+                        IsActive = delivery.Store.IsActive,
+                        Description = delivery.Store.Description,
+                        Name = delivery.Store.Name,
+                        AddressId = delivery.Store.AddressId,
+                    },
                     IsActive = delivery.IsActive,
                 };
                 if (delivery.Details != null)
@@ -104,22 +129,24 @@ namespace SBS.Core.Services
                         DeliveryDetailViewModel? detailViewmodel = model.Details.FirstOrDefault(d => d.Id == detail.Id);
                         if(detailViewmodel != null)
                         {
-                            detailViewmodel.IsActive = detail.IsActive;
-                            detailViewmodel.ArticleId = detail.ArticleId;
-                            detailViewmodel.Price = detail.Price;
-                            detailViewmodel.Qty = detail.Qty;
                             detailViewmodel.DeliveryId = detail.DeliveryId;
+                            detailViewmodel.ArticleId = detail.ArticleId;
+                            detailViewmodel.UnitId = detail.UnitId;
+                            detailViewmodel.Qty = detail.Qty;
+                            detailViewmodel.Price = detail.Price;
+                            detailViewmodel.IsActive = detail.IsActive;
                         }
                         else
                         {
                             model.Details.Add(new DeliveryDetailViewModel()
                             {
-                                DeliveryId = detail.DeliveryId,
-                                Qty = detail.Qty,
-                                ArticleId = detail.ArticleId,
-                                IsActive = detail.IsActive,
                                 Id = detail.Id,
+                                DeliveryId = detail.DeliveryId,
+                                ArticleId = detail.ArticleId,
+                                UnitId = detail.UnitId,
+                                Qty = detail.Qty,
                                 Price = detail.Price,
+                                IsActive = detail.IsActive,
                             });
                         }    
                     }
@@ -132,11 +159,30 @@ namespace SBS.Core.Services
         {
             return await repo.AllReadonly<Delivery>()
                 .Where(d => d.IsActive)
+                .Include(d => d.Contragent)
+                .Include(d => d.Store)
                 .Select(d => new DeliveryViewModel()
                 {
                     Id = d.Id,
                     ContragentId = d.ContragentId,
+                    Contragent   = new ContragentViewModel()
+                    {
+                        Id = d.Contragent.Id,
+                        FirstName = d.Contragent.FirstName,
+                        LastName = d.Contragent.LastName,
+                        VatNumber = d.Contragent.VatNumber,
+                        IsSupplier = d.Contragent.IsSupplier,
+                        IsClient = d.Contragent.IsClient,
+                        IsActive = d.Contragent.IsActive,
+                    },
                     StoreId = d.StoreId,
+                    Store = new StoreViewModel()
+                    {
+                        Id = d.Store.Id,
+                        IsActive = d.Store.IsActive,
+                        Description = d.Store.Description,
+                        Name = d.Store.Name,
+                    },
                     CreateDatetime = d.CreateDatetime,
                     IsActive = d.IsActive,
                 }).ToListAsync();

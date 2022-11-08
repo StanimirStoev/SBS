@@ -16,7 +16,7 @@ namespace SBS.Core.Models
         [Required]
         public Guid ContragentId { get; set; }
         [ForeignKey(nameof(ContragentId))]
-        public virtual ContragentViewModel Contragent { get; set; } = null!;
+        public virtual ContragentViewModel? Contragent { get; set; } = null!;
 
         [Required]
         public DateTime? CreateDatetime { get; set; } = DateTime.Now;
@@ -24,7 +24,7 @@ namespace SBS.Core.Models
         [Required]
         public Guid StoreId { get; set; }
         [ForeignKey(nameof(StoreId))]
-        public virtual StoreViewModel Store { get; set; } = null!;
+        public virtual StoreViewModel? Store { get; set; } = null!;
 
         public virtual List<DeliveryDetailViewModel> Details { get; set; } = new List<DeliveryDetailViewModel>();
 
