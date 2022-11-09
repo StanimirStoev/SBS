@@ -28,6 +28,7 @@ namespace SBS.Core.Services
                 CreateDatetime = viewModel.CreateDatetime ?? DateTime.Now,
                 ContragentId = viewModel.ContragentId,
                 StoreId = viewModel.StoreId,
+                IsConfirmed = false,
                 IsActive = viewModel.IsActive,
             };
             foreach (DeliveryDetailViewModel detailViewModel in viewModel.Details)
@@ -70,6 +71,31 @@ namespace SBS.Core.Services
 
             await repo.AddAsync(delivery);
             await repo.SaveChangesAsync();
+        }
+
+        public async Task Confirm(DeliveryViewModel viewModel)
+        {
+            //var delivery = await repo.GetByIdAsync<Delivery>(viewModel.Id);
+            var delivery = await repo.All<Delivery>()
+                .Include(d => d.Details)
+                .FirstOrDefaultAsync(p => p.Id == viewModel.Id);
+
+            if (delivery != null)
+            {
+                foreach (var item in delivery.Details)
+                {
+                    await repo.AddAsync<PartidesInStore>(new PartidesInStore()
+                    {
+                        DeliveryDetailId= item.Id,
+                        StoreId= viewModel.StoreId,
+                        Qty=item.Qty,
+                    });
+                }
+
+                delivery.IsConfirmed = true;
+
+                await repo.SaveChangesAsync();
+            }
         }
 
         public async Task Delete(Guid id)
@@ -120,6 +146,7 @@ namespace SBS.Core.Services
                         Name = delivery.Store.Name,
                         AddressId = delivery.Store.AddressId,
                     },
+                    IsConfirmed= delivery.IsConfirmed,
                     IsActive = delivery.IsActive,
                 };
                 if (delivery.Details != null)
@@ -185,6 +212,7 @@ namespace SBS.Core.Services
                         Name = d.Store.Name,
                     },
                     CreateDatetime = d.CreateDatetime,
+                    IsConfirmed= d.IsConfirmed,
                     IsActive = d.IsActive,
                 }).ToListAsync();
         }
@@ -199,6 +227,7 @@ namespace SBS.Core.Services
                 delivery.StoreId = viewModel.StoreId;
                 delivery.ContragentId = viewModel.ContragentId;
                 delivery.IsActive = viewModel.IsActive;
+                delivery.IsConfirmed = viewModel.IsConfirmed;
                 foreach (DeliveryDetailViewModel detailViewModel in viewModel.Details)
                 {
                     if (detailViewModel.IsActive)

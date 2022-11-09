@@ -18,5 +18,7 @@ namespace SBS.Core.Contract
         Task<DeliveryViewModel> Get(Guid id);
 
         Task Update(DeliveryViewModel viewModel);
+
+        Task Confirm(DeliveryViewModel viewModel);
     }
 }

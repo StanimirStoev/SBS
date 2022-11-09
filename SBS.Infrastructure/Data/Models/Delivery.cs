@@ -26,7 +26,10 @@ namespace SBS.Infrastructure.Data.Models
         [ForeignKey(nameof(StoreId))]
         public virtual Store Store { get; set; } = null!;
 
-        public virtual List<DeliveryDetail> Details { get; set; } = new List<DeliveryDetail>(); 
+        public virtual List<DeliveryDetail> Details { get; set; } = new List<DeliveryDetail>();
+
+        [Required]
+        public bool IsConfirmed { get; set; } = false;
 
         [Required]
         public bool IsActive { get; set; } = true;

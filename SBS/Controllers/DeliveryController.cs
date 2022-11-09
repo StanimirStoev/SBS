@@ -177,6 +177,28 @@ namespace SBS.Controllers
             }
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ConfirmAsync(DeliveryViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                // if state is not valid - return to continue edit data
+                return View(viewModel);
+            }
+
+            await service.Confirm(viewModel);
+
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
 
         private async Task<IEnumerable<SelectListItem>> GetContragents()
         {
