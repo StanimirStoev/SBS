@@ -41,6 +41,7 @@ builder.Services.AddScoped<IStoreService, StoreService>();
 builder.Services.AddScoped<IUnitService, UnitService>();
 builder.Services.AddScoped<IDeliveryService, DeliveryService>();
 builder.Services.AddScoped<IArticlesInStockService, ArticlesInStockService>();
+builder.Services.AddScoped<ITransferService, TransferService>();
 
 
 var app = builder.Build();
