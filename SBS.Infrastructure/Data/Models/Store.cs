@@ -6,11 +6,6 @@ namespace SBS.Infrastructure.Data.Models
 {
     public class Store
     {
-        public Store()
-        {
-            PartidesInStores = new HashSet<PartidesInStore>();
-        }
-
         [Key]
         public Guid Id { get; set; }
 
@@ -28,6 +23,10 @@ namespace SBS.Infrastructure.Data.Models
         [ForeignKey(nameof(AddressId))]
         public virtual Address? Address { get; set; }
 
-        public virtual ICollection<PartidesInStore> PartidesInStores { get; set; }
+        public virtual List<PartidesInStore> PartidesInStores { get; set; } = new List<PartidesInStore>();
+
+        public virtual List<Transfer> TransferStoresFrom { get; set; } = new List<Transfer>();
+
+        public virtual List<Transfer> TransferStoresTo { get; set; } = new List<Transfer>();
     }
 }

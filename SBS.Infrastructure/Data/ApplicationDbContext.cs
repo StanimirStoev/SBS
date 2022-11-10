@@ -38,6 +38,15 @@ namespace SBS.Infrastructure.Data
                 .WithMany(u => u.DeliveryDetails)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            builder.Entity<Transfer>()
+                .HasOne<Store>(t => t.FromStore)
+                .WithMany(s => s.TransferStoresFrom)
+                .OnDelete(DeleteBehavior.NoAction);
+            builder.Entity<Transfer>()
+                .HasOne<Store>(t => t.ToStore)
+                .WithMany(s => s.TransferStoresTo)
+                .OnDelete(DeleteBehavior.NoAction);
+
         }
         public DbSet<Address> Addresses { get; set; } = null!;
         public DbSet<Article> Articles { get; set; } = null!;
@@ -49,5 +58,7 @@ namespace SBS.Infrastructure.Data
         public DbSet<Delivery> Deliveries { get; set; } = null!;
         public DbSet<DeliveryDetail> DeliveryDetails { get; set; } = null!;
         public DbSet<PartidesInStore> PartidesInStores { get; set; } = null!;
+        public DbSet<Transfer> Transfers { get; set; } = null!;
+        public DbSet<TransferDetail> TransferDetails { get; set; } = null!;
     }
 }
