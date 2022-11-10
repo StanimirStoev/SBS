@@ -17,12 +17,12 @@ namespace SBS.Core.Models
         [Required]
         public Guid TransferId { get; set; }
         [ForeignKey(nameof(TransferId))]
-        public virtual Transfer Transfer { get; set; } = null!;
+        public virtual TransferViewModel Transfer { get; set; } = null!;
 
         [Required]
         public Guid DeliveryDetailId { get; set; }
         [ForeignKey(nameof(DeliveryDetailId))]
-        public virtual DeliveryDetail DeliveryDetail { get; set; } = null!;
+        public virtual DeliveryDetailViewModel DeliveryDetail { get; set; } = null!;
 
         [Required]
         public double Qty { get; set; } = 0;

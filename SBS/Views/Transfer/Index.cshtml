@@ -1,14 +1,20 @@
 ﻿@model IEnumerable<SBS.Core.Models.TransferViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Transfers";
 }
 
-<h1>Index</h1>
+<div class="container-fluid btn-group">
+    <div class="col-10">
+        <h1 class="col-4">Transfers</h1>
+    </div>
+    <div class="justify-content-end  col-2">
+        <p>
+            <a asp-action="Create" class="btn btn-primary mt-2">Create New</a>
+        </p>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -25,21 +31,22 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateDatetime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FromStoreId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ToStoreId)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) 
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDatetime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FromStore.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ToStore.Name)
+                </td>
+                <td>
+                    <a asp-controller="Transfer" asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary">Details</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
