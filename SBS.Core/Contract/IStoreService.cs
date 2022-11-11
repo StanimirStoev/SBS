@@ -11,6 +11,10 @@ namespace SBS.Core.Contract
     {
         Task<IEnumerable<StoreViewModel>> GetAll();
 
+        Task<IEnumerable<StoreViewModel>> GetAllNotEmpty();
+
+        Task<IEnumerable<StoreViewModel>> GetAllExcluded(Guid id);
+
         Task Add(StoreViewModel storeViewModel);
 
         Task Delete(Guid id);

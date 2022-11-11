@@ -16,12 +16,12 @@
         <div class="col-md-5">
             <div class="form-group">
                 <label asp-for="FromStoreId" class="control-label"></label>
-                <select asp-for="@Model.FromStore" class="form-control" asp-items="ViewBag.StoresList"></select>
+                <select asp-for="@Model.FromStore" class="form-control" asp-items="ViewBag.FromStoresList" onchange="FillDependentSelect(this, 'lstToStoresId')"></select>
                 <span asp-validation-for="FromStoreId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ToStoreId" class="control-label"></label>
-                <select asp-for="@Model.ToStore" class="form-control" asp-items="ViewBag.StoresList"></select>
+                <select id="lstToStoresId" asp-for="@Model.ToStore" class="form-control"></select>
                 <span asp-validation-for="ToStoreId" class="text-danger"></span>
             </div>
         </div>
@@ -99,4 +99,35 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
+    <script type="text/javascript">
+        function FillDependentSelect(masterSelectControl, dependentSelectControl) {
+
+            var lstItems = $("#" + dependentSelectControl);
+            lstItems.empty();
+            lstItems.append($('<option/>',
+                {
+                    value: null,
+                    text: "Select Item"
+                }));
+
+            var selectedItem = masterSelectControl.options[masterSelectControl.selectedIndex].value;
+
+            if (selectedItem != null && selectedItem != '') {
+                $.getJSON('@Url.Action("GetToStores")', { id: selectedItem }, function (items) {
+                    if (items != null && !jQuery.isEmptyObject(items)) {
+                        $.each(items, function (index, item) {
+                            lstItems.append($('<option/>',
+                                {
+                                    value: item.value,
+                                    text: item.text
+                                }));
+                        });
+                    };
+                });
+            }
+
+            return;
+        }
+    </script>
 }

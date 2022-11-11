@@ -80,7 +80,7 @@ namespace SBS.Core.Services
                 {
                     Id = u.Id,
                     Name = u.Name,
-                    Description = u.Description,
+                    Description = u.Description ?? "",
                     IsActive = u.IsActive,
                 }).ToListAsync();
 

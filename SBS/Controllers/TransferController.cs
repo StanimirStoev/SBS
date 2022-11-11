@@ -45,18 +45,34 @@ namespace SBS.Controllers
             det.TransferId = det.Id;
             model.Details.Add(det);
 
-            ViewBag.StoresList = await GetStores();
+            ViewBag.FromStoresList = await GetFromStores();
             ViewBag.ArticlesList = await GetArticles();
             ViewBag.UnitsList = await GetUnits();
 
             return View(model);
         }
 
-        private async Task<IEnumerable<SelectListItem>> GetStores()
+        [HttpGet]
+        public async Task<JsonResult> GetToStores(Guid id)
         {
             var result = new List<SelectListItem>();
 
-            IEnumerable<StoreViewModel> storesList = await storeService.GetAll();
+            IEnumerable<StoreViewModel> storesList = await storeService.GetAllExcluded(id);
+
+            result = storesList.Select(x => new SelectListItem()
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name,
+            }).ToList();
+
+            return Json(result);
+        }
+
+        private async Task<IEnumerable<SelectListItem>> GetFromStores()
+        {
+            var result = new List<SelectListItem>();
+
+            IEnumerable<StoreViewModel> storesList = await storeService.GetAllNotEmpty();
 
             result = storesList.Select(x => new SelectListItem()
             {

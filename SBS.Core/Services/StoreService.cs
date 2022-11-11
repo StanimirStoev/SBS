@@ -107,6 +107,32 @@ namespace SBS.Core.Services
                 }).ToListAsync();
         }
 
+        public async Task<IEnumerable<StoreViewModel>> GetAllExcluded(Guid id)
+        {
+            return await repo.AllReadonly<Store>()
+                .Where(s => s.IsActive && s.Id != id)
+                .Select(s => new StoreViewModel()
+                {
+                    Id = s.Id,
+                    Name = s.Name,
+                    Description = s.Description,
+                    IsActive = s.IsActive,
+                }).ToListAsync();
+        }
+
+        public async Task<IEnumerable<StoreViewModel>> GetAllNotEmpty()
+        {
+            return await repo.AllReadonly<Store>()
+                .Where(s => s.IsActive && s.PartidesInStores.Any(p => p.Qty > 0))
+                .Select(s => new StoreViewModel()
+                {
+                    Id = s.Id,
+                    Name = s.Name,
+                    Description = s.Description,
+                    IsActive = s.IsActive,
+                }).ToListAsync();
+        }
+
         public async Task Update(StoreViewModel storeViewModel)
         {
             var store = await repo.GetByIdAsync<Store>(storeViewModel.Id);

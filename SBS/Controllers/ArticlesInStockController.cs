@@ -21,8 +21,6 @@ namespace SBS.Controllers
             ViewData["Title"] = "Articles in stock";
 
             return View(articles);
-
-            return View();
         }
     }
 }
