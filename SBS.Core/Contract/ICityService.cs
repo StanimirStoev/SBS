@@ -7,6 +7,8 @@ namespace SBS.Core.Contract
     {
         Task<IEnumerable<CityViewModel>> GetAll();
 
+        Task<IEnumerable<CityViewModel>> GetForCountry(Guid id);
+
         Task Add(CityViewModelCreate cityViewModel);
 
         Task Delete(Guid id);

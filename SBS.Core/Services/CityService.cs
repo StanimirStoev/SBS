@@ -106,5 +106,18 @@ namespace SBS.Core.Services
                     IsActive = c.IsActive,
                 }).ToListAsync();
         }
+
+        public async Task<IEnumerable<CityViewModel>> GetForCountry(Guid id)
+        {
+            return await repo.AllReadonly<City>()
+             .Where(c => c.IsActive && c.CountryId == id)
+             .Select(c => new CityViewModel()
+             {
+                 Id = c.Id,
+                 Name = c.Name,
+                 CountryId= c.CountryId,
+                 IsActive = c.IsActive,
+             }).ToListAsync();
+        }
     }
 }
