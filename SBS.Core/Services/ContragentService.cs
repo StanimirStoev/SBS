@@ -78,7 +78,10 @@ namespace SBS.Core.Services
                 };
                 foreach (Address address in contragent.Addresses)
                 {
-                    var cntry = await repo.GetByIdAsync<Country>(address.CountryId);
+                    //var cntry = await repo.GetByIdAsync<Country>(address.CountryId);
+                    var cntry = await repo.All<Country>()
+                        .Include(c => c.Cities)
+                        .FirstOrDefaultAsync(c => c.Id == address.CountryId);
                     var cty = await repo.GetByIdAsync<City>(address.CityId);
 
                     model.Addresses.Add(new AddressViewModel()
@@ -87,11 +90,18 @@ namespace SBS.Core.Services
                         CountryId = address.CountryId,
                         Country = new CountryViewModel()
                         {
-                            Id = cntry.Id,
+                            Id = address.CountryId,
                             Name = cntry.Name,
                             Code = cntry.Code,
                             IsEu = cntry.IsEu,
-                            IsActive = cntry.IsActive
+                            IsActive = cntry.IsActive,
+                            Cities = cntry.Cities.Select(c => new CityViewModel()
+                            {
+                                Id=c.Id,
+                                Name=c.Name,
+                                CountryId = c.CountryId,
+                                IsActive = c.IsActive
+                            }).ToList()
                         },
                         CityId = address.CityId,
                         City = new CityViewModel()

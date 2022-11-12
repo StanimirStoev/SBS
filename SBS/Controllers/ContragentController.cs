@@ -89,7 +89,7 @@ namespace SBS.Controllers
             var contragent = await service.Get(id);
 
             ViewBag.CountriesList = await GetCountries();
-            ViewBag.CitiesList = await GetCities();
+            //ViewBag.CitiesList = await GetCities();
 
             if (contragent != null)
             {

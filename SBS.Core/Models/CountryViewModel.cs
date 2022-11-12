@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using SBS.Core.Services;
+using System.ComponentModel.DataAnnotations;
 using static SBS.Core.Constants.DataConstants.Country;
 
 namespace SBS.Core.Models
@@ -28,6 +30,20 @@ namespace SBS.Core.Models
         public bool IsEu { get; set; } = false;
 
         public virtual ICollection<CityViewModel> Cities { get; set; }
+
+        public IEnumerable<SelectListItem> GetCitiesSelectListItems()
+        {
+            var result = new List<SelectListItem>();
+
+            result = Cities.Select(x => new SelectListItem()
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name,
+            }).ToList();
+
+            result.Insert(0, new SelectListItem() { Value = "", Text = "Select City" });
+            return result;
+        }
 
         //public virtual ICollection<Address> Addresses { get; set; }
 

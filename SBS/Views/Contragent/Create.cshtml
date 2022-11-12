@@ -72,10 +72,10 @@
                 {
                     <tr>
                         <td>
-                            <select asp-for="@Model.Addresses[i].CountryId" class="form-control" asp-items="ViewBag.CountriesList" onchange="FillDependentSelect(this, 'lstCitiesId')"></select>
+                            <select id="selCountry--@i" asp-for="@Model.Addresses[i].CountryId" class="form-control" asp-items="ViewBag.CountriesList"  onchange="FillDependentSelect(this, 'selCity--@i')"></select>
                         </td>
                         <td>
-                            <select id="lstCitiesId" asp-for="@Model.Addresses[i].CityId" class="form-control"></select>
+                            <select id="selCity--@i" asp-for="@Model.Addresses[i].CityId" class="form-control"></select>
                         </td>
                         <td>
                             <span asp-validation-for="@Model.Addresses[i].AddressLine1" class="text-danger"></span>
