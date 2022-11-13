@@ -72,7 +72,7 @@
                 {
                     <tr>
                         <td>
-                            <select id="selCountry--@i" asp-for="@Model.Addresses[i].CountryId" class="form-control" asp-items="ViewBag.CountriesList" onchange="FillDependentSelect(this, 'selCity--@i')"></select>
+                            <select id="selCountry--@i" asp-for="@Model.Addresses[i].CountryId" class="form-control" asp-items="ViewBag.CountriesList" onchange="FillDependentSelect(this, 'selCity--@i', '/Contragent/GetCities')"></select>
                         </td>
                         <td>
                             <select id="selCity--@i" asp-for="@Model.Addresses[i].CityId" class="form-control" asp-items="@Model.Addresses[i].Country.GetCitiesSelectListItems()"></select>
@@ -177,35 +177,6 @@
             idIsActive.value = false;
 
             $(btn).closest('tr').hide();
-        }
-
-        function FillDependentSelect(masterSelectControl, dependentSelectControl) {
-
-            var lstItems = $("#" + dependentSelectControl);
-            lstItems.empty();
-            lstItems.append($('<option/>',
-                {
-                    value: null,
-                    text: "Select Item"
-                }));
-
-            var selectedItem = masterSelectControl.options[masterSelectControl.selectedIndex].value;
-
-            if (selectedItem != null && selectedItem != '') {
-                $.getJSON('@Url.Action("GetCities")', { id: selectedItem }, function (items) {
-                    if (items != null && !jQuery.isEmptyObject(items)) {
-                        $.each(items, function (index, item) {
-                            lstItems.append($('<option/>',
-                                {
-                                    value: item.value,
-                                    text: item.text
-                                }));
-                        });
-                    };
-                });
-            }
-
-            return;
         }
     </script>
 }

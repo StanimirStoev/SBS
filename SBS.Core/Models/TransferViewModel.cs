@@ -16,7 +16,7 @@ namespace SBS.Core.Models
 
         [Required]
         [Display(Name = "Create Date")]
-        public DateTime CreateDatetime { get; set; }
+        public DateTime CreateDatetime { get; set; } = DateTime.Now;
 
         [Required]
         [Display(Name = "From Store")]
