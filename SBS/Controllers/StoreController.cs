@@ -74,7 +74,6 @@ namespace SBS.Controllers
             var store = await service.Get(id);
 
             ViewBag.CountriesList = await GetCountries();
-            ViewBag.CitiesList = await GetCities();
 
             if (store != null)
             {
@@ -122,6 +121,22 @@ namespace SBS.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetCities(Guid id)
+        {
+            var result = new List<SelectListItem>();
+
+            IEnumerable<CityViewModel> storesList = await cityService.GetForCountry(id);
+
+            result = storesList.Select(x => new SelectListItem()
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name,
+            }).ToList();
+
+            return Json(result);
         }
 
         private async Task<IEnumerable<SelectListItem>> GetCountries()

@@ -54,10 +54,10 @@
             <tbody>
                 <tr>
                     <td>
-                        <select asp-for="@Model.Address.CountryId" class="form-control" asp-items="ViewBag.CountriesList"></select>
+                        <select id="selCountryId" asp-for="@Model.Address.CountryId" class="form-control" asp-items="ViewBag.CountriesList" onchange="FillDependentSelect(this, 'selCityId', '/Store/GetCities')"></select>
                     </td>
                     <td>
-                        <select asp-for="@Model.Address.CityId" class="form-control" asp-items="ViewBag.CitiesList"></select>
+                        <select id="selCityId" asp-for="@Model.Address.CityId" class="form-control" asp-items="@Model.Address.Country.GetCitiesSelectListItems()"></select>
                     </td>
                     <td>
                         <span asp-validation-for="@Model.Address.AddressLine1" class="text-danger"></span>

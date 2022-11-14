@@ -75,17 +75,48 @@ namespace SBS.Core.Services
                     Description = store.Description,
                     IsActive = store.IsActive,
                 };
-                if(store.AddressId != null || store.Address != null)
+                if(store.AddressId != null)
                 {
                     if(store.Address == null)
                     {
-                        store.Address = await repo.GetByIdAsync<Address>(store.AddressId);
+                        store.Address = await repo.All<Address>(a => a.Id == store.AddressId)
+                            .Include(a => a.Country)
+                            .FirstOrDefaultAsync();
                     }
+
+                    var cntry = await repo.All<Country>()
+                        .Include(c => c.Cities)
+                        .FirstOrDefaultAsync(c => c.Id == store.Address.CountryId);
+                    var cty = await repo.GetByIdAsync<City>(store.Address.CityId);
+
                     model.Address = new AddressViewModel()
                     {
                         Id = store.Address.Id,
+                        City = new CityViewModel()
+                        {
+                            Id =cty.Id,
+                            CountryId = cty.Id,
+                            Name= cty.Name,
+                            IsActive= cty.IsActive,
+                        },
                         CityId = store.Address.CityId,
+                        Country = new CountryViewModel()
+                        {
+                            Id = cntry.Id,
+                            IsEu = cntry.IsEu,
+                            Name = cntry.Name,
+                            Code = cntry.Code,
+                            Cities = cntry.Cities.Select(c => new CityViewModel()
+                            {
+                                Id = c.Id,
+                                Name = c.Name,
+                                CountryId = c.CountryId,
+                                IsActive = c.IsActive
+                            }).ToList(),
+                            IsActive = store.Address.Country.IsActive,
+                        },
                         CountryId = store.Address.CountryId,
+
                         AddressLine1 = store.Address.AddressLine1,
                         AddressLine2 = store.Address.AddressLine2,
                     };
