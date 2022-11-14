@@ -1,4 +1,5 @@
 ﻿using SBS.Core.Models;
+using SBS.Infrastructure.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace SBS.Core.Contract
 {
-    public interface ITransferService
+    public interface IPartidesInStoresService
     {
-        Task<IEnumerable<TransferViewModel>> GetAll();
-
-        Task Add(TransferViewModel viewModel);
+        Task<IEnumerable<PartidesInStoreViewModel>> GetAll();
     }
 }

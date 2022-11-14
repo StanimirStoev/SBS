@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using SBS.Core.Contract;
 using SBS.Core.Models;
 using SBS.Core.Services;
+using SBS.Infrastructure.Data.Models;
 
 namespace SBS.Controllers
 {
@@ -12,17 +13,20 @@ namespace SBS.Controllers
         private readonly IArticleService articleService;
         private readonly IStoreService storeService;
         private readonly IUnitService unitService;
+        private readonly IPartidesInStoresService partidesInStoresService;
 
         public TransferController(
             ITransferService service,
             IArticleService articleService,
             IStoreService storeService,
-            IUnitService unitService)
+            IUnitService unitService,
+            IPartidesInStoresService partidesInStoresService)
         {
             this.service = service;
             this.articleService = articleService;
             this.storeService = storeService;
             this.unitService = unitService;
+            this.partidesInStoresService = partidesInStoresService;
         }
 
         // GET: ContragentController
@@ -47,9 +51,34 @@ namespace SBS.Controllers
 
             ViewBag.FromStoresList = await GetFromStores();
             ViewBag.ArticlesList = await GetArticles();
+            ViewBag.PartidesList = await GetPartidesInStore();
             ViewBag.UnitsList = await GetUnits();
 
             return View(model);
+        }
+        // POST: ContragentController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(TransferViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                // if state is not valid - return to continue edit data
+                return View(viewModel);
+            }
+
+            viewModel.Details.RemoveAll(d => d.IsActive == false);
+
+            await service.Add(viewModel);
+
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         [HttpGet]
@@ -96,6 +125,29 @@ namespace SBS.Controllers
             }).ToList();
 
             result.Insert(0, new SelectListItem() { Value = "", Text = "Select Article" });
+            return result;
+        }
+
+        private async Task<IEnumerable<SelectListItem>> GetPartidesInStore(Guid? id = null)
+        {
+            var result = new List<SelectListItem>();
+
+            IEnumerable<PartidesInStoreViewModel> list = await partidesInStoresService.GetAll();
+            if (id != null)
+            {
+                list = list.Where(p => p.StoreId == id).ToList();
+            }
+
+            result = list.Select(x => new SelectListItem()
+            {
+                Value = x.DeliveryDetailId.ToString(),
+                Text = string.Format("{0} / {1:dd:MM:yyyy} - [{2}]", 
+                    x.DeliveryDetail.Article.Name, 
+                    x.DeliveryDetail.Delivery.CreateDatetime, 
+                    x.Qty)
+            }).ToList();
+
+            result.Insert(0, new SelectListItem() { Value = "", Text = "Select Item" });
             return result;
         }
         private async Task<IEnumerable<SelectListItem>> GetUnits()

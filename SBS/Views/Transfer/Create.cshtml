@@ -43,10 +43,10 @@
             <thead>
                 <tr>
                     <th>
-                        Article
+                        Partide
                     </th>
                     <th>
-                        Partide
+                        Article
                     </th>
                     <th>
                         Quantity
@@ -59,10 +59,10 @@
                 {
                     <tr>
                         <td>
-                            <select asp-for="@Model.Details[i].DeliveryDetail.Article.Name" class="form-control" asp-items="ViewBag.ArticlesList"></select>
+                            <select id="selDelivDet--@i" asp-for="@Model.Details[i].DeliveryDetail.Id" class="form-control" asp-items="ViewBag.PartidesList"></select>
                         </td>
                         <td>
-                            <select asp-for="@Model.Details[i].DeliveryDetail.Id" class="form-control" asp-items="ViewBag.ArticlesList"></select>
+                            <select asp-for="@Model.Details[i].DeliveryDetail.Article.Name" class="form-control" asp-items="ViewBag.ArticlesList"></select>
                         </td>
                         <td>
                             <span asp-validation-for="@Model.Details[i].Qty" class="text-danger"></span>

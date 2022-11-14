@@ -20,6 +20,66 @@ namespace SBS.Core.Services
             this.repo = repo;
         }
 
+        public async Task Add(TransferViewModel viewModel)
+        {
+            var transfer = new Transfer()
+            {
+                Id = viewModel.Id,
+                CreateDatetime = viewModel.CreateDatetime,
+                FromStoreId = viewModel.FromStoreId,
+                ToStoreId = viewModel.ToStoreId,
+                IsActive = viewModel.IsActive,
+            };
+            foreach (TransferDetailViewModel detailViewModel in viewModel.Details)
+            {
+                if (detailViewModel.IsActive)
+                {
+                    TransferDetail? detail = transfer.Details.FirstOrDefault(x => x.Id == detailViewModel.Id);
+                    if (detail != null)
+                    {
+                        detail.TransferId = detailViewModel.TransferId;
+                        detail.DeliveryDetailId = detailViewModel.DeliveryDetailId;
+                        detail.Qty = detailViewModel.Qty;
+                        detail.IsActive = detailViewModel.IsActive;
+                    }
+                    else
+                    {
+                        transfer.Details.Add(new TransferDetail()
+                        {
+                            Id = detailViewModel.Id,
+                            TransferId = detailViewModel.TransferId,
+                            DeliveryDetailId = detailViewModel.DeliveryDetailId,
+                            Qty = detailViewModel.Qty,
+                            IsActive = detailViewModel.IsActive,
+                        });
+                    }
+                }
+                else
+                {
+                    TransferDetail? detail = transfer.Details.FirstOrDefault(x => x.Id == detailViewModel.Id);
+                    if (detail != null)
+                    {
+                        transfer.Details.Remove(detail);
+                    }
+                }
+            }
+
+            //Do Transfer
+            foreach (TransferDetail detail in transfer.Details)
+            {
+                PartidesInStore? fromPartInStore = await repo.All<PartidesInStore>()
+                    .FirstOrDefaultAsync(d => d.DeliveryDetailId == detail.DeliveryDetailId  && d.StoreId == transfer.FromStoreId);
+                PartidesInStore? toPartInStore = await repo.All<PartidesInStore>()
+                    .FirstOrDefaultAsync(d => d.DeliveryDetailId == detail.DeliveryDetailId && d.StoreId == transfer.ToStoreId);
+
+                fromPartInStore.Qty-= detail.Qty;
+                toPartInStore.Qty += detail.Qty;
+            }
+
+            await repo.AddAsync(transfer);
+            await repo.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<TransferViewModel>> GetAll()
         {
             var result = await repo.AllReadonly<Transfer>()
@@ -29,7 +89,7 @@ namespace SBS.Core.Services
                 .Select(t => new TransferViewModel()
                 {
                     Id = t.Id,
-                    FromStoreId= t.FromStoreId,
+                    FromStoreId = t.FromStoreId,
                     FromStore = new StoreViewModel()
                     {
                         Id = t.FromStore.Id,
@@ -46,6 +106,7 @@ namespace SBS.Core.Services
                         Name = t.ToStore.Name,
                     },
                     CreateDatetime = t.CreateDatetime,
+                    
                     IsActive = t.IsActive,
                 }).ToListAsync();
 
