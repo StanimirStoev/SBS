@@ -22,15 +22,16 @@ namespace SBS.Core.Services
 
         public async Task<IEnumerable<ArticlesInStockViewModel>> GetAll()
         {
-            List< ArticlesInStockViewModel> result = await repo.AllReadonly<DeliveryDetail>()
-                .Where(d => d.Delivery.IsConfirmed == true)
-                .Include(d => d.PartidesInStores)
-                .Select(d => new ArticlesInStockViewModel()
+            List< ArticlesInStockViewModel> result = await repo.AllReadonly<PartidesInStore>()
+                .Include(p => p.DeliveryDetail)
+                .Include(p => p.DeliveryDetail.Article)
+                .Include(p => p.Store)
+                .Select(p => new ArticlesInStockViewModel()
                 {
-                    ArticleModel = d.Article.Model,
-                    ArticleName = d.Article.Name,
-                    StoreName = d.Delivery.Store.Name,
-                    Quantity = d.Qty,
+                    ArticleModel = p.DeliveryDetail.Article.Model,
+                    ArticleName = p.DeliveryDetail.Article.Name,
+                    StoreName = p.Store.Name,
+                    Quantity = p.Qty,
                 })
                 .ToListAsync();
 

@@ -2,6 +2,11 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+// Fills the dropdown items that depends on master dropdown selection .
+// masterSelectControl - id  master dropdown
+// dependentSelectControl - id dependent dropdown
+// getDependentListPath - path for the json function to get the items for the dependent dropdown
 function FillDependentSelect(masterSelectControl, dependentSelectControl, getDependentListPath) {
 
     var lstItems = $("#" + dependentSelectControl);

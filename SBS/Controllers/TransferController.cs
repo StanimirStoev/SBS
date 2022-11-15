@@ -14,19 +14,22 @@ namespace SBS.Controllers
         private readonly IStoreService storeService;
         private readonly IUnitService unitService;
         private readonly IPartidesInStoresService partidesInStoresService;
+        private readonly IDeliveryService deliveryService;
 
         public TransferController(
             ITransferService service,
             IArticleService articleService,
             IStoreService storeService,
             IUnitService unitService,
-            IPartidesInStoresService partidesInStoresService)
+            IPartidesInStoresService partidesInStoresService,
+            IDeliveryService deliveryService)
         {
             this.service = service;
             this.articleService = articleService;
             this.storeService = storeService;
             this.unitService = unitService;
             this.partidesInStoresService = partidesInStoresService;
+            this.deliveryService = deliveryService;
         }
 
         // GET: ContragentController
@@ -50,8 +53,6 @@ namespace SBS.Controllers
             model.Details.Add(det);
 
             ViewBag.FromStoresList = await GetFromStores();
-            //ViewBag.ArticlesList = await GetArticles();
-            //ViewBag.PartidesList = await GetPartidesInStore();
             ViewBag.UnitsList = await GetUnits();
 
             return View(model);
@@ -97,6 +98,50 @@ namespace SBS.Controllers
             return Json(result);
         }
 
+        [HttpGet]
+        public async Task<JsonResult> GetArticlesInStore(Guid id)
+        {
+            var result = new List<SelectListItem>();
+
+            IEnumerable<PartidesInStoreViewModel> list = await partidesInStoresService.GetAll();
+
+            list = list.Where(p => p.StoreId == id).ToList();
+
+            result = list.Select(x => new SelectListItem()
+            {
+                Value = x.DeliveryDetailId.ToString(),
+                Text = string.Format("{0} / {1:dd:MM:yyyy} - [{2}]",
+                x.DeliveryDetail.Article.Name,
+                x.DeliveryDetail.Delivery.CreateDatetime,
+                x.Qty)
+            }).ToList();
+
+            result.Insert(0, new SelectListItem() { Value = "", Text = "Select Item" });
+
+            return Json(result);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetUnitForArticle(Guid id)
+        {
+            var result = "";
+
+            DeliveryDetailViewModel partide = await deliveryService.GetPartide(id);
+            result = partide.Article.Unit.Name;
+            //    .whe.Select(x => new SelectListItem()
+            //{
+            //    Value = x.DeliveryDetailId.ToString(),
+            //    Text = string.Format("{0} / {1:dd:MM:yyyy} - [{2}]",
+            //    x.DeliveryDetail.Article.Name,
+            //    x.DeliveryDetail.Delivery.CreateDatetime,
+            //    x.Qty)
+            //}).ToList();
+
+            //result.Insert(0, new SelectListItem() { Value = "", Text = "Select Item" });
+
+            return Json(result);
+        }
+
         private async Task<IEnumerable<SelectListItem>> GetFromStores()
         {
             var result = new List<SelectListItem>();
@@ -110,21 +155,6 @@ namespace SBS.Controllers
             }).ToList();
 
             result.Insert(0, new SelectListItem() { Value = "", Text = "Select Store" });
-            return result;
-        }
-        private async Task<IEnumerable<SelectListItem>> GetArticles()
-        {
-            var result = new List<SelectListItem>();
-
-            IEnumerable<ArticleViewModel> list = await articleService.GetAll();
-
-            result = list.Select(x => new SelectListItem()
-            {
-                Value = x.Id.ToString(),
-                Text = x.Name,
-            }).ToList();
-
-            result.Insert(0, new SelectListItem() { Value = "", Text = "Select Article" });
             return result;
         }
 
@@ -149,29 +179,6 @@ namespace SBS.Controllers
 
             result.Insert(0, new SelectListItem() { Value = "", Text = "Select Item" });
             return result;
-        }
-
-        [HttpGet]
-        public async Task<JsonResult> GetArticlesInStore(Guid id)
-        {
-            var result = new List<SelectListItem>();
-
-            IEnumerable<PartidesInStoreViewModel> list = await partidesInStoresService.GetAll();
-
-            list = list.Where(p => p.StoreId == id).ToList();
-
-            result = list.Select(x => new SelectListItem()
-            {
-                Value = x.DeliveryDetailId.ToString(),
-                Text = string.Format("{0} / {1:dd:MM:yyyy} - [{2}]",
-                x.DeliveryDetail.Article.Name,
-                x.DeliveryDetail.Delivery.CreateDatetime,
-                x.Qty)
-            }).ToList();
-
-            result.Insert(0, new SelectListItem() { Value = "", Text = "Select Item" });
-
-            return Json(result);
         }
 
         private async Task<IEnumerable<SelectListItem>> GetUnits()

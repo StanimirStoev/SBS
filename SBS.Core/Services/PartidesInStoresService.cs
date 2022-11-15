@@ -26,51 +26,59 @@ namespace SBS.Core.Services
                 .Where(p => p.Qty > 0)
                 .Include(p => p.DeliveryDetail)
                 .Include(p => p.DeliveryDetail.Article)
+                .Include(p => p.DeliveryDetail.Article.Unit)
                 .Include(p => p.DeliveryDetail.Delivery)
-                .Include(d => d.Store)
-                .Select(d => new PartidesInStoreViewModel()
+                .Include(p => p.Store)
+                .Select(p => new PartidesInStoreViewModel()
                 {
 
-                    DeliveryDetailId = d.DeliveryDetailId,
+                    DeliveryDetailId = p.DeliveryDetailId,
                     DeliveryDetail = new DeliveryDetailViewModel()
                     {
-                        Id = d.DeliveryDetail.Id,
-                        Qty = d.DeliveryDetail.Qty,
-                        ArticleId = d.DeliveryDetail.ArticleId,
+                        Id = p.DeliveryDetail.Id,
+                        Qty = p.DeliveryDetail.Qty,
+                        ArticleId = p.DeliveryDetail.ArticleId,
                         Article = new ArticleViewModel()
                         {
-                            Id = d.DeliveryDetail.ArticleId,
-                            DeliveryNumber = d.DeliveryDetail.Article.DeliveryNumber,
-                            Description = d.DeliveryDetail.Article.Description,
-                            IsActive = d.DeliveryDetail.Article.IsActive,
-                            Model = d.DeliveryDetail.Article.Model,
-                            Name = d.DeliveryDetail.Article.Name,
-                            Title = d.DeliveryDetail.Article.Title,
-                            UnitId = d.DeliveryDetail.Article.UnitId
+                            Id = p.DeliveryDetail.ArticleId,
+                            DeliveryNumber = p.DeliveryDetail.Article.DeliveryNumber,
+                            Description = p.DeliveryDetail.Article.Description,
+                            IsActive = p.DeliveryDetail.Article.IsActive,
+                            Model = p.DeliveryDetail.Article.Model,
+                            Name = p.DeliveryDetail.Article.Name,
+                            Title = p.DeliveryDetail.Article.Title,
+                            UnitId = p.DeliveryDetail.Article.UnitId,
+                            Unit = new UnitViewModel()
+                            {
+                                Id = p.DeliveryDetail.Article.Unit.Id,
+                                Name = p.DeliveryDetail.Article.Unit.Name,
+                                Description = p.DeliveryDetail.Article.Unit.Description,
+                                IsActive = p.DeliveryDetail.Article.Unit.IsActive
+                            }
                         },
-                        DeliveryId = d.DeliveryDetail.Delivery.Id,
+                        DeliveryId = p.DeliveryDetail.Delivery.Id,
                         Delivery = new DeliveryViewModel()
                         {
-                            Id = d.DeliveryDetail.Delivery.Id,
-                            ContragentId = d.DeliveryDetail.Delivery.ContragentId,
-                            IsActive = d.DeliveryDetail.Delivery.IsActive,
-                            CreateDatetime = d.DeliveryDetail.Delivery.CreateDatetime,
-                            IsConfirmed = d.DeliveryDetail.Delivery.IsConfirmed,
-                            StoreId = d.DeliveryDetail.Delivery.StoreId,
+                            Id = p.DeliveryDetail.Delivery.Id,
+                            ContragentId = p.DeliveryDetail.Delivery.ContragentId,
+                            IsActive = p.DeliveryDetail.Delivery.IsActive,
+                            CreateDatetime = p.DeliveryDetail.Delivery.CreateDatetime,
+                            IsConfirmed = p.DeliveryDetail.Delivery.IsConfirmed,
+                            StoreId = p.DeliveryDetail.Delivery.StoreId,
                         },
-                        Price = d.DeliveryDetail.Price,
-                        UnitId = d.DeliveryDetail.UnitId,
-                        IsActive = d.DeliveryDetail.IsActive,
+                        Price = p.DeliveryDetail.Price,
+                        UnitId = p.DeliveryDetail.UnitId,
+                        IsActive = p.DeliveryDetail.IsActive,
                     },
-                    StoreId = d.StoreId,
+                    StoreId = p.StoreId,
                     Store = new StoreViewModel()
                     {
-                        Id = d.Store.Id,
-                        IsActive = d.Store.IsActive,
-                        Description = d.Store.Description,
-                        Name = d.Store.Name,
+                        Id = p.Store.Id,
+                        IsActive = p.Store.IsActive,
+                        Description = p.Store.Description,
+                        Name = p.Store.Name,
                     },
-                    Qty = d.Qty,
+                    Qty = p.Qty,
                 }).ToListAsync();
         }
     }

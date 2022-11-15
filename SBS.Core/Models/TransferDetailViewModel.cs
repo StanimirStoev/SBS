@@ -14,15 +14,14 @@ namespace SBS.Core.Models
         [Key]
         public Guid Id { get; set; }
 
-        [Required]
         public Guid TransferId { get; set; }
         [ForeignKey(nameof(TransferId))]
-        public virtual TransferViewModel Transfer { get; set; } = null!;
+        public virtual TransferViewModel? Transfer { get; set; }
 
         [Required]
         public Guid DeliveryDetailId { get; set; }
         [ForeignKey(nameof(DeliveryDetailId))]
-        public virtual DeliveryDetailViewModel DeliveryDetail { get; set; } = null!;
+        public virtual DeliveryDetailViewModel? DeliveryDetail { get; set; }
 
         [Required]
         public double Qty { get; set; } = 0;

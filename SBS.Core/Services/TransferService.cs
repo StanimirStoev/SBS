@@ -47,7 +47,7 @@ namespace SBS.Core.Services
                         transfer.Details.Add(new TransferDetail()
                         {
                             Id = detailViewModel.Id,
-                            TransferId = detailViewModel.TransferId,
+                            TransferId = transfer.Id,
                             DeliveryDetailId = detailViewModel.DeliveryDetailId,
                             Qty = detailViewModel.Qty,
                             IsActive = detailViewModel.IsActive,
@@ -71,7 +71,16 @@ namespace SBS.Core.Services
                     .FirstOrDefaultAsync(d => d.DeliveryDetailId == detail.DeliveryDetailId  && d.StoreId == transfer.FromStoreId);
                 PartidesInStore? toPartInStore = await repo.All<PartidesInStore>()
                     .FirstOrDefaultAsync(d => d.DeliveryDetailId == detail.DeliveryDetailId && d.StoreId == transfer.ToStoreId);
-
+                if(toPartInStore == null)
+                {
+                    toPartInStore = new PartidesInStore()
+                    {
+                        DeliveryDetailId = detail.DeliveryDetailId,
+                        StoreId = transfer.ToStoreId,
+                        Qty = 0,
+                    };
+                    await repo.AddAsync<PartidesInStore>(toPartInStore);
+                }
                 fromPartInStore.Qty-= detail.Qty;
                 toPartInStore.Qty += detail.Qty;
             }

@@ -183,6 +183,44 @@ namespace SBS.Core.Services
             return model;
         }
 
+        public async Task<DeliveryDetailViewModel> GetPartide(Guid id)
+        {
+            DeliveryDetailViewModel model = new DeliveryDetailViewModel();
+            var det = await repo.All<DeliveryDetail>()
+                .Include(d => d.Article)
+                .Include(d => d.Article.Unit)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (det != null)
+            {
+                model = new DeliveryDetailViewModel()
+                {
+                    Id = det.Id,
+                    ArticleId = det.ArticleId,
+                    Article = new ArticleViewModel()
+                    {
+                        Id= det.Article.Id,
+                        DeliveryNumber= det.Article.DeliveryNumber,
+                        Name= det.Article.Name,
+                        Description= det.Article.Description,
+                        Title= det.Article.Title,
+                        Model = det.Article.Model,
+                        UnitId= det.Article.UnitId,
+                        Unit= new UnitViewModel()
+                        {
+                            Id= det.Article.Unit.Id,
+                            Name= det.Article.Unit.Name,
+                            Description=det.Article.Unit.Description ?? "",
+                            IsActive= det.Article.Unit.IsActive,
+                        },
+                        IsActive= det.Article.IsActive,
+                    },
+                    IsActive = det.IsActive,
+                };
+            }
+            return model;
+        }
+
         public async Task<IEnumerable<DeliveryViewModel>> GetAll()
         {
             return await repo.AllReadonly<Delivery>()

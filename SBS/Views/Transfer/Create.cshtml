@@ -6,7 +6,7 @@
 
 <style>
     .detSelect {
-        background: green;
+        /*Just for marking*/
     }
 </style>
 
@@ -22,12 +22,12 @@
         <div class="col-md-5">
             <div class="form-group">
                 <label asp-for="FromStoreId" class="control-label"></label>
-                <select asp-for="@Model.FromStore" class="form-control" asp-items="ViewBag.FromStoresList" onchange="FillDependentSelect(this, 'lstToStoresId')"></select>
+                <select asp-for="@Model.FromStoreId" class="form-control" asp-items="ViewBag.FromStoresList" onchange="FillDependentSelect(this, 'lstToStoresId')"></select>
                 <span asp-validation-for="FromStoreId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ToStoreId" class="control-label"></label>
-                <select id="lstToStoresId" asp-for="@Model.ToStore" class="form-control"></select>
+                <select id="lstToStoresId" asp-for="@Model.ToStoreId" class="form-control"></select>
                 <span asp-validation-for="ToStoreId" class="text-danger"></span>
             </div>
         </div>
@@ -65,10 +65,10 @@
                 {
                     <tr>
                         <td>
-                            <select id="selDelivDet--@i" asp-for="@Model.Details[i].DeliveryDetail.Id" class="form-control detSelect"></select>
+                            <select id="selDelivDet--@i" asp-for="@Model.Details[i].DeliveryDetailId" class="form-control detSelect" onchange="SetUnit(this)"></select>
                         </td>
                         <td>
-                            <select asp-for="@Model.Details[i].DeliveryDetail.Article.Name" class="form-control"></select>
+                            <input id="delivDetUnit--@i" @*asp-for="@Model.Details[i].DeliveryDetail.Article.Unit.Name"*@ class="form-control" disabled></input>
                         </td>
                         <td>
                             <span asp-validation-for="@Model.Details[i].Qty" class="text-danger"></span>
@@ -99,15 +99,13 @@
 </form>
 
 
-
-
-
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
     <script type="text/javascript">
+
         function FillDependentSelect(masterSelectControl, dependentSelectControl) {
 
             var lstItems = $("#" + dependentSelectControl);
@@ -145,13 +143,13 @@
             var details = document.getElementsByClassName("detSelect");
 
             for (var i = 0; i < details.length; i++) {
-            //for (var i = details.length-1; i >=0 ; i--) {
                 setDetailItems(details[i].id, selectedItem);
             };
             return;
         }
+
         function setDetailItems(detailId, selectedItem) {
-           
+
 
             var lstItems = $("#" + detailId);
             lstItems.empty();
@@ -171,6 +169,18 @@
                 };
             });
             return;
+        }
+
+        function SetUnit(partideSelectControl) {
+            var selectedItem = partideSelectControl.options[partideSelectControl.selectedIndex].value;
+            var dat = partideSelectControl.id.split("--");
+            var index = dat[dat.length-1];
+            
+            var unitControl = document.getElementById("delivDetUnit--" + index)
+
+            $.getJSON('@Url.Action("GetUnitForArticle")', { id: selectedItem }, function (result) {
+                unitControl.setAttribute('value',result);
+            });
         }
 
         function AddItm(btn) {
@@ -203,6 +213,17 @@
             var addbtn = document.getElementById(btnAddId);
             addbtn.classList.add("invisible");
             addbtn.classList.remove("visible");
+        }
+
+        function DeleteItm(btn) {
+
+            //$(btn).closest('tr').remove();
+            var btnIdx = btn.id.replaceAll('btnremove--', '');
+            var idIsActive = "IsActive--" + btnIdx;
+            var idIsActive = document.querySelector("[id='" + idIsActive + "']");
+            idIsActive.value = false;
+
+            $(btn).closest('tr').hide();
         }
     </script>
 }

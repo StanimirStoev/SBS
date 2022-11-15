@@ -22,13 +22,13 @@ namespace SBS.Core.Models
         [Display(Name = "From Store")]
         public Guid FromStoreId { get; set; }
         [ForeignKey(nameof(FromStoreId))]
-        public virtual StoreViewModel FromStore { get; set; } = null!;
+        public virtual StoreViewModel? FromStore { get; set; }
 
         [Required]
         [Display(Name = "To Store")]
         public Guid ToStoreId { get; set; }
         [ForeignKey(nameof(ToStoreId))]
-        public virtual StoreViewModel ToStore { get; set; } = null!;
+        public virtual StoreViewModel? ToStore { get; set; }
 
         public virtual List<TransferDetailViewModel> Details { get; set; } = new List<TransferDetailViewModel>();
 
