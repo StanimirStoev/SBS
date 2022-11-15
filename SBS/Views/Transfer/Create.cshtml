@@ -4,6 +4,12 @@
     ViewData["Title"] = "Create";
 }
 
+<style>
+    .detSelect {
+        background: green;
+    }
+</style>
+
 <h1>Create</h1>
 
 <h4>Transfer</h4>
@@ -39,7 +45,7 @@
 
     <div class="col-12 ml-5">
         <h5>Details</h5>
-        <table id="addressTable" class="table table-borderless table-sm mb-0 pb-0">
+        <table id="detailsTable" class="table table-borderless table-sm mb-0 pb-0">
             <thead>
                 <tr>
                     <th>
@@ -59,10 +65,10 @@
                 {
                     <tr>
                         <td>
-                            <select id="selDelivDet--@i" asp-for="@Model.Details[i].DeliveryDetail.Id" class="form-control" asp-items="ViewBag.PartidesList"></select>
+                            <select id="selDelivDet--@i" asp-for="@Model.Details[i].DeliveryDetail.Id" class="form-control detSelect"></select>
                         </td>
                         <td>
-                            <select asp-for="@Model.Details[i].DeliveryDetail.Article.Name" class="form-control" asp-items="ViewBag.ArticlesList"></select>
+                            <select asp-for="@Model.Details[i].DeliveryDetail.Article.Name" class="form-control"></select>
                         </td>
                         <td>
                             <span asp-validation-for="@Model.Details[i].Qty" class="text-danger"></span>
@@ -85,6 +91,7 @@
         </table>
     </div>
 
+    <input type="hidden" id="hdnLastIndex" value="0" />
     <div class="form-group btn-group mt-2">
         <input type="submit" value="Create" class="btn btn-primary" />
         <a class="btn btn-secondary" asp-action="Index">Back</a>
@@ -127,7 +134,75 @@
                 });
             }
 
+            FillDetailsSelect(masterSelectControl);
             return;
+        }
+
+        function FillDetailsSelect(masterSelectControl) {
+
+            var selectedItem = masterSelectControl.options[masterSelectControl.selectedIndex].value;
+
+            var details = document.getElementsByClassName("detSelect");
+
+            for (var i = 0; i < details.length; i++) {
+            //for (var i = details.length-1; i >=0 ; i--) {
+                setDetailItems(details[i].id, selectedItem);
+            };
+            return;
+        }
+        function setDetailItems(detailId, selectedItem) {
+           
+
+            var lstItems = $("#" + detailId);
+            lstItems.empty();
+
+            $.getJSON('@Url.Action("GetArticlesInStore")', { id: selectedItem }, function (items) {
+                if (items != null && !jQuery.isEmptyObject(items)) {
+
+                    $.each(items, function (index, item) {
+
+                        lstItems.append($('<option/>',
+                            {
+                                value: item.value,
+                                text: item.text
+                            }
+                        ));
+                    });
+                };
+            });
+            return;
+        }
+
+        function AddItm(btn) {
+            var table;
+            table = document.getElementById('detailsTable');
+
+            var rows = table.getElementsByTagName('tr');
+            var rowOuterHtml = rows[rows.length - 1].outerHTML;
+
+            var lastRowIdx = document.getElementById('hdnLastIndex').value;
+
+            var nextRoIdx = eval(lastRowIdx) + 1;
+
+            document.getElementById('hdnLastIndex').value = nextRoIdx;
+
+            rowOuterHtml = rowOuterHtml.replaceAll('_' + lastRowIdx + '_', '_' + nextRoIdx + '_');
+            rowOuterHtml = rowOuterHtml.replaceAll('[' + lastRowIdx + ']', '[' + nextRoIdx + ']');
+            rowOuterHtml = rowOuterHtml.replaceAll('--' + lastRowIdx, '--' + nextRoIdx);
+
+            var newRow = table.insertRow();
+            newRow.innerHTML = rowOuterHtml;
+
+            var btnAddId = btn.id;
+            var btnDeleteId = btnAddId.replaceAll('addbtn', 'btnremove');
+
+            var delbtn = document.getElementById(btnDeleteId);
+            delbtn.classList.add("visible");
+            delbtn.classList.remove("invisible");
+
+            var addbtn = document.getElementById(btnAddId);
+            addbtn.classList.add("invisible");
+            addbtn.classList.remove("visible");
         }
     </script>
 }

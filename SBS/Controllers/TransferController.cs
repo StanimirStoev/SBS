@@ -50,8 +50,8 @@ namespace SBS.Controllers
             model.Details.Add(det);
 
             ViewBag.FromStoresList = await GetFromStores();
-            ViewBag.ArticlesList = await GetArticles();
-            ViewBag.PartidesList = await GetPartidesInStore();
+            //ViewBag.ArticlesList = await GetArticles();
+            //ViewBag.PartidesList = await GetPartidesInStore();
             ViewBag.UnitsList = await GetUnits();
 
             return View(model);
@@ -150,6 +150,30 @@ namespace SBS.Controllers
             result.Insert(0, new SelectListItem() { Value = "", Text = "Select Item" });
             return result;
         }
+
+        [HttpGet]
+        public async Task<JsonResult> GetArticlesInStore(Guid id)
+        {
+            var result = new List<SelectListItem>();
+
+            IEnumerable<PartidesInStoreViewModel> list = await partidesInStoresService.GetAll();
+
+            list = list.Where(p => p.StoreId == id).ToList();
+
+            result = list.Select(x => new SelectListItem()
+            {
+                Value = x.DeliveryDetailId.ToString(),
+                Text = string.Format("{0} / {1:dd:MM:yyyy} - [{2}]",
+                x.DeliveryDetail.Article.Name,
+                x.DeliveryDetail.Delivery.CreateDatetime,
+                x.Qty)
+            }).ToList();
+
+            result.Insert(0, new SelectListItem() { Value = "", Text = "Select Item" });
+
+            return Json(result);
+        }
+
         private async Task<IEnumerable<SelectListItem>> GetUnits()
         {
             var result = new List<SelectListItem>();
