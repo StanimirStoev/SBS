@@ -124,12 +124,23 @@ namespace SBS.Core.Services
                     IsActive = transfer.IsActive,
                 };
                 model.Details.AddRange( await repo.All<TransferDetail>()
+                    .Include(d => d.DeliveryDetail)
                     .Where(d => d.TransferId == transfer.Id)
                     .Select(d => new TransferDetailViewModel()
                     {
                         Id = d.Id,
                         TransferId= transfer.Id,
                         DeliveryDetailId= d.DeliveryDetailId,
+                        DeliveryDetail = new DeliveryDetailViewModel()
+                        {
+                            Id= d.DeliveryDetail.Id,
+                            ArticleId=d.DeliveryDetail.ArticleId,
+                            DeliveryId= d.DeliveryDetail.DeliveryId,
+                            IsActive= d.DeliveryDetail.IsActive,
+                            Price= d.DeliveryDetail.Price,
+                            Qty= d.DeliveryDetail.Qty,
+                            UnitId=d.DeliveryDetail.UnitId,
+                        },
                         Qty = d.Qty,
                         IsActive= d.IsActive,
                     }).ToListAsync());

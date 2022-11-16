@@ -146,16 +146,6 @@ namespace SBS.Controllers
 
             DeliveryDetailViewModel partide = await deliveryService.GetPartide(id);
             result = partide.Article.Unit.Name;
-            //    .whe.Select(x => new SelectListItem()
-            //{
-            //    Value = x.DeliveryDetailId.ToString(),
-            //    Text = string.Format("{0} / {1:dd:MM:yyyy} - [{2}]",
-            //    x.DeliveryDetail.Article.Name,
-            //    x.DeliveryDetail.Delivery.CreateDatetime,
-            //    x.Qty)
-            //}).ToList();
-
-            //result.Insert(0, new SelectListItem() { Value = "", Text = "Select Item" });
 
             return Json(result);
         }
