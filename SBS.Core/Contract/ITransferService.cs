@@ -11,6 +11,8 @@ namespace SBS.Core.Contract
     {
         Task<IEnumerable<TransferViewModel>> GetAll();
 
+        Task<TransferViewModel> Get(Guid id);
+
         Task Add(TransferViewModel viewModel);
     }
 }

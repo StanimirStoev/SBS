@@ -82,6 +82,24 @@ namespace SBS.Controllers
             }
         }
 
+        // GET: ContragentController/Edit/5
+        [HttpGet]
+        public async Task<ActionResult> Details(Guid id)
+        {
+            var transfer = await service.Get(id);
+
+            ViewBag.StoresList = await GetFromStores();
+            ViewBag.UnitsList = await GetUnits();
+            ViewBag.Partides = await GetPartidesInStore();
+
+            if (transfer != null)
+            {
+                return View(transfer);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
         [HttpGet]
         public async Task<JsonResult> GetToStores(Guid id)
         {

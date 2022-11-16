@@ -89,6 +89,54 @@ namespace SBS.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        public async Task<TransferViewModel> Get(Guid id)
+        {
+            TransferViewModel model = new TransferViewModel();
+            var transfer = await repo.GetByIdAsync<Transfer>(id);
+
+            Store storeFrom = await repo.GetByIdAsync<Store>(transfer.FromStoreId);
+            Store storeTo = await repo.GetByIdAsync<Store>(transfer.ToStoreId);
+
+            if (transfer != null)
+            {
+                model = new TransferViewModel()
+                {
+                    Id = transfer.Id,
+                    CreateDatetime= transfer.CreateDatetime,
+                    FromStoreId = transfer.FromStoreId,
+                    FromStore = new StoreViewModel
+                    {
+                        Id = storeFrom.Id,
+                        AddressId = storeFrom.AddressId,
+                        IsActive= storeFrom.IsActive,
+                        Name = storeFrom.Name,
+                        Description= storeFrom.Description,
+                    },
+                    ToStoreId = transfer.ToStoreId,
+                    ToStore = new StoreViewModel
+                    {
+                        Id = storeTo.Id,
+                        AddressId = storeTo.AddressId,
+                        IsActive = storeTo.IsActive,
+                        Name = storeTo.Name,
+                        Description = storeTo.Description,
+                    },
+                    IsActive = transfer.IsActive,
+                };
+                model.Details.AddRange( await repo.All<TransferDetail>()
+                    .Where(d => d.TransferId == transfer.Id)
+                    .Select(d => new TransferDetailViewModel()
+                    {
+                        Id = d.Id,
+                        TransferId= transfer.Id,
+                        DeliveryDetailId= d.DeliveryDetailId,
+                        Qty = d.Qty,
+                        IsActive= d.IsActive,
+                    }).ToListAsync());
+            }
+            return model;
+        }
+
         public async Task<IEnumerable<TransferViewModel>> GetAll()
         {
             var result = await repo.AllReadonly<Transfer>()
