@@ -34,33 +34,14 @@ namespace SBS.Core.Services
             {
                 if (detailViewModel.IsActive)
                 {
-                    TransferDetail? detail = transfer.Details.FirstOrDefault(x => x.Id == detailViewModel.Id);
-                    if (detail != null)
+                    transfer.Details.Add(new TransferDetail()
                     {
-                        detail.TransferId = detailViewModel.TransferId;
-                        detail.DeliveryDetailId = detailViewModel.DeliveryDetailId;
-                        detail.Qty = detailViewModel.Qty;
-                        detail.IsActive = detailViewModel.IsActive;
-                    }
-                    else
-                    {
-                        transfer.Details.Add(new TransferDetail()
-                        {
-                            Id = detailViewModel.Id,
-                            TransferId = transfer.Id,
-                            DeliveryDetailId = detailViewModel.DeliveryDetailId,
-                            Qty = detailViewModel.Qty,
-                            IsActive = detailViewModel.IsActive,
-                        });
-                    }
-                }
-                else
-                {
-                    TransferDetail? detail = transfer.Details.FirstOrDefault(x => x.Id == detailViewModel.Id);
-                    if (detail != null)
-                    {
-                        transfer.Details.Remove(detail);
-                    }
+                        Id = detailViewModel.Id,
+                        TransferId = transfer.Id,
+                        DeliveryDetailId = detailViewModel.DeliveryDetailId,
+                        Qty = detailViewModel.Qty,
+                        IsActive = detailViewModel.IsActive,
+                    });
                 }
             }
 
@@ -68,10 +49,10 @@ namespace SBS.Core.Services
             foreach (TransferDetail detail in transfer.Details)
             {
                 PartidesInStore? fromPartInStore = await repo.All<PartidesInStore>()
-                    .FirstOrDefaultAsync(d => d.DeliveryDetailId == detail.DeliveryDetailId  && d.StoreId == transfer.FromStoreId);
+                    .FirstOrDefaultAsync(d => d.DeliveryDetailId == detail.DeliveryDetailId && d.StoreId == transfer.FromStoreId);
                 PartidesInStore? toPartInStore = await repo.All<PartidesInStore>()
                     .FirstOrDefaultAsync(d => d.DeliveryDetailId == detail.DeliveryDetailId && d.StoreId == transfer.ToStoreId);
-                if(toPartInStore == null)
+                if (toPartInStore == null)
                 {
                     toPartInStore = new PartidesInStore()
                     {
@@ -81,7 +62,7 @@ namespace SBS.Core.Services
                     };
                     await repo.AddAsync<PartidesInStore>(toPartInStore);
                 }
-                fromPartInStore.Qty-= detail.Qty;
+                fromPartInStore.Qty -= detail.Qty;
                 toPartInStore.Qty += detail.Qty;
             }
 
@@ -102,15 +83,15 @@ namespace SBS.Core.Services
                 model = new TransferViewModel()
                 {
                     Id = transfer.Id,
-                    CreateDatetime= transfer.CreateDatetime,
+                    CreateDatetime = transfer.CreateDatetime,
                     FromStoreId = transfer.FromStoreId,
                     FromStore = new StoreViewModel
                     {
                         Id = storeFrom.Id,
                         AddressId = storeFrom.AddressId,
-                        IsActive= storeFrom.IsActive,
+                        IsActive = storeFrom.IsActive,
                         Name = storeFrom.Name,
-                        Description= storeFrom.Description,
+                        Description = storeFrom.Description,
                     },
                     ToStoreId = transfer.ToStoreId,
                     ToStore = new StoreViewModel
@@ -123,26 +104,26 @@ namespace SBS.Core.Services
                     },
                     IsActive = transfer.IsActive,
                 };
-                model.Details.AddRange( await repo.All<TransferDetail>()
+                model.Details.AddRange(await repo.All<TransferDetail>()
                     .Include(d => d.DeliveryDetail)
                     .Where(d => d.TransferId == transfer.Id)
                     .Select(d => new TransferDetailViewModel()
                     {
                         Id = d.Id,
-                        TransferId= transfer.Id,
-                        DeliveryDetailId= d.DeliveryDetailId,
+                        TransferId = transfer.Id,
+                        DeliveryDetailId = d.DeliveryDetailId,
                         DeliveryDetail = new DeliveryDetailViewModel()
                         {
-                            Id= d.DeliveryDetail.Id,
-                            ArticleId=d.DeliveryDetail.ArticleId,
-                            DeliveryId= d.DeliveryDetail.DeliveryId,
-                            IsActive= d.DeliveryDetail.IsActive,
-                            Price= d.DeliveryDetail.Price,
-                            Qty= d.DeliveryDetail.Qty,
-                            UnitId=d.DeliveryDetail.UnitId,
+                            Id = d.DeliveryDetail.Id,
+                            ArticleId = d.DeliveryDetail.ArticleId,
+                            DeliveryId = d.DeliveryDetail.DeliveryId,
+                            IsActive = d.DeliveryDetail.IsActive,
+                            Price = d.DeliveryDetail.Price,
+                            Qty = d.DeliveryDetail.Qty,
+                            UnitId = d.DeliveryDetail.UnitId,
                         },
                         Qty = d.Qty,
-                        IsActive= d.IsActive,
+                        IsActive = d.IsActive,
                     }).ToListAsync());
             }
             return model;
@@ -174,7 +155,7 @@ namespace SBS.Core.Services
                         Name = t.ToStore.Name,
                     },
                     CreateDatetime = t.CreateDatetime,
-                    
+
                     IsActive = t.IsActive,
                 }).ToListAsync();
 

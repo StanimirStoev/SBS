@@ -32,7 +32,6 @@ namespace SBS.Controllers
             this.deliveryService = deliveryService;
         }
 
-        // GET: ContragentController
         [HttpGet]
         public async Task<IActionResult> IndexAsync()
         {
@@ -42,7 +41,7 @@ namespace SBS.Controllers
             return View(transfers);
         }
 
-        // GET: ContragentController/Create
+
         [HttpGet]
         public async Task<ActionResult> CreateAsync()
         {
@@ -57,7 +56,6 @@ namespace SBS.Controllers
 
             return View(model);
         }
-        // POST: ContragentController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(TransferViewModel viewModel)
@@ -82,7 +80,6 @@ namespace SBS.Controllers
             }
         }
 
-        // GET: ContragentController/Edit/5
         [HttpGet]
         public async Task<ActionResult> Details(Guid id)
         {

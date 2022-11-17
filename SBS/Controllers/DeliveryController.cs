@@ -28,7 +28,6 @@ namespace SBS.Controllers
             this.unitService = unitService;
         }
 
-        // GET: ContragentController
         [HttpGet]
         public async Task<IActionResult> IndexAsync()
         {
@@ -38,7 +37,6 @@ namespace SBS.Controllers
             return View(deliveries);
         }
 
-        // GET: ContragentController/Create
         [HttpGet]
         public async Task<ActionResult> CreateAsync()
         {
@@ -55,7 +53,6 @@ namespace SBS.Controllers
 
             return View(model);
         }
-        // POST: ContragentController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(DeliveryViewModel viewModel)
@@ -80,7 +77,6 @@ namespace SBS.Controllers
             }
         }
 
-        // GET: ContragentController/Details/5
         [HttpGet]
         public async Task<ActionResult> Details(Guid id)
         {
@@ -99,7 +95,6 @@ namespace SBS.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: ContragentController/Edit/5
         [HttpGet]
         public async Task<ActionResult> Edit(Guid id)
         {
@@ -117,7 +112,6 @@ namespace SBS.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-        // POST: ContragentController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditAsync(DeliveryViewModel viewModel)
@@ -140,7 +134,6 @@ namespace SBS.Controllers
             }
         }
 
-        // GET: ContragentController/Delete/5
         [HttpGet]
         public async Task<ActionResult> Delete(Guid id)
         {
@@ -157,7 +150,6 @@ namespace SBS.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-        // POST: ContragentController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(DeliveryViewModel viewModel)

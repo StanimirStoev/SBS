@@ -33,40 +33,16 @@ namespace SBS.Core.Services
             };
             foreach (DeliveryDetailViewModel detailViewModel in viewModel.Details)
             {
-                if (detailViewModel.IsActive)
+                delivery.Details.Add(new DeliveryDetail()
                 {
-                    DeliveryDetail? detail = delivery.Details.FirstOrDefault(x => x.Id == detailViewModel.Id);
-                    if (detail != null)
-                    {
-                        detail.ArticleId = detailViewModel.ArticleId;
-                        detail.UnitId = detailViewModel.UnitId;
-                        detail.Price = detailViewModel.Price;
-                        detail.Qty = detailViewModel.Qty;
-                        detail.Delivery = delivery;
-                        detail.DeliveryId = detailViewModel.DeliveryId;
-                    }
-                    else
-                    {
-                        delivery.Details.Add(new DeliveryDetail()
-                        {
-                            Id = detailViewModel.Id,
-                            ArticleId = detailViewModel.ArticleId,
-                            UnitId = detailViewModel.UnitId,
-                            Price = detailViewModel.Price,
-                            Qty = detailViewModel.Qty,
-                            Delivery = delivery,
-                            IsActive = detailViewModel.IsActive,
-                        });
-                    }
-                }
-                else
-                {
-                    DeliveryDetail? detail = delivery.Details.FirstOrDefault(x => x.Id == detailViewModel.Id);
-                    if (detail != null)
-                    {
-                        delivery.Details.Remove(detail);
-                    }
-                }
+                    Id = detailViewModel.Id,
+                    ArticleId = detailViewModel.ArticleId,
+                    UnitId = detailViewModel.UnitId,
+                    Price = detailViewModel.Price,
+                    Qty = detailViewModel.Qty,
+                    Delivery = delivery,
+                    IsActive = detailViewModel.IsActive,
+                });
             }
 
             await repo.AddAsync(delivery);
@@ -86,9 +62,9 @@ namespace SBS.Core.Services
                 {
                     await repo.AddAsync<PartidesInStore>(new PartidesInStore()
                     {
-                        DeliveryDetailId= item.Id,
-                        StoreId= viewModel.StoreId,
-                        Qty=item.Qty,
+                        DeliveryDetailId = item.Id,
+                        StoreId = viewModel.StoreId,
+                        Qty = item.Qty,
                     });
                 }
 
@@ -146,7 +122,7 @@ namespace SBS.Core.Services
                         Name = delivery.Store.Name,
                         AddressId = delivery.Store.AddressId,
                     },
-                    IsConfirmed= delivery.IsConfirmed,
+                    IsConfirmed = delivery.IsConfirmed,
                     IsActive = delivery.IsActive,
                 };
                 if (delivery.Details != null)
@@ -199,21 +175,21 @@ namespace SBS.Core.Services
                     ArticleId = det.ArticleId,
                     Article = new ArticleViewModel()
                     {
-                        Id= det.Article.Id,
-                        DeliveryNumber= det.Article.DeliveryNumber,
-                        Name= det.Article.Name,
-                        Description= det.Article.Description,
-                        Title= det.Article.Title,
+                        Id = det.Article.Id,
+                        DeliveryNumber = det.Article.DeliveryNumber,
+                        Name = det.Article.Name,
+                        Description = det.Article.Description,
+                        Title = det.Article.Title,
                         Model = det.Article.Model,
-                        UnitId= det.Article.UnitId,
-                        Unit= new UnitViewModel()
+                        UnitId = det.Article.UnitId,
+                        Unit = new UnitViewModel()
                         {
-                            Id= det.Article.Unit.Id,
-                            Name= det.Article.Unit.Name,
-                            Description=det.Article.Unit.Description ?? "",
-                            IsActive= det.Article.Unit.IsActive,
+                            Id = det.Article.Unit.Id,
+                            Name = det.Article.Unit.Name,
+                            Description = det.Article.Unit.Description ?? "",
+                            IsActive = det.Article.Unit.IsActive,
                         },
-                        IsActive= det.Article.IsActive,
+                        IsActive = det.Article.IsActive,
                     },
                     IsActive = det.IsActive,
                 };
@@ -250,7 +226,7 @@ namespace SBS.Core.Services
                         Name = d.Store.Name,
                     },
                     CreateDatetime = d.CreateDatetime,
-                    IsConfirmed= d.IsConfirmed,
+                    IsConfirmed = d.IsConfirmed,
                     IsActive = d.IsActive,
                 }).ToListAsync();
         }
