@@ -17,6 +17,8 @@ namespace SBS.Infrastructure.Data.Models
 
         public virtual List<DeliveryDetail> DeliveryDetails { get; set; } = new List<DeliveryDetail>();
 
+        public virtual List<SellDetail> SellDetails { get; set; } = new List<SellDetail>();
+
         [Required]
         public bool IsActive { get; set; } = true;
     }
