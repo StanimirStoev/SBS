@@ -6,56 +6,57 @@ using SBS.Core.Services;
 
 namespace SBS.Controllers
 {
-    public class DeliveryController : Controller
+    public class SellController : Controller
     {
-        private readonly IDeliveryService service;
+        private readonly ISellService service;
         private readonly IContragentService contragentService;
         private readonly IStoreService storeService;
-        private readonly IArticleService articleService;
+        private readonly IPartidesInStoresService partidesInStoresService;
         private readonly IUnitService unitService;
 
-        public DeliveryController(
-            IDeliveryService service,
+        public SellController(
+            ISellService service,
             IContragentService contragentService,
             IStoreService storeService,
-            IArticleService articleService,
-            IUnitService unitService)
+            IPartidesInStoresService partidesInStoresService,
+            IUnitService unitService
+            )
         {
             this.service = service;
             this.contragentService = contragentService;
             this.storeService = storeService;
-            this.articleService = articleService;
+            this.partidesInStoresService = partidesInStoresService;
             this.unitService = unitService;
         }
 
         [HttpGet]
         public async Task<IActionResult> IndexAsync()
         {
-            var deliveries = await service.GetAll();
-            ViewData["Title"] = "Deliveries";
+            var sells = await service.GetAll();
+            ViewData["Title"] = "Sells";
 
-            return View(deliveries);
+            return View(sells);
         }
 
         [HttpGet]
         public async Task<ActionResult> CreateAsync()
         {
-            var model = new DeliveryViewModel();
-            DeliveryDetailViewModel det = new DeliveryDetailViewModel();
-            det.Delivery = model;
-            det.DeliveryId = det.Id;
+            var model = new SellViewModel();
+            SellDetailViewModel det = new SellDetailViewModel();
+            det.Sell = model;
+            det.SellId = det.Id;
             model.Details.Add(det);
 
             ViewBag.ContragentsList = await GetContragents();
             ViewBag.StoresList = await GetStores();
-            ViewBag.ArticlesList = await GetArticles();
+            ViewBag.PartidesInStore = await GetPartidesInStore();
             ViewBag.UnitsList = await GetUnits();
 
             return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(DeliveryViewModel viewModel)
+        public async Task<ActionResult> Create(SellViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -80,16 +81,16 @@ namespace SBS.Controllers
         [HttpGet]
         public async Task<ActionResult> Details(Guid id)
         {
-            var delivery = await service.Get(id);
+            var sell = await service.Get(id);
 
             ViewBag.ContragentsList = await GetContragents();
             ViewBag.StoresList = await GetStores();
-            ViewBag.ArticlesList = await GetArticles();
+            ViewBag.PartidesInStore = await GetPartidesInStore();
             ViewBag.UnitsList = await GetUnits();
 
-            if (delivery != null)
+            if (sell != null)
             {
-                return View(delivery);
+                return View(sell);
             }
 
             return RedirectToAction(nameof(Index));
@@ -98,23 +99,23 @@ namespace SBS.Controllers
         [HttpGet]
         public async Task<ActionResult> Edit(Guid id)
         {
-            var delivery = await service.Get(id);
+            var sell = await service.Get(id);
 
             ViewBag.ContragentsList = await GetContragents();
             ViewBag.StoresList = await GetStores();
-            ViewBag.ArticlesList = await GetArticles();
+            ViewBag.PartidesInStore = await GetPartidesInStore();
             ViewBag.UnitsList = await GetUnits();
 
-            if (delivery != null)
+            if (sell != null)
             {
-                return View(delivery);
+                return View(sell);
             }
 
             return RedirectToAction(nameof(Index));
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditAsync(DeliveryViewModel viewModel)
+        public async Task<ActionResult> EditAsync(SellViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -140,7 +141,7 @@ namespace SBS.Controllers
             var delivery = await service.Get(id);
             ViewBag.ContragentsList = await GetContragents();
             ViewBag.StoresList = await GetStores();
-            ViewBag.ArticlesList = await GetArticles();
+            ViewBag.GetPartidesInStore = await GetPartidesInStore();
             ViewBag.UnitsList = await GetUnits();
             //TempData.Keep();
             if (delivery != null)
@@ -152,14 +153,14 @@ namespace SBS.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(DeliveryViewModel viewModel)
+        public async Task<ActionResult> Delete(SellViewModel viewModel)
         {
 
             await service.Delete(viewModel.Id);
 
             try
             {
-                TempData["SuccessMessage"] = "Delivery " + viewModel.Id + " deleted successfully!";
+                TempData["SuccessMessage"] = "Sell " + viewModel.Id + " deleted successfully!";
 
                 return RedirectToAction(nameof(Index));
             }
@@ -168,29 +169,6 @@ namespace SBS.Controllers
                 return View();
             }
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ConfirmAsync(DeliveryViewModel viewModel)
-        {
-            if (!ModelState.IsValid)
-            {
-                // if state is not valid - return to continue edit data
-                return View(viewModel);
-            }
-
-            await service.Confirm(viewModel);
-
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
 
         private async Task<IEnumerable<SelectListItem>> GetContragents()
         {
@@ -199,14 +177,14 @@ namespace SBS.Controllers
             IEnumerable<ContragentViewModel> contragentsList = await contragentService.GetAll();
 
             result = contragentsList
-                .Where(x => x.IsSupplier)
+                .Where(x => x.IsClient)
                 .Select(x => new SelectListItem()
-            {
-                Value = x.Id.ToString(),
-                Text = String.Format("{0} {1}", x.FirstName, x.LastName),
-            }).ToList();
+                {
+                    Value = x.Id.ToString(),
+                    Text = String.Format("{0} {1}", x.FirstName, x.LastName),
+                }).ToList();
 
-            result.Insert(0, new SelectListItem() { Value = "", Text = "Select Supplier" });
+            result.Insert(0, new SelectListItem() { Value = "", Text = "Select Client" });
             return result;
         }
 
@@ -214,31 +192,38 @@ namespace SBS.Controllers
         {
             var result = new List<SelectListItem>();
 
-            IEnumerable<StoreViewModel> storesList = await storeService.GetAll();
+            IEnumerable<StoreViewModel> storesList = await storeService.GetAllNotEmpty();
 
             result = storesList.Select(x => new SelectListItem()
             {
                 Value = x.Id.ToString(),
-                Text =  x.Name,
+                Text = x.Name,
             }).ToList();
 
             result.Insert(0, new SelectListItem() { Value = "", Text = "Select Store" });
             return result;
         }
 
-        private async Task<IEnumerable<SelectListItem>> GetArticles()
+        private async Task<IEnumerable<SelectListItem>> GetPartidesInStore(Guid? id = null)
         {
             var result = new List<SelectListItem>();
 
-            IEnumerable<ArticleViewModel> list = await articleService.GetAll();
+            IEnumerable<PartidesInStoreViewModel> list = await partidesInStoresService.GetAll();
+            if (id != null)
+            {
+                list = list.Where(p => p.StoreId == id).ToList();
+            }
 
             result = list.Select(x => new SelectListItem()
             {
-                Value = x.Id.ToString(),
-                Text = x.Name,
+                Value = x.DeliveryDetailId.ToString(),
+                Text = string.Format("{0} / {1:dd:MM:yyyy} - [{2}]",
+                    x.DeliveryDetail.Article.Name,
+                    x.DeliveryDetail.Delivery.CreateDatetime,
+                    x.Qty)
             }).ToList();
 
-            result.Insert(0, new SelectListItem() { Value = "", Text = "Select Article" });
+            result.Insert(0, new SelectListItem() { Value = "", Text = "Select Item" });
             return result;
         }
 

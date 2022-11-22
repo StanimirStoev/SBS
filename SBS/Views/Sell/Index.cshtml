@@ -1,0 +1,54 @@
+﻿@model IEnumerable<SBS.Core.Models.SellViewModel>
+
+@{
+    ViewData["Title"] = "Sells";
+}
+
+<div class="container-fluid btn-group">
+    <div class="col-10">
+        <h1 class="col-4">Sells</h1>
+    </div>
+    <div class="justify-content-end  col-2">
+        <p>
+            <a asp-action="Create" class="btn btn-primary mt-2">Create New</a>
+        </p>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ContragentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDatetime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StoreId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContragentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDatetime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StoreId)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a asp-controller="Delivery" asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary">Details</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
