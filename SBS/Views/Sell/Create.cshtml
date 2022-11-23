@@ -4,12 +4,18 @@
     ViewData["Title"] = "Create";
 }
 
+<style>
+    .detSelect {
+        /*Just for marking*/
+    }
+</style>
+
 <h1>Create</h1>
 
 <h4>Sell</h4>
 <hr />
 
-<form asp-controller="Delivery" asp-action="Create" method="post">
+<form asp-controller="Sell" asp-action="Create" method="post">
     <div class="row">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="col-md-5">
@@ -31,7 +37,7 @@
         <div class="col-5">
             <div class="form-group">
                 <label asp-for="StoreId" class="control-label">Store</label>
-                <select asp-for="StoreId" class="form-control" asp-items="@ViewBag.StoresList">
+                <select asp-for="StoreId" class="form-control" asp-items="@ViewBag.StoresList" onchange="FillDetailsSelect(this)">
                 </select>
                 <span asp-validation-for="StoreId" class="text-danger"></span>
             </div>
@@ -41,7 +47,7 @@
 
     <div class="col-12 ml-5">
         <h5>Details</h5>
-        <table id="addressTable" class="table table-sm ">
+        <table id="detailsTable" class="table table-sm ">
             <thead>
                 <tr>
                     <th>
@@ -67,14 +73,14 @@
                 {
                     <tr>
                         <td>
-                            <select asp-for="@Model.Details[i].ArticleId" class="form-control" asp-items="ViewBag.ArticlesList"></select>
+                            <select id="selDelivDet--@i" asp-for="@Model.Details[i].DeliveryDetailId" class="form-control detSelect" onchange="SetUnit(this)"></select>
                         </td>
                         <td>
                             <span asp-validation-for="@Model.Details[i].Qty" class="text-danger"></span>
                             @Html.EditorFor(m => m.Details[i].Qty, new{htmlAttributes = new{@class = "form-control"}})
                         </td>
                         <td>
-                            <select asp-for="@Model.Details[i].UnitId" class="form-control" asp-items="ViewBag.UnitsList"></select>
+                            <input id="delivDetUnit--@i" class="form-control" disabled />
                         </td>
                         <td>
                             <span asp-validation-for="@Model.Details[i].Price" class="text-danger"></span>
@@ -110,5 +116,99 @@
 </form>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script type="text/javascript">
+
+        function FillDetailsSelect(masterSelectControl) {
+
+            var selectedItem = masterSelectControl.options[masterSelectControl.selectedIndex].value;
+
+            var details = document.getElementsByClassName("detSelect");
+            
+            for (var i = 0; i < details.length; i++) {
+                setDetailItems(details[i].id, selectedItem);
+            };
+            return;
+        }
+
+        function setDetailItems(detailId, selectedItem) {
+
+            var lstItems = $("#" + detailId);
+            lstItems.empty();
+            $.getJSON('@Url.Action("GetArticlesInStore")', { id: selectedItem }, function (items) {
+                if (items != null && !jQuery.isEmptyObject(items)) {
+
+                    $.each(items, function (index, item) {
+
+                        lstItems.append($('<option/>',
+                            {
+                                value: item.value,
+                                text: item.text
+                            }
+                        ));
+                    });
+                };
+            });
+            return;
+        }
+
+        function SetUnit(partideSelectControl) {
+            var selectedItem = partideSelectControl.options[partideSelectControl.selectedIndex].value;
+            var dat = partideSelectControl.id.split("--");
+            var index = dat[dat.length - 1];
+
+            var unitControl = document.getElementById("delivDetUnit--" + index)
+
+            $.getJSON('@Url.Action("GetUnitForArticle")', { id: selectedItem }, function (result) {
+                unitControl.setAttribute('value', result);
+            });
+        }
+
+        function AddItm(btn) {
+            var table;
+            table = document.getElementById('detailsTable');
+
+            var rows = table.getElementsByTagName('tr');
+            var rowOuterHtml = rows[rows.length - 1].outerHTML;
+
+            var lastRowIdx = document.getElementById('hdnLastIndex').value;
+
+            var nextRoIdx = eval(lastRowIdx) + 1;
+
+            document.getElementById('hdnLastIndex').value = nextRoIdx;
+
+            rowOuterHtml = rowOuterHtml.replaceAll('_' + lastRowIdx + '_', '_' + nextRoIdx + '_');
+            rowOuterHtml = rowOuterHtml.replaceAll('[' + lastRowIdx + ']', '[' + nextRoIdx + ']');
+            rowOuterHtml = rowOuterHtml.replaceAll('--' + lastRowIdx, '--' + nextRoIdx);
+
+            var newRow = table.insertRow();
+            newRow.innerHTML = rowOuterHtml;
+
+            var btnAddId = btn.id;
+            var btnDeleteId = btnAddId.replaceAll('addbtn', 'btnremove');
+
+            var delbtn = document.getElementById(btnDeleteId);
+            delbtn.classList.add("visible");
+            delbtn.classList.remove("invisible");
+
+            var addbtn = document.getElementById(btnAddId);
+            addbtn.classList.add("invisible");
+            addbtn.classList.remove("visible");
+        }
+
+        function DeleteItm(btn) {
+
+            //$(btn).closest('tr').remove();
+            var btnIdx = btn.id.replaceAll('btnremove--', '');
+            var idIsActive = "IsActive--" + btnIdx;
+            var idIsActive = document.querySelector("[id='" + idIsActive + "']");
+            idIsActive.value = false;
+
+            $(btn).closest('tr').hide();
+        }
+
+    </script>
 }

@@ -19,9 +19,13 @@ namespace SBS.Infrastructure.Data.Models
         public virtual Sell Sell { get; set; } = null!;
 
         [Required]
-        public Guid ArticleId { get; set; }
-        [ForeignKey(nameof(ArticleId))]
-        public virtual Article Article { get; set; } = null!;
+        //[ForeignKey(nameof(PartidesInStore))]
+        public Guid StoreId { get; set; }
+        [Required]
+        //[ForeignKey(nameof(PartidesInStore))]
+        public Guid DeliveryDetailId { get; set; }
+        [ForeignKey("StoreId, DeliveryDetailId")]
+        public virtual PartidesInStore PartidesInStore { get; set; } = null!;
 
         [Required]
         public Guid UnitId { get; set; }

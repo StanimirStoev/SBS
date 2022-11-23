@@ -6,6 +6,7 @@ using SBS.Infrastructure.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,7 +36,8 @@ namespace SBS.Core.Services
                 sell.Details.Add(new SellDetail()
                 {
                     Id = detailViewModel.Id,
-                    ArticleId = detailViewModel.ArticleId,
+                    DeliveryDetailId = detailViewModel.DeliveryDetailId,
+                    StoreId = detailViewModel.StoreId,
                     UnitId = detailViewModel.UnitId,
                     Price = detailViewModel.Price,
                     Qty = detailViewModel.Qty,
@@ -44,6 +46,13 @@ namespace SBS.Core.Services
                     IsActive = detailViewModel.IsActive,
                     
                 });
+            }
+            //Do Sell
+            foreach (SellDetail detail in sell.Details)
+            {
+                PartidesInStore? fromPartInStore = await repo.All<PartidesInStore>()
+                    .FirstOrDefaultAsync(d => d.DeliveryDetailId == detail.DeliveryDetailId && d.StoreId == sell.StoreId);
+                fromPartInStore.Qty -= detail.Qty;
             }
 
             await repo.AddAsync(sell);
@@ -109,7 +118,8 @@ namespace SBS.Core.Services
                         {
                             detailViewmodel.Id = detail.Id;
                             detailViewmodel.SellId = detail.SellId;
-                            detailViewmodel.ArticleId = detail.ArticleId;
+                            detailViewmodel.DeliveryDetailId = detail.DeliveryDetailId;
+                            detailViewmodel.StoreId = detail.StoreId;
                             detailViewmodel.UnitId = detail.UnitId;
                             detailViewmodel.Qty = detail.Qty;
                             detailViewmodel.Price = detail.Price;
@@ -121,7 +131,8 @@ namespace SBS.Core.Services
                             {
                                 Id = detail.Id,
                                 SellId = detail.SellId,
-                                ArticleId = detail.ArticleId,
+                                DeliveryDetailId = detail.DeliveryDetailId,
+                                StoreId = detail.StoreId,
                                 UnitId = detail.UnitId,
                                 Qty = detail.Qty,
                                 Price = detail.Price,
@@ -184,7 +195,8 @@ namespace SBS.Core.Services
                         SellDetail? detail = sell.Details.FirstOrDefault(x => x.Id == detailViewModel.Id);
                         if (detail != null)
                         {
-                            detail.ArticleId = detailViewModel.ArticleId;
+                            detail.DeliveryDetailId = detailViewModel.DeliveryDetailId;
+                            detail.StoreId = detailViewModel.DeliveryDetailId;
                             detail.Price = detailViewModel.Price;
                             detail.Qty = detailViewModel.Qty;
                             detail.Sell = sell;
@@ -197,7 +209,7 @@ namespace SBS.Core.Services
                             sell.Details.Add(new SellDetail()
                             {
                                 Id = detailViewModel.Id,
-                                ArticleId = detailViewModel.ArticleId,
+                                DeliveryDetailId = detailViewModel.DeliveryDetailId,
                                 Price = detailViewModel.Price,
                                 Qty = detailViewModel.Qty,
                                 Sell = sell,

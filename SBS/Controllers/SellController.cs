@@ -13,6 +13,7 @@ namespace SBS.Controllers
         private readonly IStoreService storeService;
         private readonly IPartidesInStoresService partidesInStoresService;
         private readonly IUnitService unitService;
+        private readonly IDeliveryService deliveryService;
 
         public SellController(
             ISellService service,
@@ -20,13 +21,15 @@ namespace SBS.Controllers
             IStoreService storeService,
             IPartidesInStoresService partidesInStoresService,
             IUnitService unitService
-            )
+,
+            IDeliveryService deliveryService)
         {
             this.service = service;
             this.contragentService = contragentService;
             this.storeService = storeService;
             this.partidesInStoresService = partidesInStoresService;
             this.unitService = unitService;
+            this.deliveryService = deliveryService;
         }
 
         [HttpGet]
@@ -168,6 +171,40 @@ namespace SBS.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetArticlesInStore(Guid id)
+        {
+            var result = new List<SelectListItem>();
+
+            IEnumerable<PartidesInStoreViewModel> list = await partidesInStoresService.GetAll();
+
+            list = list.Where(p => p.StoreId == id).ToList();
+
+            result = list.Select(x => new SelectListItem()
+            {
+                Value = x.DeliveryDetailId.ToString(),
+                Text = string.Format("{0} / {1:dd:MM:yyyy} - [{2}]",
+                x.DeliveryDetail.Article.Name,
+                x.DeliveryDetail.Delivery.CreateDatetime,
+                x.Qty)
+            }).ToList();
+
+            result.Insert(0, new SelectListItem() { Value = "", Text = "Select Item" });
+
+            return Json(result);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetUnitForArticle(Guid id)
+        {
+            var result = "";
+
+            DeliveryDetailViewModel partide = await deliveryService.GetPartide(id);
+            result = partide.Article.Unit.Name;
+
+            return Json(result);
         }
 
         private async Task<IEnumerable<SelectListItem>> GetContragents()
