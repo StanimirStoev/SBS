@@ -206,6 +206,16 @@ namespace SBS.Controllers
 
             return Json(result);
         }
+        [HttpGet]
+        public async Task<JsonResult> GetUnitIdForArticle(Guid id)
+        {
+            var result = "";
+
+            DeliveryDetailViewModel partide = await deliveryService.GetPartide(id);
+            result = partide.Article.Unit.Id.ToString();
+
+            return Json(result);
+        }
 
         private async Task<IEnumerable<SelectListItem>> GetContragents()
         {

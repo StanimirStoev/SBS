@@ -37,7 +37,7 @@
         <div class="col-5">
             <div class="form-group">
                 <label asp-for="StoreId" class="control-label">Store</label>
-                <select asp-for="StoreId" class="form-control" asp-items="@ViewBag.StoresList" onchange="FillDetailsSelect(this)">
+                <select id="soreId" asp-for="StoreId" class="form-control" asp-items="@ViewBag.StoresList" onchange="FillDetailsSelect(this)">
                 </select>
                 <span asp-validation-for="StoreId" class="text-danger"></span>
             </div>
@@ -81,6 +81,8 @@
                         </td>
                         <td>
                             <input id="delivDetUnit--@i" class="form-control" disabled />
+                            <input id="delivDetUnitId--@i" asp-for="@Model.Details[i].UnitId" class="form-control" hidden />
+                            <input id="delivDetStoreId--@i" asp-for="@Model.Details[i].StoreId" class="form-control" hidden />
                         </td>
                         <td>
                             <span asp-validation-for="@Model.Details[i].Price" class="text-danger"></span>
@@ -161,10 +163,19 @@
             var index = dat[dat.length - 1];
 
             var unitControl = document.getElementById("delivDetUnit--" + index)
-
             $.getJSON('@Url.Action("GetUnitForArticle")', { id: selectedItem }, function (result) {
                 unitControl.setAttribute('value', result);
             });
+
+             var unitIdControl = document.getElementById("delivDetUnitId--" + index)
+            $.getJSON('@Url.Action("GetUnitIdForArticle")', { id: selectedItem }, function (result) {
+                unitIdControl.setAttribute('value', result);
+            });
+            window.alert("here");
+            var storeIdSelect = document.getElementById("storeId");
+            var storeIdControl = document.getElementById("delivDetStoreId--" + index);
+            storeIdControl.setAttribute('value', storeIdSelect.options[storeIdSelect.selectedIndex].value);
+
         }
 
         function AddItm(btn) {

@@ -20,13 +20,11 @@ namespace SBS.Core.Models
         public virtual SellViewModel? Sell { get; set; } = null!;
 
         [Required]
-        [ForeignKey(nameof(PartidesInStore))]
         public Guid StoreId { get; set; }
         [Required]
-        [ForeignKey(nameof(PartidesInStore))]
         public Guid DeliveryDetailId { get; set; }
-
-        public virtual PartidesInStore PartidesInStore { get; set; } = null!;
+        [ForeignKey("StoreId, DeliveryDetailId")]
+        public virtual PartidesInStore? PartidesInStore { get; set; } = null!;
 
         [Required]
         public double Qty { get; set; } = 0;

@@ -37,7 +37,7 @@ namespace SBS.Core.Services
                 {
                     Id = detailViewModel.Id,
                     DeliveryDetailId = detailViewModel.DeliveryDetailId,
-                    StoreId = detailViewModel.StoreId,
+                    StoreId = sell.StoreId,
                     UnitId = detailViewModel.UnitId,
                     Price = detailViewModel.Price,
                     Qty = detailViewModel.Qty,
