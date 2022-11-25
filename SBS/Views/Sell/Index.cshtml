@@ -27,6 +27,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.StoreId)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SellTotalPrice)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -35,13 +38,16 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ContragentId)
+                    @Html.DisplayFor(modelItem => item.Contragent.FirstName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreateDatetime)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.StoreId)
+                    @Html.DisplayFor(modelItem => item.Store.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SellTotalPrice)
                 </td>
                 <td>
                     <div class="btn-group">

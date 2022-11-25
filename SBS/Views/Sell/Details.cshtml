@@ -5,44 +5,82 @@
 }
 
 <h1>Details</h1>
+<h4>Sell</h4>
+<hr />
 
 <div>
-    <h4>Sell</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ContragentId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ContragentId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreateDatetime)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreateDatetime)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StoreId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StoreId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label asp-for="ContragentId" class="control-label"></label>
+                <select asp-for="@Model.ContragentId" class="form-control" asp-items="ViewBag.ContragentsList" disabled></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreateDatetime" class="control-label"></label>
+                <input asp-for="CreateDatetime" class="form-control" disabled />
+            </div>
+        </div>
+
+        <div class="form-group col-2"></div>
+
+        <div class="col-md-5">
+            <div class="form-group">
+                <label asp-for="StoreId" class="control-label"></label>
+                <select asp-for="@Model.StoreId" class="form-control" asp-items="ViewBag.StoresList" disabled></select>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 ml-5">
+        <h5 class="mt-4">Details</h5>
+        <table id="detailsTable" class="table table-borderless table-sm mb-0 pb-0">
+            <thead>
+                <tr>
+                    <th>
+                        Article / Partide
+                    </th>
+                    <th>
+                        Quantity
+                    </th>
+                    <th>
+                        Unit
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Total Price
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Details.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            <select asp-for="@Model.Details[i].DeliveryDetailId" asp-items="ViewBag.PartidesInStore" class="form-control" disabled></select>
+                        </td>
+                        <td>
+                            <input asp-for="@Model.Details[i].Qty" class="form-control" disabled/>
+                        </td>
+                        <td>
+                            <select asp-for="@Model.Details[i].UnitId" asp-items="ViewBag.UnitsList" class="form-control" disabled></select>
+                        </td>
+                        <td>
+                            <input asp-for="@Model.Details[i].Price" class="form-control" disabled />
+                        </td>
+                        <td>
+                            <input asp-for="@Model.Details[i].TotalPrice" class="form-control" disabled />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <input type="hidden" id="hdnLastIndex" value="0" />
+    <div class="form-group btn-group mt-2">
+        <a class="btn btn-secondary" asp-action="Index">Back</a>
+    </div>
 </div>

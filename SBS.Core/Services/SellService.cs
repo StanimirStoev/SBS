@@ -42,9 +42,9 @@ namespace SBS.Core.Services
                     Price = detailViewModel.Price,
                     Qty = detailViewModel.Qty,
                     Sell = sell,
-                    SellId= detailViewModel.SellId,
+                    SellId = detailViewModel.SellId,
                     IsActive = detailViewModel.IsActive,
-                    
+
                 });
             }
             //Do Sell
@@ -147,7 +147,7 @@ namespace SBS.Core.Services
 
         public async Task<IEnumerable<SellViewModel>> GetAll()
         {
-            return await repo.AllReadonly<Sell>()
+            List<SellViewModel> result = await repo.AllReadonly<Sell>()
                 .Where(d => d.IsActive)
                 .Include(d => d.Contragent)
                 .Include(d => d.Store)
@@ -176,6 +176,24 @@ namespace SBS.Core.Services
                     CreateDatetime = d.CreateDatetime,
                     IsActive = d.IsActive,
                 }).ToListAsync();
+
+            foreach(var item in result)
+            {
+                item.Details = await repo.AllReadonly<SellDetail>()
+                    .Where(s => s.SellId == item.Id)
+                    .Select(s => new SellDetailViewModel()
+                    {
+                        Id = s.Id,
+                        DeliveryDetailId= s.DeliveryDetailId,
+                        IsActive= s.IsActive,
+                        Price= s.Price,
+                        Qty= s.Qty,
+                        StoreId= s.StoreId,
+                        UnitId= s.UnitId,
+                    }).ToListAsync();
+            }
+
+            return result;
         }
 
         public async Task Update(SellViewModel viewModel)
