@@ -47,11 +47,11 @@
 
     <div class="col-12 ml-5">
         <h5>Details</h5>
-        <table id="detailsTable" class="table table-sm ">
+        <table id="detailsTable" class="table table-sm table-borderless">
             <thead>
                 <tr>
                     <th>
-                        Article
+                        Article / Partide
                     </th>
                     <th>
                         Quantity
@@ -77,7 +77,7 @@
                         </td>
                         <td>
                             <span asp-validation-for="@Model.Details[i].Qty" class="text-danger"></span>
-                            @Html.EditorFor(m => m.Details[i].Qty, new{htmlAttributes = new{@class = "form-control"}})
+                            <input id="qty--@i" asp-for="@Model.Details[i].Qty" class="form-control" onchange="CalculateRowTotal(this)" />
                         </td>
                         <td>
                             <input id="delivDetUnit--@i" class="form-control" disabled />
@@ -86,14 +86,12 @@
                         </td>
                         <td>
                             <span asp-validation-for="@Model.Details[i].Price" class="text-danger"></span>
-                            @Html.EditorFor(m => m.Details[i].Price, new{htmlAttributes = new{@class = "form-control"}})
+                            <input id="price--@i" asp-for="@Model.Details[i].Price" class="form-control" onchange="CalculateRowTotal(this)" />
                         </td>
                         <td>
-                            <span asp-validation-for="@Model.Details[i].TotalPrice" class="text-danger"></span>
-                            @Html.EditorFor(m => m.Details[i].TotalPrice, new{htmlAttributes = new{@class = "form-control"}})
+                            <input id="totalPrice--@i" class="form-control" disabled />
                         </td>
                         <td>
-                            @*<button id="dummybtn--@i" type="button" class="btn btn-sm btn-secondary invisible">Dummy</button>*@
                             <input asp-for="@Model.Details[i].IsActive" class="form-control visually-hidden invisible" size="5" type="text" id="IsActive--@i" />
                             <button id="addbtn--@i" type="button" class="btn btn-sm btn-secondary visible"
                                 onclick="AddItm(this)">
@@ -171,10 +169,25 @@
             $.getJSON('@Url.Action("GetUnitIdForArticle")', { id: selectedItem }, function (result) {
                 unitIdControl.setAttribute('value', result);
             });
-            window.alert("here");
+
             var storeIdSelect = document.getElementById("storeId");
             var storeIdControl = document.getElementById("delivDetStoreId--" + index);
             storeIdControl.setAttribute('value', storeIdSelect.options[storeIdSelect.selectedIndex].value);
+
+        }
+
+        function CalculateRowTotal(partideControl) {
+
+            var dat = partideControl.id.split("--");
+            var index = dat[dat.length - 1];
+            
+            var qty = document.getElementById("qty--" + index).value;
+            var price = document.getElementById("price--" + index).value;
+
+            var tot = qty * price;
+            var total = document.getElementById("totalPrice--" + index);
+            
+            total.setAttribute('value', tot.toString());
 
         }
 
@@ -208,6 +221,9 @@
             var addbtn = document.getElementById(btnAddId);
             addbtn.classList.add("invisible");
             addbtn.classList.remove("visible");
+
+            var qty = document.getElementById("qty--" + nextRoIdx);
+            CalculateRowTotal(qty);
         }
 
         function DeleteItm(btn) {

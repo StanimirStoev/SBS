@@ -4,6 +4,7 @@ using SBS.Core.Services;
 using SBS.Infrastructure.Data;
 using SBS.Infrastructure.Data.Common;
 using SBS.Infrastructure.Data.Models.Account;
+using SBS.Tools.ModelBinders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +28,11 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddMvcOptions(options =>
+    {
+        options.ModelBinderProviders.Insert(0, new DoubleModelBinderProvider());
+    });
 
 builder.Services.AddScoped<ISbsRepository, SbsRepository>();
 builder.Services.AddScoped<IArticleService, ArticleService>();

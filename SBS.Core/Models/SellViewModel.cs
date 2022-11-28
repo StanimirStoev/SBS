@@ -24,6 +24,15 @@ namespace SBS.Core.Models
         [ForeignKey(nameof(StoreId))]
         public virtual StoreViewModel? Store { get; set; } = null!;
 
+        [Display(Name = "Sell Price")]
+        public double SellTotalPrice
+        {
+            get
+            {
+                return Details.Sum(x => x.TotalPrice);
+            }
+        }
+
         public virtual List<SellDetailViewModel> Details { get; set; } = new List<SellDetailViewModel>();
 
         [Required]
