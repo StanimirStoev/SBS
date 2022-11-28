@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SBS.Core.Contract;
 using SBS.Core.Models;
 
 namespace SBS.Controllers
 {
+    [Authorize]
     public class CountryController : Controller
     {
         private readonly ICountryService countryService;

@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SBS.Core.Contract;
 
 namespace SBS.Controllers
 {
+    [Authorize]
     public class ArticlesInStockController : Controller
     {
         private readonly IArticlesInStockService articleService;

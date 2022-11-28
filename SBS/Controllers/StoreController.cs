@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SBS.Core.Contract;
 using SBS.Core.Models;
 
 namespace SBS.Controllers
 {
+    [Authorize]
     public class StoreController : Controller
     {
         private readonly IStoreService service;

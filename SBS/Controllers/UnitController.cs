@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SBS.Core.Contract;
 using SBS.Core.Models;
 using SBS.Tools;
 
 namespace SBS.Controllers
 {
+    [Authorize]
     public class UnitController : Controller
     {
         private readonly IUnitService service;
