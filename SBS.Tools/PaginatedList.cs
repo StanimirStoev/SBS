@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SBS.Tools
+﻿namespace SBS.Tools
 {
     public class PaginatedList <T> : List<T>
     {

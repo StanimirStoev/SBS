@@ -3,7 +3,6 @@ using SBS.Core.Contract;
 using SBS.Core.Models;
 using SBS.Infrastructure.Data.Common;
 using SBS.Infrastructure.Data.Models;
-using System.Linq;
 
 namespace SBS.Core.Services
 {

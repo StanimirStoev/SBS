@@ -1,5 +1,4 @@
-﻿using SBS.Infrastructure.Data.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static SBS.Core.Constants.DataConstants.Store;
 

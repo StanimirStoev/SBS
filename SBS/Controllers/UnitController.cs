@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
 using SBS.Core.Contract;
 using SBS.Core.Models;
 using SBS.Tools;

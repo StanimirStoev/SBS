@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SBS.Core.Contract;
 using SBS.Core.Models;
-using SBS.Core.Services;
 
 namespace SBS.Controllers
 {

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using SBS.Core.Models;
+﻿using SBS.Core.Models;
 
 namespace SBS.Core.Contract
 {

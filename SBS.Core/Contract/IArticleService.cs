@@ -1,5 +1,4 @@
 ﻿using SBS.Core.Models;
-using SBS.Tools;
 
 namespace SBS.Core.Contract
 {
