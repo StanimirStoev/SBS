@@ -37,19 +37,7 @@ builder.Services.AddControllersWithViews()
         options.ModelBinderProviders.Insert(0, new DoubleModelBinderProvider());
     });
 
-builder.Services.AddScoped<ISbsRepository, SbsRepository>();
-builder.Services.AddScoped<IArticleService, ArticleService>();
-builder.Services.AddScoped<ICountryService, CountryService>();
-builder.Services.AddScoped<ICityService, CityService>();
-builder.Services.AddScoped<IAddressService, AddressService>();
-builder.Services.AddScoped<IContragentService, ContragentService>();
-builder.Services.AddScoped<IStoreService, StoreService>();
-builder.Services.AddScoped<IUnitService, UnitService>();
-builder.Services.AddScoped<IDeliveryService, DeliveryService>();
-builder.Services.AddScoped<IArticlesInStockService, ArticlesInStockService>();
-builder.Services.AddScoped<ITransferService, TransferService>();
-builder.Services.AddScoped<IPartidesInStoresService, PartidesInStoresService>();
-builder.Services.AddScoped<ISellService, SellService>();
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 
