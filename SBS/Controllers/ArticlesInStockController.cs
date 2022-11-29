@@ -4,7 +4,7 @@ using SBS.Core.Contract;
 
 namespace SBS.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Admin, Manager")]
     [AutoValidateAntiforgeryToken]
     public class ArticlesInStockController : Controller
     {
