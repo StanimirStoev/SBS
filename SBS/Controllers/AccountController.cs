@@ -6,6 +6,7 @@ using SBS.Models;
 
 namespace SBS.Controllers
 {
+    [AutoValidateAntiforgeryToken]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;

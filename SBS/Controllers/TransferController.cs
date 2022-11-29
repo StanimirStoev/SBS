@@ -7,6 +7,7 @@ using SBS.Core.Models;
 namespace SBS.Controllers
 {
     [Authorize]
+    [AutoValidateAntiforgeryToken]
     public class TransferController : Controller
     {
         private readonly ITransferService service;
@@ -57,7 +58,6 @@ namespace SBS.Controllers
             return View(model);
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(TransferViewModel viewModel)
         {
             if (!ModelState.IsValid)

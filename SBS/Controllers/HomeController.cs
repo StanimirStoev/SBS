@@ -6,6 +6,7 @@ using System.Diagnostics;
 namespace SBS.Controllers
 {
     [Authorize]
+    [AutoValidateAntiforgeryToken]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

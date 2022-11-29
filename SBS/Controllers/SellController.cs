@@ -7,6 +7,7 @@ using SBS.Core.Models;
 namespace SBS.Controllers
 {
     [Authorize]
+    [AutoValidateAntiforgeryToken]
     public class SellController : Controller
     {
         private readonly ISellService service;
@@ -59,7 +60,6 @@ namespace SBS.Controllers
             return View(model);
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(SellViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -118,7 +118,6 @@ namespace SBS.Controllers
             return RedirectToAction(nameof(Index));
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditAsync(SellViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -156,7 +155,6 @@ namespace SBS.Controllers
             return RedirectToAction(nameof(Index));
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(SellViewModel viewModel)
         {
 

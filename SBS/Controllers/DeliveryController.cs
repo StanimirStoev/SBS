@@ -7,6 +7,7 @@ using SBS.Core.Models;
 namespace SBS.Controllers
 {
     [Authorize]
+    [AutoValidateAntiforgeryToken]
     public class DeliveryController : Controller
     {
         private readonly IDeliveryService service;
@@ -55,7 +56,6 @@ namespace SBS.Controllers
             return View(model);
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(DeliveryViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -114,7 +114,6 @@ namespace SBS.Controllers
             return RedirectToAction(nameof(Index));
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditAsync(DeliveryViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -152,7 +151,6 @@ namespace SBS.Controllers
             return RedirectToAction(nameof(Index));
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(DeliveryViewModel viewModel)
         {
 

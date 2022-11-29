@@ -6,6 +6,7 @@ using SBS.Core.Models;
 namespace SBS.Controllers
 {
     [Authorize]
+    [AutoValidateAntiforgeryToken]
     public class CountryController : Controller
     {
         private readonly ICountryService countryService;
@@ -35,7 +36,6 @@ namespace SBS.Controllers
 
         // POST: CountryController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CountryViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -72,7 +72,6 @@ namespace SBS.Controllers
 
         // POST: CountryController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditAsync(CountryViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -95,7 +94,6 @@ namespace SBS.Controllers
 
         // POST: CountryController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(Guid id)
         {
             await countryService.Delete(id);

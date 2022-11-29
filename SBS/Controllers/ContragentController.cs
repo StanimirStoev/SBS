@@ -8,6 +8,7 @@ using SBS.Tools;
 namespace SBS.Controllers
 {
     [Authorize]
+    [AutoValidateAntiforgeryToken]
     public class ContragentController : Controller
     {
         private readonly IContragentService service;
@@ -58,7 +59,6 @@ namespace SBS.Controllers
 
         // POST: ContragentController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ContragentViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -100,7 +100,6 @@ namespace SBS.Controllers
 
         // POST: ContragentController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditAsync(ContragentViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -123,7 +122,6 @@ namespace SBS.Controllers
 
         // POST: ContragentController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(Guid id)
         {
             await service.Delete(id);

@@ -5,6 +5,7 @@ using SBS.Core.Contract;
 namespace SBS.Controllers
 {
     [Authorize]
+    [AutoValidateAntiforgeryToken]
     public class ArticlesInStockController : Controller
     {
         private readonly IArticlesInStockService articleService;

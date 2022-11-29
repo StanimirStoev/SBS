@@ -8,6 +8,7 @@ using SBS.Tools;
 namespace SBS.Controllers
 {
     [Authorize]
+    [AutoValidateAntiforgeryToken]
     public class ArticleController : Controller
     {
         private readonly IArticleService articleService;
@@ -47,7 +48,6 @@ namespace SBS.Controllers
 
         // POST: ArticleController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ArticleViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -86,7 +86,6 @@ namespace SBS.Controllers
 
         // POST: ArticleController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditAsync(ArticleViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -109,7 +108,6 @@ namespace SBS.Controllers
 
         // POST: ArticleController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(Guid id)
         {
             await articleService.Delete(id);
