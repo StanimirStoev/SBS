@@ -182,7 +182,8 @@
             var index = dat[dat.length - 1];
             
             var qty = document.getElementById("qty--" + index).value;
-            var price = document.getElementById("price--" + index).value;
+            var priceTxt = document.getElementById("price--" + index).value;
+            var price = parseFloat(priceTxt.replace(',','.').replace(' ',''));
 
             var tot = qty * price;
             var total = document.getElementById("totalPrice--" + index);
