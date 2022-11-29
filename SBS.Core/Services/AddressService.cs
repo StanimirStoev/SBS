@@ -3,6 +3,7 @@ using SBS.Core.Contract;
 using SBS.Core.Models;
 using SBS.Infrastructure.Data.Common;
 using SBS.Infrastructure.Data.Models;
+using SBS.Tools;
 
 namespace SBS.Core.Services
 {
@@ -17,6 +18,7 @@ namespace SBS.Core.Services
 
         public async Task Add(AddressViewModel addressViewModel)
         {
+            Sanitizer.Sanitize(addressViewModel);
             var address = new Address()
             {
                 AddressLine1 = addressViewModel.AddressLine1,
@@ -100,6 +102,7 @@ namespace SBS.Core.Services
 
         public async Task Update(AddressViewModel addressViewModel)
         {
+            Sanitizer.Sanitize(addressViewModel);
             var address = await repo.GetByIdAsync<Address>(addressViewModel.Id);
             if (address != null)
             {

@@ -3,6 +3,7 @@ using SBS.Core.Contract;
 using SBS.Core.Models;
 using SBS.Infrastructure.Data.Common;
 using SBS.Infrastructure.Data.Models;
+using SBS.Tools;
 
 namespace SBS.Core.Services
 {
@@ -17,6 +18,7 @@ namespace SBS.Core.Services
 
         public async Task Add(DeliveryViewModel viewModel)
         {
+            Sanitizer.Sanitize(viewModel);
             var delivery = new Delivery()
             {
                 Id = viewModel.Id,
@@ -228,6 +230,7 @@ namespace SBS.Core.Services
 
         public async Task Update(DeliveryViewModel viewModel)
         {
+            Sanitizer.Sanitize(viewModel);
             var delivery = await repo.GetByIdAsync<Delivery>(viewModel.Id);
             if (delivery != null)
             {

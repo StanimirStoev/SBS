@@ -3,6 +3,7 @@ using SBS.Core.Contract;
 using SBS.Core.Models;
 using SBS.Infrastructure.Data.Common;
 using SBS.Infrastructure.Data.Models;
+using SBS.Tools;
 
 namespace SBS.Core.Services
 {
@@ -17,6 +18,7 @@ namespace SBS.Core.Services
 
         public async Task Add(CityViewModelCreate cityViewModel)
         {
+            Sanitizer.Sanitize(cityViewModel);
             var city = new City()
             {
                 Name = cityViewModel.Name,
@@ -82,6 +84,7 @@ namespace SBS.Core.Services
 
         public async Task Update(CityViewModelEdit cityViewModel)
         {
+            Sanitizer.Sanitize(cityViewModel);
             var city = await repo.GetByIdAsync<City>(cityViewModel.Id);
             if (city != null)
             {

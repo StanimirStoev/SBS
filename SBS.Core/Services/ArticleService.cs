@@ -3,6 +3,7 @@ using SBS.Core.Contract;
 using SBS.Core.Models;
 using SBS.Infrastructure.Data.Common;
 using SBS.Infrastructure.Data.Models;
+using SBS.Tools;
 
 namespace SBS.Core.Services
 {
@@ -17,6 +18,7 @@ namespace SBS.Core.Services
 
         public async Task Add(ArticleViewModel articleViewModel)
         {
+            Sanitizer.Sanitize(articleViewModel);
             var article = new Article()
             {
                 Name = articleViewModel.Name,
@@ -95,6 +97,7 @@ namespace SBS.Core.Services
 
         public async Task Update(ArticleViewModel articleViewModel)
         {
+            Sanitizer.Sanitize(articleViewModel);
             var article = await repo.GetByIdAsync<Article>(articleViewModel.Id);
             if (article != null)
             {

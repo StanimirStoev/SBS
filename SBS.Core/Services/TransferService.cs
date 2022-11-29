@@ -3,6 +3,7 @@ using SBS.Core.Contract;
 using SBS.Core.Models;
 using SBS.Infrastructure.Data.Common;
 using SBS.Infrastructure.Data.Models;
+using SBS.Tools;
 
 namespace SBS.Core.Services
 {
@@ -17,6 +18,7 @@ namespace SBS.Core.Services
 
         public async Task Add(TransferViewModel viewModel)
         {
+            Sanitizer.Sanitize(viewModel);
             var transfer = new Transfer()
             {
                 Id = viewModel.Id,

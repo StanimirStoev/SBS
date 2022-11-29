@@ -3,6 +3,7 @@ using SBS.Core.Contract;
 using SBS.Core.Models;
 using SBS.Infrastructure.Data.Common;
 using SBS.Infrastructure.Data.Models;
+using SBS.Tools;
 
 namespace SBS.Core.Services
 {
@@ -17,6 +18,7 @@ namespace SBS.Core.Services
 
         public async Task Add(ContragentViewModel contragentViewModel)
         {
+            Sanitizer.Sanitize(contragentViewModel);
             var contragent = new Contragent()
             {
                 FirstName = contragentViewModel.FirstName,
@@ -136,7 +138,7 @@ namespace SBS.Core.Services
 
         public async Task Update(ContragentViewModel contragentViewModel)
         {
-
+            Sanitizer.Sanitize(contragentViewModel);
             var contragent = await repo.All<Contragent>()
                 .Include(c => c.Addresses)
                 .FirstOrDefaultAsync(c => c.Id == contragentViewModel.Id);

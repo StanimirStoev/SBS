@@ -18,6 +18,7 @@ namespace SBS.Core.Services
 
         public async Task Add(UnitViewModel unitViewModel)
         {
+            Sanitizer.Sanitize(unitViewModel);
             var unit = new Unit()
             {
                 Id = unitViewModel.Id,
@@ -126,6 +127,7 @@ namespace SBS.Core.Services
 
         public async Task Update(UnitViewModel unitViewModel)
         {
+            Sanitizer.Sanitize(unitViewModel);
             var unit = await repo.GetByIdAsync<Unit>(unitViewModel.Id);
             if (unit != null)
             {

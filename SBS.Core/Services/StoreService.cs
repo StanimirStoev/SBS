@@ -3,6 +3,7 @@ using SBS.Core.Contract;
 using SBS.Core.Models;
 using SBS.Infrastructure.Data.Common;
 using SBS.Infrastructure.Data.Models;
+using SBS.Tools;
 
 namespace SBS.Core.Services
 {
@@ -17,6 +18,7 @@ namespace SBS.Core.Services
 
         public async Task Add(StoreViewModel storeViewModel)
         {
+            Sanitizer.Sanitize(storeViewModel);
             var store = new Store()
             {
                 Id = storeViewModel.Id,
@@ -166,6 +168,7 @@ namespace SBS.Core.Services
 
         public async Task Update(StoreViewModel storeViewModel)
         {
+            Sanitizer.Sanitize(storeViewModel);
             var store = await repo.GetByIdAsync<Store>(storeViewModel.Id);
             if (store != null)
             {

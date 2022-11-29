@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Ganss.Xss;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SBS.Infrastructure.Data.Models.Account;
 using SBS.Models;
@@ -9,6 +10,7 @@ namespace SBS.Controllers
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly HtmlSanitizer sanitizer;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -16,6 +18,7 @@ namespace SBS.Controllers
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.sanitizer= new HtmlSanitizer();
         }
 
         [HttpGet]
@@ -34,10 +37,10 @@ namespace SBS.Controllers
 
             var user = new ApplicationUser
             {
-                UserName = model.Username,
-                Email = model.Email,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
+                UserName = sanitizer.Sanitize(model.Username),
+                Email = sanitizer.Sanitize(model.Email),
+                FirstName = sanitizer.Sanitize(model.FirstName),
+                LastName = sanitizer.Sanitize(model.LastName),
                 EmailConfirmed = true,
             };
 
@@ -53,7 +56,6 @@ namespace SBS.Controllers
             {
                 ModelState.AddModelError("", item.Description);
             }
-            //ModelState.AddModelError("", "Somthing went wrong!");
             return View(model);
         }
 

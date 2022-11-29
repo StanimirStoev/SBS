@@ -3,6 +3,7 @@ using SBS.Core.Contract;
 using SBS.Core.Models;
 using SBS.Infrastructure.Data.Common;
 using SBS.Infrastructure.Data.Models;
+using SBS.Tools;
 
 namespace SBS.Core.Services
 {
@@ -17,6 +18,7 @@ namespace SBS.Core.Services
 
         public async Task Add(CountryViewModel countryViewModel)
         {
+            Sanitizer.Sanitize(countryViewModel);
             var country = new Country()
             {
                 Name = countryViewModel.Name,
@@ -78,6 +80,7 @@ namespace SBS.Core.Services
 
         public async Task Update(CountryViewModel countryViewModel)
         {
+            Sanitizer.Sanitize(countryViewModel);
             var country = await repo.GetByIdAsync<Country>(countryViewModel.Id);
             if (country != null)
             {
