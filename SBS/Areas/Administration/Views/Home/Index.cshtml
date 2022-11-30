@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="mt-4 p-5 bg-light text-center">
+    <h2 class="display-4">Administration Panel</h2>
+
+    <p class="lead mt-1">
+        You can manage <b>all roles and set users to roles</b> in the system.
+    </p>
+    <hr class="my-4">
+    <a asp-area="Administration" asp-controller="Role" asp-action="Index"
+       class="btn btn-primary btn-lg">Manage Roles</a>
+    <span>  |   </span>
+    <a asp-area="Administration" asp-controller="UserRole" asp-action="Index"
+       class="btn btn-primary btn-lg">Manage Users Roles</a>
+</div>
