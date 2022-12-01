@@ -19,10 +19,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            @foreach (RoleViewModel role in (List<RoleViewModel>)ViewBag.Roles)
+            @foreach (SelectListItem role in (List<SelectListItem>)ViewBag.Roles)
             {
                 <th>
-                    <label>@role.Name</label>
+                    <label>@role.Text</label>
                 </th>
             }
             <th></th>
@@ -38,10 +38,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
-                @foreach (RoleViewModel role in (List<RoleViewModel>)item.Roles)
+                @foreach (SelectListItem role in (List<SelectListItem>)item.Roles)
                 {
                     <td>
-                        <input type="checkbox" checked="@role.Selected" readonly/>
+                        <input type="checkbox" checked="@role.Selected" disabled/>
                     </td>
                 }
                 <td>

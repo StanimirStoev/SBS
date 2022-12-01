@@ -1,4 +1,4 @@
-﻿namespace SBS.Areas.Administration.Contants
+﻿namespace SBS.Areas.Administration.Constants
 {
     public static class AdministrationConstants
     {

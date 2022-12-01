@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace SBS.Areas.Administration.Models
 {
@@ -11,6 +12,6 @@ namespace SBS.Areas.Administration.Models
         [MaxLength(256)]
         public string Name { get; set; } = null!;
 
-        public List<RoleViewModel> Roles { get; set; } = new List<RoleViewModel>();
+        public List<SelectListItem> Roles { get; set; } = new List<SelectListItem>();
     }
 }

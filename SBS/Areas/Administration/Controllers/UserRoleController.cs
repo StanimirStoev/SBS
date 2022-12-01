@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SBS.Areas.Administration.Models;
 using SBS.Infrastructure.Data.Models.Account;
@@ -21,7 +22,7 @@ namespace SBS.Areas.Administration.Controllers
         [HttpGet]
         public async Task<ActionResult> Index()
         {
-            List<RoleViewModel> roles = await GetAllRoleViewModels();
+            List<SelectListItem> roles = await GetAllRoleViewModels();
 
             List<UserRoleViewModel> users = await userManager.Users
                 .OrderBy(u => u.UserName)
@@ -33,14 +34,14 @@ namespace SBS.Areas.Administration.Controllers
             foreach(UserRoleViewModel user in users)
             {
                 user.Roles = await GetAllRoleViewModels();
-                foreach (RoleViewModel role in user.Roles)
+                foreach (SelectListItem role in user.Roles)
                 {
                     if (user.Id != null)
                     {
                         ApplicationUser appUser = await userManager.Users.FirstOrDefaultAsync(u => u.Id == user.Id);
                         if (appUser != null)
                         {
-                            role.Selected = await userManager.IsInRoleAsync(appUser, role.Name);
+                            role.Selected = await userManager.IsInRoleAsync(appUser, role.Text);
                         }
                     }
                 }
@@ -65,14 +66,14 @@ namespace SBS.Areas.Administration.Controllers
                     Name = appUser.UserName,
                 };
                 model.Roles = await GetAllRoleViewModels();
-                foreach (RoleViewModel role in model.Roles)
+                foreach (SelectListItem role in model.Roles)
                 {
                     if (model.Id != null)
                     {
                         ApplicationUser user = await userManager.Users.FirstOrDefaultAsync(u => u.Id == model.Id);
                         if (user != null)
                         {
-                            role.Selected = await userManager.IsInRoleAsync(user, role.Name);
+                            role.Selected = await userManager.IsInRoleAsync(user, role.Text);
                         }
                     }
                 }
@@ -92,9 +93,26 @@ namespace SBS.Areas.Administration.Controllers
                 return View(viewModel);
             }
 
-            var role = await roleManager.FindByIdAsync(viewModel.Id);
-            role.Name = viewModel.Name;
-            await roleManager.UpdateAsync(role);
+            foreach(var role in viewModel.Roles)
+            {
+                ApplicationUser user = await userManager.Users.FirstOrDefaultAsync(u => u.Id == viewModel.Id);
+                if (user != null)
+                {
+                    bool isInRole = await userManager.IsInRoleAsync(user, role.Text);
+                    if (isInRole != role.Selected)
+                    {
+                        if(role.Selected)
+                        {
+                            await userManager.AddToRoleAsync(user, role.Text);
+                        }
+                        else
+                        {
+                            await userManager.RemoveFromRoleAsync(user, role.Text);
+                        }
+
+                    }
+                }
+            }
 
             try
             {
@@ -106,14 +124,14 @@ namespace SBS.Areas.Administration.Controllers
             }
         }
 
-        private async Task<List<RoleViewModel>> GetAllRoleViewModels()
+        private async Task<List<SelectListItem>> GetAllRoleViewModels()
         {
             return await roleManager.Roles
                 .OrderBy(r => r.Name)
-                .Select(r => new RoleViewModel
+                .Select(r => new SelectListItem
                 {
-                    Id = r.Id,
-                    Name = r.Name,
+                    Value = r.Id,
+                    Text = r.Name,
                 }).ToListAsync();
         }
     }
