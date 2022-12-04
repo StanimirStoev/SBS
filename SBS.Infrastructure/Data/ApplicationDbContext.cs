@@ -66,6 +66,13 @@ namespace SBS.Infrastructure.Data
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new RoleConfiguration());
             builder.ApplyConfiguration(new UserRoleConfiguration());
+            builder.ApplyConfiguration(new UnitConfiguration());
+            builder.ApplyConfiguration(new CountryConfiguration());
+            builder.ApplyConfiguration(new CityConfiguration());
+            builder.ApplyConfiguration(new ArticleConfiguration());
+            builder.ApplyConfiguration(new AddressConfiguration());
+            builder.ApplyConfiguration(new ContragentConfiguration());
+            builder.ApplyConfiguration(new StoreConfiguration());
         }
 
         /// <summary>

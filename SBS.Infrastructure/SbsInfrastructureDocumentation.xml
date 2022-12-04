@@ -404,6 +404,61 @@
             </summary>
             <param name="context">Database context</param>
         </member>
+        <member name="T:SBS.Infrastructure.Data.Configuration.AddressConfiguration">
+            <summary>
+            Data for seeding Addresses
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Configuration.AddressConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{SBS.Infrastructure.Data.Models.Address})">
+            <summary>
+            Configure (seed) Addresses
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Configuration.ArticleConfiguration">
+            <summary>
+            Data for seeding Articles
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Configuration.ArticleConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{SBS.Infrastructure.Data.Models.Article})">
+            <summary>
+            Configure (seed) Articles
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Configuration.CityConfiguration">
+            <summary>
+            Data for seeding Cities
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Configuration.CityConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{SBS.Infrastructure.Data.Models.City})">
+            <summary>
+            Configure (seed) Cities
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Configuration.ContragentConfiguration">
+            <summary>
+            Data for seeding Contragents
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Configuration.ContragentConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{SBS.Infrastructure.Data.Models.Contragent})">
+            <summary>
+            Configure (seed) contragents
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Configuration.CountryConfiguration">
+            <summary>
+            Data for seeding countries
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Configuration.CountryConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{SBS.Infrastructure.Data.Models.Country})">
+            <summary>
+            Configure (seed) Countries
+            </summary>
+            <param name="builder"></param>
+        </member>
         <member name="T:SBS.Infrastructure.Data.Configuration.RoleConfiguration">
             <summary>
             Data for seeding Roles
@@ -412,6 +467,30 @@
         <member name="M:SBS.Infrastructure.Data.Configuration.RoleConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{Microsoft.AspNetCore.Identity.IdentityRole})">
             <summary>
             Configure (seed) Roles
+            </summary>
+            <param name="builder"></param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Configuration.StoreConfiguration">
+            <summary>
+            Data for seeding Stores
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Configuration.StoreConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{SBS.Infrastructure.Data.Models.Store})">
+            <summary>
+            Configure (seed) Stores
+            </summary>
+            <param name="builder"></param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Configuration.UnitConfiguration">
+            <summary>
+            Data for seeding Units
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Configuration.UnitConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{SBS.Infrastructure.Data.Models.Unit})">
+            <summary>
+            Configure (seed) Units
             </summary>
             <param name="builder"></param>
             <exception cref="T:System.NotImplementedException"></exception>
