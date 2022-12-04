@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SBS.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using SBS.Infrastructure.Data;
 namespace SBS.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221204135005_AddCommentsAndSeedUsers")]
+    partial class AddCommentsAndSeedUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,22 +49,6 @@ namespace SBS.Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "1efc4197-6067-404f-8f6a-83f265237320",
-                            ConcurrencyStamp = "7171b849-e528-44ab-88c9-88d1f8a437db",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "73bf8f04b-bc67-43ea-9924-001bf045b149",
-                            ConcurrencyStamp = "83abf491-bb21-40a2-8e5b-b17b44f3da54",
-                            Name = "Manager",
-                            NormalizedName = "MANAGER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -152,18 +138,6 @@ namespace SBS.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "81762cb3-03ed-415e-a81a-4b73c9fec1fb",
-                            RoleId = "1efc4197-6067-404f-8f6a-83f265237320"
-                        },
-                        new
-                        {
-                            UserId = "719a59a9-fc15-49be-a5e9-6f1d6f4fdc47",
-                            RoleId = "73bf8f04b-bc67-43ea-9924-001bf045b149"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -266,7 +240,7 @@ namespace SBS.Infrastructure.Migrations
                         {
                             Id = "81762cb3-03ed-415e-a81a-4b73c9fec1fb",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ee66e2f6-821b-4613-9549-f521790b277f",
+                            ConcurrencyStamp = "7cfb767a-6192-47c0-ba54-acedee4ee094",
                             Email = "alex@mail.com",
                             EmailConfirmed = true,
                             FirstName = "Александър",
@@ -274,9 +248,9 @@ namespace SBS.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ALEX@MAIL.COM",
                             NormalizedUserName = "АЛЕКС",
-                            PasswordHash = "AQAAAAEAACcQAAAAEF1qcXoEwSitcE7Nd7obOoXRiOk3pgwJC1+dzlScjsr8oGF+jzjLYNZ1lV8J2PgOFg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEN15C9XtD+NDZDDIRcuMWGfFZYNGdeQj6nOM5oFDN2c2daci8wsUb5I9+qglNL+zjA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "988c79da-d331-4c0d-b3bf-7fc9202f39fa",
+                            SecurityStamp = "530aeeec-99a0-4c8f-aa4c-91a8f4a4f762",
                             TwoFactorEnabled = false,
                             UserName = "Алекс"
                         },
@@ -284,7 +258,7 @@ namespace SBS.Infrastructure.Migrations
                         {
                             Id = "719a59a9-fc15-49be-a5e9-6f1d6f4fdc47",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "afd84f8b-1995-4631-aa2b-da103025cfd7",
+                            ConcurrencyStamp = "8ba6fc30-77e0-4ce0-b788-6bb49aece6d0",
                             Email = "nikki@mail.com",
                             EmailConfirmed = true,
                             FirstName = "Николета",
@@ -292,9 +266,9 @@ namespace SBS.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "NIKKI@MAIL.COM",
                             NormalizedUserName = "НИКИ",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEF0TBRj9VkwJ5ss0SHRHn14ohBq39wAr8L/ylg76E7q4TknTF2GVG49eRu9jDiUlA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOU8sUJLm2WoJJ7GIra7Q/Ocvyj/Xl04W75YboqIW/VG+35TtPcwAu+uOqpWmh85zA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a4b27cfa-236b-4fd8-8e2c-5a88b830830f",
+                            SecurityStamp = "118bc6ce-d61e-423d-84a5-353f5168a6ce",
                             TwoFactorEnabled = false,
                             UserName = "Ники"
                         },
@@ -302,7 +276,7 @@ namespace SBS.Infrastructure.Migrations
                         {
                             Id = "64c7e2a2-f704-4515-a294-13fa5e9b28a8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8685428e-a03b-4186-8e15-c782274dc198",
+                            ConcurrencyStamp = "0415ccc6-41af-458d-be4f-5b780a7386bb",
                             Email = "dido@mail.com",
                             EmailConfirmed = true,
                             FirstName = "Диян",
@@ -310,9 +284,9 @@ namespace SBS.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "DIDO@MAIL.COM",
                             NormalizedUserName = "ДИДО",
-                            PasswordHash = "AQAAAAEAACcQAAAAEP2Sv7bdb7YYZeJUDfbcBSwfOJBirAT8MltyoMFSnebQyyNDYqhdWydcAcfF4m3KUA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAzpt5pRFGsLAvUFxTKkbI0YvZWOTlmMziSIWFTMfiyoe0G8liAvRhYrtBkiTLffnw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ac882fce-8620-4772-a64f-06d2f04fdc62",
+                            SecurityStamp = "7c0c3fb1-cae9-499f-b9c4-8db5a4512fad",
                             TwoFactorEnabled = false,
                             UserName = "Дидо"
                         },
@@ -320,7 +294,7 @@ namespace SBS.Infrastructure.Migrations
                         {
                             Id = "c5798b10-2d39-479f-9e29-042ed2562c3f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "51510224-e2e0-45ab-9e6b-917732f95840",
+                            ConcurrencyStamp = "cc88d059-b4a7-4ede-8125-85579aeeae02",
                             Email = "stefan@mail.com",
                             EmailConfirmed = true,
                             FirstName = "Стефан",
@@ -328,9 +302,9 @@ namespace SBS.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "STEFAN@MAIL.COM",
                             NormalizedUserName = "ЧЕФО",
-                            PasswordHash = "AQAAAAEAACcQAAAAECB6SaVd56gjM0ZocGxJvksEJ1nTQ6T6APyJRnHid89I0pw6Da00xcKTSoLYxEfcQg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEfa92qxajG9njt9xYOWjvlcrJU81wBtIOSBNukj3EcaAMTxERy2ixn5XNsUleNi8Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "27deb7ff-9ac0-4558-a6fb-f9ab646d414b",
+                            SecurityStamp = "a53d2605-9cd3-4dc0-825f-b4f46434028d",
                             TwoFactorEnabled = false,
                             UserName = "Чефо"
                         });

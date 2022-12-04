@@ -404,6 +404,18 @@
             </summary>
             <param name="context">Database context</param>
         </member>
+        <member name="T:SBS.Infrastructure.Data.Configuration.RoleConfiguration">
+            <summary>
+            Data for seeding Roles
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Configuration.RoleConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{Microsoft.AspNetCore.Identity.IdentityRole})">
+            <summary>
+            Configure (seed) Roles
+            </summary>
+            <param name="builder"></param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
         <member name="T:SBS.Infrastructure.Data.Configuration.UserConfiguration">
             <summary>
             Data for seeding Users
@@ -412,6 +424,18 @@
         <member name="M:SBS.Infrastructure.Data.Configuration.UserConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{SBS.Infrastructure.Data.Models.Account.ApplicationUser})">
             <summary>
             Configure (seed) Users
+            </summary>
+            <param name="builder"></param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Configuration.UserRoleConfiguration">
+            <summary>
+            Data for seeding Roles for Users
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Configuration.UserRoleConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{Microsoft.AspNetCore.Identity.IdentityUserRole{System.String}})">
+            <summary>
+            Configure (seed) Roles for Users
             </summary>
             <param name="builder"></param>
             <exception cref="T:System.NotImplementedException"></exception>

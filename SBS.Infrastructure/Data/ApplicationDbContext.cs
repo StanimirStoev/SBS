@@ -64,7 +64,8 @@ namespace SBS.Infrastructure.Data
                 .OnDelete(DeleteBehavior.NoAction);
 
             builder.ApplyConfiguration(new UserConfiguration());
-
+            builder.ApplyConfiguration(new RoleConfiguration());
+            builder.ApplyConfiguration(new UserRoleConfiguration());
         }
 
         /// <summary>
