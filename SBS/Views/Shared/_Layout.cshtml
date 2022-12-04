@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -68,13 +69,18 @@
                                     <a class="nav-link @menuTextColor" asp-area="" asp-controller="Sell" asp-action="Index">Sells</a>
                                 </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link @menuTextColor" asp-area="" asp-controller="ArticlesInStock" asp-action="Index">Articles in stock</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link @menuTextColor" asp-area="Administration" asp-controller="Home" asp-action="Index">Administration</a>
-                                </li>
+                                @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link @menuTextColor" asp-area="" asp-controller="ArticlesInStock" asp-action="Index">Articles in stock</a>
+                                    </li>
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <li class="nav-item">
+                                            <a class="nav-link @menuTextColor" asp-area="Administration" asp-controller="Home" asp-action="Index">Administration</a>
+                                        </li>
+                                    }
+                                }
                             }
                         </ul>
                         <partial name="_LoginPartial" />
@@ -117,7 +123,7 @@
 
     <footer class="border-top footer text-muted" style="background:linear-gradient(to left, #283408, #197696)">
         <div class="container @menuTextColor">
-            &copy; @DateTime.UtcNow.Year - SBS 
+            &copy; @DateTime.UtcNow.Year - SBS
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

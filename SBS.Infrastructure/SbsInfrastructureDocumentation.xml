@@ -404,6 +404,18 @@
             </summary>
             <param name="context">Database context</param>
         </member>
+        <member name="T:SBS.Infrastructure.Data.Configuration.UserConfiguration">
+            <summary>
+            Data for seeding Users
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Configuration.UserConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{SBS.Infrastructure.Data.Models.Account.ApplicationUser})">
+            <summary>
+            Configure (seed) Users
+            </summary>
+            <param name="builder"></param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
         <member name="T:SBS.Infrastructure.Data.Models.Account.ApplicationUser">
             <summary>
             Extended IdentityUser

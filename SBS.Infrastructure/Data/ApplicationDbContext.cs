@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SBS.Infrastructure.Data.Configuration;
 using SBS.Infrastructure.Data.Models;
 using SBS.Infrastructure.Data.Models.Account;
 
@@ -61,6 +62,8 @@ namespace SBS.Infrastructure.Data
                 .HasOne(s => s.Unit)
                 .WithMany(u => u.SellDetails)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.ApplyConfiguration(new UserConfiguration());
 
         }
 
