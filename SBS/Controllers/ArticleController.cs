@@ -7,13 +7,20 @@ using SBS.Tools;
 
 namespace SBS.Controllers
 {
+    /// <summary>
+    /// Controller for Articles
+    /// </summary>
     [Authorize]
     [AutoValidateAntiforgeryToken]
     public class ArticleController : Controller
     {
         private readonly IArticleService articleService;
         private readonly IUnitService unitService;
-
+        /// <summary>
+        /// Init controller
+        /// </summary>
+        /// <param name="articleService"></param>
+        /// <param name="unitService"></param>
         public ArticleController(
             IArticleService articleService, 
             IUnitService unitService)
@@ -22,7 +29,11 @@ namespace SBS.Controllers
             this.unitService = unitService;
         }
 
-        // GET: ArticleController
+        /// <summary>
+        /// Prepare data for articles view
+        /// </summary>
+        /// <param name="sortExpression"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Index(string sortExpression = "")
         {
@@ -35,7 +46,10 @@ namespace SBS.Controllers
             return View(articles);
         }
 
-        // GET: ArticleController/Create
+        /// <summary>
+        /// Prepare data for create new article view 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> CreateAsync()
         {
@@ -45,8 +59,11 @@ namespace SBS.Controllers
 
             return View(model);
         }
-
-        // POST: ArticleController/Create
+        /// <summary>
+        /// Process Create new city view data
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> Create(ArticleViewModel viewModel)
         {
@@ -68,7 +85,11 @@ namespace SBS.Controllers
             }
         }
 
-        // GET: ArticleController/Edit/5
+        /// <summary>
+        /// Prepare data for edit view
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Edit(Guid id)
         {
@@ -83,8 +104,11 @@ namespace SBS.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
-        // POST: ArticleController/Edit/5
+        /// <summary>
+        /// Process Edit view data
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> EditAsync(ArticleViewModel viewModel)
         {
@@ -106,7 +130,11 @@ namespace SBS.Controllers
             }
         }
 
-        // POST: ArticleController/Delete/5
+        /// <summary>
+        /// Process delete view data
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> Delete(Guid id)
         {
@@ -122,6 +150,10 @@ namespace SBS.Controllers
             }
         }
 
+        /// <summary>
+        /// Get Units as SelectListItems
+        /// </summary>
+        /// <returns></returns>
         private async Task<IEnumerable<SelectListItem>> GetUnits()
         {
             var result = new List<SelectListItem>();

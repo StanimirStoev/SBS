@@ -7,15 +7,26 @@ using SBS.Tools;
 
 namespace SBS.Core.Services
 {
+    /// <summary>
+    /// Service for Deliveries
+    /// </summary>
     public class DeliveryService : IDeliveryService
     {
         private readonly ISbsRepository repo;
-
+        /// <summary>
+        /// Init service
+        /// </summary>
+        /// <param name="repo"></param>
         public DeliveryService(ISbsRepository repo)
         {
             this.repo = repo;
         }
 
+        /// <summary>
+        /// Add Delivery in repository
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         public async Task Add(DeliveryViewModel viewModel)
         {
             Sanitizer.Sanitize(viewModel);
@@ -46,6 +57,11 @@ namespace SBS.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Do comfirmation for a Delivery
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         public async Task Confirm(DeliveryViewModel viewModel)
         {
             //var delivery = await repo.GetByIdAsync<Delivery>(viewModel.Id);
@@ -71,6 +87,11 @@ namespace SBS.Core.Services
             }
         }
 
+        /// <summary>
+        /// Delete Delivery from repository
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task Delete(Guid id)
         {
             var delivery = await repo.All<Delivery>()
@@ -84,6 +105,11 @@ namespace SBS.Core.Services
             }
         }
 
+        /// <summary>
+        /// Gets Delivery from repository by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<DeliveryViewModel> Get(Guid id)
         {
             DeliveryViewModel model = new DeliveryViewModel();
@@ -156,6 +182,11 @@ namespace SBS.Core.Services
             return model;
         }
 
+        /// <summary>
+        /// Get a partide by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<DeliveryDetailViewModel> GetPartide(Guid id)
         {
             DeliveryDetailViewModel model = new DeliveryDetailViewModel();
@@ -194,6 +225,10 @@ namespace SBS.Core.Services
             return model;
         }
 
+        /// <summary>
+        /// Get list of all Deliveries
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<DeliveryViewModel>> GetAll()
         {
             return await repo.AllReadonly<Delivery>()
@@ -228,6 +263,11 @@ namespace SBS.Core.Services
                 }).ToListAsync();
         }
 
+        /// <summary>
+        /// Update Delivery in repository
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         public async Task Update(DeliveryViewModel viewModel)
         {
             Sanitizer.Sanitize(viewModel);

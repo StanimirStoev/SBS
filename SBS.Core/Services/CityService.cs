@@ -7,15 +7,25 @@ using SBS.Tools;
 
 namespace SBS.Core.Services
 {
+    /// <summary>
+    /// Service for City
+    /// </summary>
     public class CityService : ICityService
     {
         private readonly ISbsRepository repo;
-
+        /// <summary>
+        /// Init service
+        /// </summary>
+        /// <param name="repo"></param>
         public CityService(ISbsRepository repo)
         {
             this.repo = repo;
         }
-
+        /// <summary>
+        /// Add city in repository
+        /// </summary>
+        /// <param name="cityViewModel"></param>
+        /// <returns></returns>
         public async Task Add(CityViewModelCreate cityViewModel)
         {
             Sanitizer.Sanitize(cityViewModel);
@@ -28,7 +38,11 @@ namespace SBS.Core.Services
             await repo.AddAsync(city);
             await repo.SaveChangesAsync();
         }
-
+        /// <summary>
+        /// Delete city from repository
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task Delete(Guid id)
         {
             var city = await repo.All<City>()
@@ -41,7 +55,11 @@ namespace SBS.Core.Services
                 await repo.SaveChangesAsync();
             }
         }
-
+        /// <summary>
+        /// Gets city from repository by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<CityViewModel> Get(Guid id)
         {
             CityViewModel model = new CityViewModel();
@@ -60,7 +78,10 @@ namespace SBS.Core.Services
             }
             return model;
         }
-
+        /// <summary>
+        /// Get list of all cities
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<CityViewModel>> GetAll()
         {
 
@@ -81,7 +102,11 @@ namespace SBS.Core.Services
                     },
                 }).ToListAsync();
         }
-
+        /// <summary>
+        /// Updates a city
+        /// </summary>
+        /// <param name="cityViewModel"></param>
+        /// <returns></returns>
         public async Task Update(CityViewModelEdit cityViewModel)
         {
             Sanitizer.Sanitize(cityViewModel);
@@ -94,7 +119,10 @@ namespace SBS.Core.Services
                 await repo.SaveChangesAsync();
             }
         }
-
+        /// <summary>
+        ///  Get list of all countries
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<CountryViewModel>> GetAllCountries()
         {
             return await repo.AllReadonly<Country>()
@@ -108,7 +136,11 @@ namespace SBS.Core.Services
                     IsActive = c.IsActive,
                 }).ToListAsync();
         }
-
+        /// <summary>
+        /// Get all cities for country
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<CityViewModel>> GetForCountry(Guid id)
         {
             return await repo.AllReadonly<City>()

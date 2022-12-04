@@ -7,15 +7,26 @@ using SBS.Tools;
 
 namespace SBS.Core.Services
 {
+    /// <summary>
+    /// Service for Country
+    /// </summary>
     public class CountryService : ICountryService
     {
         private readonly ISbsRepository repo;
-
+        /// <summary>
+        /// Init Service
+        /// </summary>
+        /// <param name="repo"></param>
         public CountryService(ISbsRepository repo)
         {
             this.repo = repo;
         }
 
+        /// <summary>
+        /// Add country in repository
+        /// </summary>
+        /// <param name="countryViewModel"></param>
+        /// <returns></returns>
         public async Task Add(CountryViewModel countryViewModel)
         {
             Sanitizer.Sanitize(countryViewModel);
@@ -31,6 +42,11 @@ namespace SBS.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Delete country from repository
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task Delete(Guid id)
         {
             var country = await repo.All<Country>()
@@ -44,6 +60,11 @@ namespace SBS.Core.Services
             }
         }
 
+        /// <summary>
+        /// Gets country from repository by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<CountryViewModel> Get(Guid id)
         {
             CountryViewModel model = new CountryViewModel();
@@ -64,6 +85,10 @@ namespace SBS.Core.Services
             return model;
         }
 
+        /// <summary>
+        /// Get list of all Countries
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<CountryViewModel>> GetAll()
         {
             return await repo.AllReadonly<Country>()
@@ -78,6 +103,11 @@ namespace SBS.Core.Services
                 }).ToListAsync();
         }
 
+        /// <summary>
+        /// Updates an country
+        /// </summary>
+        /// <param name="countryViewModel"></param>
+        /// <returns></returns>
         public async Task Update(CountryViewModel countryViewModel)
         {
             Sanitizer.Sanitize(countryViewModel);

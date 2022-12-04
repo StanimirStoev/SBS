@@ -6,15 +6,25 @@ using SBS.Infrastructure.Data.Models;
 
 namespace SBS.Core.Services
 {
+    /// <summary>
+    /// Service for Partides in Stores
+    /// </summary>
     public class PartidesInStoresService : IPartidesInStoresService
     {
         private readonly ISbsRepository repo;
-
+        /// <summary>
+        /// Init service
+        /// </summary>
+        /// <param name="repo"></param>
         public PartidesInStoresService(ISbsRepository repo)
         {
             this.repo = repo;
         }
 
+        /// <summary>
+        /// Get list of all Partides in Stores
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<PartidesInStoreViewModel>> GetAll()
         {
             return await repo.AllReadonly<PartidesInStore>()

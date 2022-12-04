@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SBS.Tools</name>
+    </assembly>
+    <members>
+        <member name="T:SBS.Tools.ModelBinders.DoubleModelBinder">
+            <summary>
+            Model bindig methods for double numbers
+            </summary>
+        </member>
+        <member name="M:SBS.Tools.ModelBinders.DoubleModelBinder.BindModelAsync(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext)">
+            <summary>
+            Model bindig for double number
+            </summary>
+            <param name="bindingContext">Context Data </param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Tools.ModelBinders.DoubleModelBinderProvider">
+            <summary>
+            Provider for double data 
+            </summary>
+        </member>
+        <member name="M:SBS.Tools.ModelBinders.DoubleModelBinderProvider.GetBinder(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderProviderContext)">
+            <summary>
+            Generate double model binder if it is possible and rturn it.
+            </summary>
+            <param name="context"></param>
+            <returns>Binging provider for double data</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="T:SBS.Tools.PaginatedList`1">
+            <summary>
+            List that can be paginate
+            </summary>
+            <typeparam name="T">Type of data in the list</typeparam>
+        </member>
+        <member name="P:SBS.Tools.PaginatedList`1.TotalRecords">
+            <summary>
+            Total reords of source list
+            </summary>
+        </member>
+        <member name="M:SBS.Tools.PaginatedList`1.#ctor(System.Collections.Generic.List{`0},System.Int32,System.Int32)">
+            <summary>
+            Initialise list. Represent the list of page.
+            </summary>
+            <param name="source">Source list of data</param>
+            <param name="pageIndex">Index of the page to be shown</param>
+            <param name="pageSize">Size of the page to be shown</param>
+        </member>
+        <member name="T:SBS.Tools.Sanitizer">
+            <summary>
+            Sanitizing string values logic
+            </summary>
+        </member>
+        <member name="M:SBS.Tools.Sanitizer.Sanitize(System.Object)">
+            <summary>
+            Sanitize all public string properties in a ViewModel object
+            </summary>
+            <param name="viewModel">ViewModel object to be sanitized</param>
+        </member>
+        <member name="T:SBS.Tools.SortOrder">
+            <summary>
+            Sort order types
+            </summary>
+        </member>
+        <member name="F:SBS.Tools.SortOrder.Ascending">
+            <summary>
+            Ascending sroting type
+            </summary>
+        </member>
+        <member name="F:SBS.Tools.SortOrder.Descending">
+            <summary>
+            Descending sroting type
+            </summary>
+        </member>
+        <member name="T:SBS.Tools.SortHelper">
+            <summary>
+            Sorting mechanics
+            </summary>
+        </member>
+        <member name="P:SBS.Tools.SortHelper.SortedProperty">
+            <summary>
+            Name of property for sorting
+            </summary>
+        </member>
+        <member name="P:SBS.Tools.SortHelper.SortedOrder">
+            <summary>
+            Order for sorting.
+            </summary>
+        </member>
+        <member name="P:SBS.Tools.SortHelper.SortExperssion">
+            <summary>
+            Sort expression
+            </summary>
+        </member>
+        <member name="P:SBS.Tools.SortHelper.SortedExperssion">
+            <summary>
+            Old sortexpression
+            </summary>
+        </member>
+        <member name="F:SBS.Tools.SortHelper.sortableColumns">
+            <summary>
+            List of columns that can be sorted
+            </summary>
+        </member>
+        <member name="M:SBS.Tools.SortHelper.AddColumn(System.String,System.Boolean)">
+            <summary>
+            Add column to sort column list
+            </summary>
+            <param name="columnName">Name of the column</param>
+            <param name="isDefaultColumn">Is the coumn default sort column</param>
+        </member>
+        <member name="M:SBS.Tools.SortHelper.GetColumn(System.String)">
+            <summary>
+            Get column by name
+            </summary>
+            <param name="columnName">NAme of the column</param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Tools.SortHelper.ApplySort``1(System.Collections.Generic.List{``0}@)">
+            <summary>
+            Apply sorting for the gived items
+            </summary>
+            <typeparam name="T">Type of items to sort</typeparam>
+            <param name="items">List of items to sort</param>
+        </member>
+        <member name="T:SBS.Tools.SortableColumn">
+            <summary>
+            Data for sortable column
+            </summary>
+        </member>
+        <member name="P:SBS.Tools.SortableColumn.ColumnName">
+            <summary>
+            Name of the column
+            </summary>
+        </member>
+        <member name="P:SBS.Tools.SortableColumn.SortExpression">
+            <summary>
+            Expression for sorting
+            </summary>
+        </member>
+        <member name="P:SBS.Tools.SortableColumn.SortIcon">
+            <summary>
+            Name for sort icon
+            </summary>
+        </member>
+    </members>
+</doc>

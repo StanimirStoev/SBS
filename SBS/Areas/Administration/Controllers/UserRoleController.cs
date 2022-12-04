@@ -8,17 +8,28 @@ using System.Reflection;
 
 namespace SBS.Areas.Administration.Controllers
 {
+    /// <summary>
+    /// Controller for Users with roles
+    /// </summary>
     public class UserRoleController : AdminController
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
-
+        /// <summary>
+        /// Init controller
+        /// </summary>
+        /// <param name="userManager"></param>
+        /// <param name="roleManager"></param>
         public UserRoleController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
         }
 
+        /// <summary>
+        /// Prepare data for Users with roles view
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Index()
         {
@@ -53,6 +64,11 @@ namespace SBS.Areas.Administration.Controllers
             return View(users);
         }
 
+        /// <summary>
+        /// Prepare data for edit view 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Edit(Guid id)
         {
@@ -83,7 +99,11 @@ namespace SBS.Areas.Administration.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
+        /// <summary>
+        /// Process Edit view data
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> EditAsync(UserRoleViewModel viewModel)
         {
@@ -124,6 +144,10 @@ namespace SBS.Areas.Administration.Controllers
             }
         }
 
+        /// <summary>
+        /// Get roles
+        /// </summary>
+        /// <returns></returns>
         private async Task<List<SelectListItem>> GetAllRoleViewModels()
         {
             return await roleManager.Roles

@@ -6,6 +6,9 @@ using SBS.Core.Models;
 
 namespace SBS.Controllers
 {
+    /// <summary>
+    /// Controller for Transfers
+    /// </summary>
     [Authorize]
     [AutoValidateAntiforgeryToken]
     public class TransferController : Controller
@@ -17,6 +20,15 @@ namespace SBS.Controllers
         private readonly IPartidesInStoresService partidesInStoresService;
         private readonly IDeliveryService deliveryService;
 
+        /// <summary>
+        /// Init Controller
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="articleService"></param>
+        /// <param name="storeService"></param>
+        /// <param name="unitService"></param>
+        /// <param name="partidesInStoresService"></param>
+        /// <param name="deliveryService"></param>
         public TransferController(
             ITransferService service,
             IArticleService articleService,
@@ -33,6 +45,10 @@ namespace SBS.Controllers
             this.deliveryService = deliveryService;
         }
 
+        /// <summary>
+        /// Prepare data for Transfers view 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> IndexAsync()
         {
@@ -42,7 +58,10 @@ namespace SBS.Controllers
             return View(transfers);
         }
 
-
+        /// <summary>
+        /// Prepare data for create new Transfer view 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> CreateAsync()
         {
@@ -57,6 +76,11 @@ namespace SBS.Controllers
 
             return View(model);
         }
+        /// <summary>
+        /// Process Create Transfer view data
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> Create(TransferViewModel viewModel)
         {
@@ -80,6 +104,11 @@ namespace SBS.Controllers
             }
         }
 
+        /// <summary>
+        /// Prepare data for details Transfer view 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Details(Guid id)
         {
@@ -97,6 +126,11 @@ namespace SBS.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Get list of possible destination stores
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<JsonResult> GetToStores(Guid id)
         {
@@ -113,6 +147,11 @@ namespace SBS.Controllers
             return Json(result);
         }
 
+        /// <summary>
+        /// Get Articles quontity for store
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<JsonResult> GetArticlesInStore(Guid id)
         {
@@ -136,17 +175,26 @@ namespace SBS.Controllers
             return Json(result);
         }
 
+        /// <summary>
+        /// Get Unit for article
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<JsonResult> GetUnitForArticle(Guid id)
         {
             var result = "";
 
             DeliveryDetailViewModel partide = await deliveryService.GetPartide(id);
-            result = partide.Article.Unit.Name;
+            result = partide.Article?.Unit?.Name;
 
             return Json(result);
         }
 
+        /// <summary>
+        /// Get All stores that can be used for sources (has 1 or more article in it)
+        /// </summary>
+        /// <returns></returns>
         private async Task<IEnumerable<SelectListItem>> GetFromStores()
         {
             var result = new List<SelectListItem>();
@@ -163,6 +211,11 @@ namespace SBS.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Get all pertides in store
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private async Task<IEnumerable<SelectListItem>> GetPartidesInStore(Guid? id = null)
         {
             var result = new List<SelectListItem>();
@@ -186,6 +239,10 @@ namespace SBS.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Get list of all units
+        /// </summary>
+        /// <returns></returns>
         private async Task<IEnumerable<SelectListItem>> GetUnits()
         {
             var result = new List<SelectListItem>();

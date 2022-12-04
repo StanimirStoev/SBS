@@ -7,15 +7,27 @@ using SBS.Tools;
 
 namespace SBS.Core.Services
 {
+    /// <summary>
+    /// Service for Stores
+    /// </summary>
     public class StoreService : IStoreService
     {
         private readonly ISbsRepository repo;
 
+        /// <summary>
+        /// Init service
+        /// </summary>
+        /// <param name="repo"></param>
         public StoreService(ISbsRepository repo)
         {
             this.repo = repo;
         }
 
+        /// <summary>
+        /// Add store in repository
+        /// </summary>
+        /// <param name="storeViewModel"></param>
+        /// <returns></returns>
         public async Task Add(StoreViewModel storeViewModel)
         {
             Sanitizer.Sanitize(storeViewModel);
@@ -50,6 +62,11 @@ namespace SBS.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Delete Store from repository
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task Delete(Guid id)
         {
             var store = await repo.All<Store>()
@@ -63,6 +80,11 @@ namespace SBS.Core.Services
             }
         }
 
+        /// <summary>
+        /// Gets store from repository by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<StoreViewModel> Get(Guid id)
         {
             StoreViewModel model = new StoreViewModel();
@@ -127,6 +149,10 @@ namespace SBS.Core.Services
             return model;
         }
 
+        /// <summary>
+        /// Get list of all stores
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<StoreViewModel>> GetAll()
         {
             return await repo.AllReadonly<Store>()
@@ -140,6 +166,11 @@ namespace SBS.Core.Services
                 }).ToListAsync();
         }
 
+        /// <summary>
+        /// Get list of all stores that has 1 or more quantity in it, but exclude store with given Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<StoreViewModel>> GetAllExcluded(Guid id)
         {
             return await repo.AllReadonly<Store>()
@@ -153,6 +184,10 @@ namespace SBS.Core.Services
                 }).ToListAsync();
         }
 
+        /// <summary>
+        /// Get list of all stores that has 1 or more quantity in it
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<StoreViewModel>> GetAllNotEmpty()
         {
             return await repo.AllReadonly<Store>()
@@ -166,6 +201,11 @@ namespace SBS.Core.Services
                 }).ToListAsync();
         }
 
+        /// <summary>
+        /// Updates an store
+        /// </summary>
+        /// <param name="storeViewModel"></param>
+        /// <returns></returns>
         public async Task Update(StoreViewModel storeViewModel)
         {
             Sanitizer.Sanitize(storeViewModel);

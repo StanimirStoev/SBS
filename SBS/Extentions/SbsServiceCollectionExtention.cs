@@ -4,8 +4,16 @@ using SBS.Infrastructure.Data.Common;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
+    /// <summary>
+    /// Extension for dependenci injection
+    /// </summary>
     public static class SbsServiceCollectionExtension
     {
+        /// <summary>
+        /// Add application dependenci injection
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<ISbsRepository, SbsRepository>();

@@ -2,20 +2,52 @@
 
 namespace SBS.Tools
 {
-    public enum SortOrder { Ascending = 0, Descending = 1 }
+    /// <summary>
+    /// Sort order types
+    /// </summary>
+    public enum SortOrder 
+    {
+        /// <summary>
+        /// Ascending sroting type
+        /// </summary>
+        Ascending = 0,
+        /// <summary>
+        /// Descending sroting type
+        /// </summary>
+        Descending = 1 
+    }
+    /// <summary>
+    /// Sorting mechanics
+    /// </summary>
     public class SortHelper
     {
         private string upIcon = "fa fa-arrow-up";
         private string downIcon = "fa fa-arrow-down";
-        public string SortedProperty { get; set; }
-
+        /// <summary>
+        /// Name of property for sorting
+        /// </summary>
+        public string SortedProperty { get; set; } = null!;
+        /// <summary>
+        /// Order for sorting.
+        /// </summary>
         public SortOrder SortedOrder { get; set; }
-
-        public string SortExperssion { get; set; }
-        public string SortedExperssion { get; private set; }
-
+        /// <summary>
+        /// Sort expression
+        /// </summary>
+        public string SortExperssion { get; set; } = null!;
+        /// <summary>
+        /// Old sortexpression
+        /// </summary>
+        public string SortedExperssion { get; private set; } = null!;
+        /// <summary>
+        /// List of columns that can be sorted
+        /// </summary>
         private List<SortableColumn> sortableColumns = new List<SortableColumn>();
-
+        /// <summary>
+        /// Add column to sort column list
+        /// </summary>
+        /// <param name="columnName">Name of the column</param>
+        /// <param name="isDefaultColumn">Is the coumn default sort column</param>
         public void AddColumn(string columnName, bool isDefaultColumn = false)
         {
             SortableColumn tmp = this.sortableColumns
@@ -31,10 +63,15 @@ namespace SBS.Tools
                 SortedOrder = SortOrder.Ascending;
             }
         }
+        /// <summary>
+        /// Get column by name
+        /// </summary>
+        /// <param name="columnName">NAme of the column</param>
+        /// <returns></returns>
         public SortableColumn GetColumn(string columnName)
         {
             SortableColumn tmp = this.sortableColumns
-                .Where(c => c.ColumnName.ToLower() == columnName.ToLower())
+                .Where(c => c.ColumnName.ToLower() == columnName?.ToLower())
                 .SingleOrDefault();
             if (tmp == null)
             {
@@ -42,7 +79,11 @@ namespace SBS.Tools
             }
             return tmp;
         }
-
+        /// <summary>
+        /// Apply sorting for the gived items
+        /// </summary>
+        /// <typeparam name="T">Type of items to sort</typeparam>
+        /// <param name="items">List of items to sort</param>
         public void ApplySort<T>(ref List<T> items)
         {
             string sortExpression = SortExperssion;
@@ -108,12 +149,22 @@ namespace SBS.Tools
         }
     }
 
+    /// <summary>
+    /// Data for sortable column
+    /// </summary>
     public class SortableColumn
     {
-        public string ColumnName { get; set; }
-
-        public string SortExpression { get; set; }
-
-        public string SortIcon { get; set; }
+        /// <summary>
+        /// Name of the column
+        /// </summary>
+        public string ColumnName { get; set; } = null!;
+        /// <summary>
+        /// Expression for sorting
+        /// </summary>
+        public string SortExpression { get; set; } = null!;
+        /// <summary>
+        /// Name for sort icon
+        /// </summary>
+        public string SortIcon { get; set; } = null!;
     }
 }

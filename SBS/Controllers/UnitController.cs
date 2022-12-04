@@ -6,18 +6,33 @@ using SBS.Tools;
 
 namespace SBS.Controllers
 {
+    /// <summary>
+    /// Controller for Units
+    /// </summary>
     [Authorize]
     [AutoValidateAntiforgeryToken]
     public class UnitController : Controller
     {
         private readonly IUnitService service;
 
+        /// <summary>
+        /// Init Controller
+        /// </summary>
+        /// <param name="service"></param>
         public UnitController(IUnitService service)
         {
             this.service = service;
         }
 
-
+        /// <summary>
+        /// Sorted, Filtered and Paged Units List 
+        /// </summary>
+        /// <param name="sortExpression"></param>
+        /// <param name="filterName"></param>
+        /// <param name="filterDescription"></param>
+        /// <param name="pg"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Index(
             string sortExpression = "",
@@ -49,14 +64,21 @@ namespace SBS.Controllers
             return View(units);
         }
 
-        // GET: ContragentController/Create
+        /// <summary>
+        /// Prepare data for create view
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Create()
         {
             var model = new UnitViewModel();
             return View(model);
         }
-        // POST: ContragentController/Create
+        /// <summary>
+        /// Process Create Unit voew data
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> Create(UnitViewModel viewModel)
         {
@@ -106,7 +128,11 @@ namespace SBS.Controllers
 
         }
 
-        // GET: ContragentController/Edit/5
+        /// <summary>
+        /// Prepare details view data
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Details(Guid id)
         {
@@ -120,7 +146,11 @@ namespace SBS.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: ContragentController/Edit/5
+        /// <summary>
+        /// Prepare edit view data
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Edit(Guid id)
         {
@@ -133,7 +163,11 @@ namespace SBS.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-        // POST: ContragentController/Edit/5
+        /// <summary>
+        /// Process edit data from view
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> EditAsync(UnitViewModel viewModel)
         {
@@ -182,8 +216,11 @@ namespace SBS.Controllers
             }
         }
 
-
-        // GET: ContragentController/Delete/5
+        /// <summary>
+        /// Prepare delete view data
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Delete(Guid id)
         {
@@ -196,7 +233,11 @@ namespace SBS.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-        // POST: ContragentController/Delete/5
+        /// <summary>
+        /// Process delete data from view
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> Delete(UnitViewModel viewModel)
         {
@@ -210,7 +251,7 @@ namespace SBS.Controllers
                 int currentPage = 1;
                 if (TempData["CurrentPage"] != null)
                 {
-                    currentPage = (int)TempData["CurrentPage"];
+                    currentPage = (int)TempData?["CurrentPage"];
                 }
 
                 return RedirectToAction(nameof(Index), new { pg = currentPage });

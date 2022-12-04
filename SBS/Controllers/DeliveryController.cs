@@ -6,6 +6,9 @@ using SBS.Core.Models;
 
 namespace SBS.Controllers
 {
+    /// <summary>
+    /// Controller for Deliveries
+    /// </summary>
     [Authorize]
     [AutoValidateAntiforgeryToken]
     public class DeliveryController : Controller
@@ -16,6 +19,14 @@ namespace SBS.Controllers
         private readonly IArticleService articleService;
         private readonly IUnitService unitService;
 
+        /// <summary>
+        /// Init Controller
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="contragentService"></param>
+        /// <param name="storeService"></param>
+        /// <param name="articleService"></param>
+        /// <param name="unitService"></param>
         public DeliveryController(
             IDeliveryService service,
             IContragentService contragentService,
@@ -30,6 +41,10 @@ namespace SBS.Controllers
             this.unitService = unitService;
         }
 
+        /// <summary>
+        /// Prepare data for Deliveries view 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> IndexAsync()
         {
@@ -39,6 +54,10 @@ namespace SBS.Controllers
             return View(deliveries);
         }
 
+        /// <summary>
+        /// Prepare data for create new Delivery view 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> CreateAsync()
         {
@@ -55,6 +74,11 @@ namespace SBS.Controllers
 
             return View(model);
         }
+        /// <summary>
+        /// Process Create new Delivery view data
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> Create(DeliveryViewModel viewModel)
         {
@@ -78,6 +102,11 @@ namespace SBS.Controllers
             }
         }
 
+        /// <summary>
+        /// Prepare data for details view 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Details(Guid id)
         {
@@ -96,6 +125,11 @@ namespace SBS.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Prepare data for edit view 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Edit(Guid id)
         {
@@ -113,6 +147,11 @@ namespace SBS.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        /// <summary>
+        /// Process Edit view data
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> EditAsync(DeliveryViewModel viewModel)
         {
@@ -134,6 +173,11 @@ namespace SBS.Controllers
             }
         }
 
+        /// <summary>
+        /// Prepare data for delete view 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Delete(Guid id)
         {
@@ -150,6 +194,11 @@ namespace SBS.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        /// <summary>
+        /// Process delete view data
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> Delete(DeliveryViewModel viewModel)
         {
@@ -168,8 +217,12 @@ namespace SBS.Controllers
             }
         }
 
+        /// <summary>
+        /// Process conferming view data
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> ConfirmAsync(DeliveryViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -190,7 +243,10 @@ namespace SBS.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Get contragents as SelectListItems
+        /// </summary>
+        /// <returns></returns>
         private async Task<IEnumerable<SelectListItem>> GetContragents()
         {
             var result = new List<SelectListItem>();
@@ -209,6 +265,10 @@ namespace SBS.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Get stores as SelectListItems
+        /// </summary>
+        /// <returns></returns>
         private async Task<IEnumerable<SelectListItem>> GetStores()
         {
             var result = new List<SelectListItem>();
@@ -225,6 +285,10 @@ namespace SBS.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Get Articles as SelectListItems
+        /// </summary>
+        /// <returns></returns>
         private async Task<IEnumerable<SelectListItem>> GetArticles()
         {
             var result = new List<SelectListItem>();
@@ -241,6 +305,10 @@ namespace SBS.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Get units as SelectListItems
+        /// </summary>
+        /// <returns></returns>
         private async Task<IEnumerable<SelectListItem>> GetUnits()
         {
             var result = new List<SelectListItem>();

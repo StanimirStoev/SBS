@@ -1,0 +1,1949 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SBS.Core</name>
+    </assembly>
+    <members>
+        <member name="T:SBS.Core.Constants.DataConstants">
+            <summary>
+            Constants for Core layer
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Constants.DataConstants.Address">
+            <summary>
+            Address constants
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Address.AddressLineMinLenght">
+            <summary>
+            Min Address line lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Address.AddressLineMaxLenght">
+            <summary>
+            Max Address line lenght
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Constants.DataConstants.Article">
+            <summary>
+            Article constants
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Article.NameMinLenght">
+            <summary>
+            min Article Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Article.NameMaxLenght">
+            <summary>
+            Max Article Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Article.ModelMinLenght">
+            <summary>
+            Min Article Model lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Article.ModelMaxLenght">
+            <summary>
+            Max Article Model lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Article.TitleMinLenght">
+            <summary>
+            Min Article Title lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Article.TitleMaxLenght">
+            <summary>
+            Max Article Title lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Article.DescriptionMaxLenght">
+            <summary>
+            Max Article Description lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Article.DeliveryNumberMinLenght">
+            <summary>
+            Min Article DeliveryNumber lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Article.DeliveryNumberMaxLenght">
+            <summary>
+            Max Article DeliveryNumber lenght
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Constants.DataConstants.City">
+            <summary>
+            City constants
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.City.NameMinLenght">
+            <summary>
+            Min City Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.City.NameMaxLenght">
+            <summary>
+            Max City Name lenght
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Constants.DataConstants.Contragent">
+            <summary>
+            Conragent constants
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Contragent.FirstNameMinLenght">
+            <summary>
+            Min Contragent First Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Contragent.FirstNameMaxLenght">
+            <summary>
+            Max Contragent First Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Contragent.LastNameMinLenght">
+            <summary>
+            Min Contragent Last Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Contragent.LastNameMaxLenght">
+            <summary>
+            Max Contragent Last Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Contragent.VatNumberMinLenght">
+            <summary>
+            Min Contragent VAT number lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Contragent.VatNumberMaxLenght">
+            <summary>
+            Max Contragent VAT number lenght
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Constants.DataConstants.Country">
+            <summary>
+            Country constants
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Country.NameMinLenght">
+            <summary>
+            Min Country Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Country.NameMaxLenght">
+            <summary>
+            Max Country Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Country.CodeMaxLenght">
+            <summary>
+            Max Country Code lenght
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Constants.DataConstants.Store">
+            <summary>
+            Store constants
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Store.NameMinLenght">
+            <summary>
+            Min Country Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Store.NameMaxLenght">
+            <summary>
+            Max Country Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Store.DescriptionMaxLenght">
+            <summary>
+            Max Country Description lenght
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Constants.DataConstants.Unit">
+            <summary>
+            Unit constants
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Unit.NameMinLenght">
+            <summary>
+            Min Unit Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Unit.NameMaxLenght">
+            <summary>
+            Max Unit Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Core.Constants.DataConstants.Unit.DescriptionMaxLenght">
+            <summary>
+            Max Unit Description lenght
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Contract.IAddressService">
+            <summary>
+            Service for Address
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Contract.IAddressService.GetAll">
+            <summary>
+            Get list of all Addresses
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IAddressService.Add(SBS.Core.Models.AddressViewModel)">
+            <summary>
+            Add Address in repository
+            </summary>
+            <param name="addressViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IAddressService.Delete(System.Guid)">
+            <summary>
+            Delete address from repository
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IAddressService.Get(System.Guid)">
+            <summary>
+            Gets address from repository by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IAddressService.Update(SBS.Core.Models.AddressViewModel)">
+            <summary>
+            Updates an Address
+            </summary>
+            <param name="addressViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Contract.IArticleService">
+            <summary>
+            Service for Articles
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Contract.IArticleService.GetAll">
+            <summary>
+            Get list of all Articles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IArticleService.Add(SBS.Core.Models.ArticleViewModel)">
+            <summary>
+            Add Article in repository
+            </summary>
+            <param name="articleViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IArticleService.Delete(System.Guid)">
+            <summary>
+            Delete Article from repository
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IArticleService.Get(System.Guid)">
+            <summary>
+            Gets Article from repository by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IArticleService.Update(SBS.Core.Models.ArticleViewModel)">
+            <summary>
+            Updates a Article
+            </summary>
+            <param name="articleViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Contract.IArticlesInStockService">
+            <summary>
+            Service for Articles in Stores
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Contract.IArticlesInStockService.GetAll">
+            <summary>
+            Get All Data for Articles in Sotores
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Contract.ICityService">
+            <summary>
+            Service for City
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Contract.ICityService.GetAll">
+            <summary>
+            Get list of all Cities
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.ICityService.GetForCountry(System.Guid)">
+            <summary>
+            Get all cities for country
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.ICityService.Add(SBS.Core.Models.CityViewModelCreate)">
+            <summary>
+            Add city in repository
+            </summary>
+            <param name="cityViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.ICityService.Delete(System.Guid)">
+            <summary>
+            Delete city from repository
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.ICityService.Get(System.Guid)">
+            <summary>
+            Gets city from repository by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.ICityService.Update(SBS.Core.Models.CityViewModelEdit)">
+            <summary>
+            Updates a city
+            </summary>
+            <param name="cityViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.ICityService.GetAllCountries">
+            <summary>
+             Get list of all countries
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Contract.IContragentService">
+            <summary>
+            Service for Contragents
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Contract.IContragentService.GetAll">
+            <summary>
+            Get list of all contragents
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IContragentService.Add(SBS.Core.Models.ContragentViewModel)">
+            <summary>
+            Add contragent in repository
+            </summary>
+            <param name="contragentViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IContragentService.Delete(System.Guid)">
+            <summary>
+            Delete contragent from repository
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IContragentService.Get(System.Guid)">
+            <summary>
+            Gets country from repository by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IContragentService.Update(SBS.Core.Models.ContragentViewModel)">
+            <summary>
+            Updates a contragent
+            </summary>
+            <param name="contragentViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Contract.ICountryService">
+            <summary>
+            Service for Country
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Contract.ICountryService.GetAll">
+            <summary>
+            Get list of all Countries
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.ICountryService.Add(SBS.Core.Models.CountryViewModel)">
+            <summary>
+            Add country in repository
+            </summary>
+            <param name="countryViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.ICountryService.Delete(System.Guid)">
+            <summary>
+            Delete country from repository
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.ICountryService.Get(System.Guid)">
+            <summary>
+            Gets country from repository by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.ICountryService.Update(SBS.Core.Models.CountryViewModel)">
+            <summary>
+            Updates a country
+            </summary>
+            <param name="countryViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Contract.IDeliveryService">
+            <summary>
+            Service for Deliveries
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Contract.IDeliveryService.GetAll">
+            <summary>
+            Get list of all Deliveries
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IDeliveryService.Add(SBS.Core.Models.DeliveryViewModel)">
+            <summary>
+            Add Delivery in repository
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IDeliveryService.Delete(System.Guid)">
+            <summary>
+            Delete Delivery from repository
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IDeliveryService.Get(System.Guid)">
+            <summary>
+            Gets Delivery from repository by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IDeliveryService.GetPartide(System.Guid)">
+            <summary>
+            Get a partide by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IDeliveryService.Update(SBS.Core.Models.DeliveryViewModel)">
+            <summary>
+            Update Delivery in repository
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IDeliveryService.Confirm(SBS.Core.Models.DeliveryViewModel)">
+            <summary>
+            Do comfirmation for a Delivery
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Contract.IPartidesInStoresService">
+            <summary>
+            Service for Partides in Stores
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Contract.IPartidesInStoresService.GetAll">
+            <summary>
+            Get list of all Partides in Stores
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Contract.ISellService">
+            <summary>
+            Service for Sells
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Contract.ISellService.GetAll">
+            <summary>
+            Get list of all Sells
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.ISellService.Add(SBS.Core.Models.SellViewModel)">
+            <summary>
+            Add Sell in repository
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.ISellService.Delete(System.Guid)">
+            <summary>
+            Delete Sell from repository
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.ISellService.Get(System.Guid)">
+            <summary>
+            Gets sell from Transfer by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.ISellService.Update(SBS.Core.Models.SellViewModel)">
+            <summary>
+            Update Sell in repository
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Contract.IStoreService">
+            <summary>
+            Service for Stores
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Contract.IStoreService.GetAll">
+            <summary>
+            Get list of all stores
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IStoreService.GetAllNotEmpty">
+            <summary>
+            Get list of all stores that has 1 or more quantity in it
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IStoreService.GetAllExcluded(System.Guid)">
+            <summary>
+            Get list of all stores that has 1 or more quantity in it, but exclude store with given Id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IStoreService.Add(SBS.Core.Models.StoreViewModel)">
+            <summary>
+            Add store in repository
+            </summary>
+            <param name="storeViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IStoreService.Delete(System.Guid)">
+            <summary>
+            Delete Store from repository
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IStoreService.Get(System.Guid)">
+            <summary>
+            Gets store from repository by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IStoreService.Update(SBS.Core.Models.StoreViewModel)">
+            <summary>
+            Updates an store
+            </summary>
+            <param name="storeViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Contract.ITransferService">
+            <summary>
+            Service for Units
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Contract.ITransferService.GetAll">
+            <summary>
+            Get list of all Transfers
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.ITransferService.Get(System.Guid)">
+            <summary>
+            Gets unit from Transfer by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.ITransferService.Add(SBS.Core.Models.TransferViewModel)">
+            <summary>
+            Add Transfer in repository
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Contract.IUnitService">
+            <summary>
+            Service for Units
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Contract.IUnitService.GetCount(SBS.Core.Models.UnitFilterViewModel)">
+            <summary>
+            Get count of filtered units
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IUnitService.GetAll(SBS.Core.Models.UnitFilterViewModel,SBS.Tools.SortHelper,System.Int32,System.Int32)">
+            <summary>
+            Get list of all units sorted and paginated
+            </summary>
+            <param name="filter"></param>
+            <param name="sortHelper"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IUnitService.GetAll">
+            <summary>
+            Get list of all units
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IUnitService.Add(SBS.Core.Models.UnitViewModel)">
+            <summary>
+            Add Unit in repository
+            </summary>
+            <param name="unitViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IUnitService.Delete(System.Guid)">
+            <summary>
+            Delete Unit from repository
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IUnitService.Get(System.Guid)">
+            <summary>
+            Gets unit from repository by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IUnitService.Update(SBS.Core.Models.UnitViewModel)">
+            <summary>
+            Updates an Unit
+            </summary>
+            <param name="unitViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IUnitService.IsExists(System.String)">
+            <summary>
+            Checks is unit exists
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Contract.IUnitService.IsExists(System.String,System.Guid)">
+            <summary>
+            Checks is unit exists
+            </summary>
+            <param name="name"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Models.AddressViewModel">
+            <summary>
+            Data for a Address
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.AddressViewModel.Id">
+            <summary>
+            Address Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.AddressViewModel.CountryId">
+            <summary>
+            Country Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.AddressViewModel.Country">
+            <summary>
+            Country data
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.AddressViewModel.CityId">
+            <summary>
+            City Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.AddressViewModel.City">
+            <summary>
+            City data
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.AddressViewModel.AddressLine1">
+            <summary>
+             Line 1 of Address
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.AddressViewModel.AddressLine2">
+            <summary>
+             Line 2 of Address
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.AddressViewModel.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Models.ArticlesInStockViewModel">
+            <summary>
+            Data for a Article in stock
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ArticlesInStockViewModel.ArticleModel">
+            <summary>
+            Model of article
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ArticlesInStockViewModel.ArticleName">
+            <summary>
+            Name of Article
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ArticlesInStockViewModel.StoreName">
+            <summary>
+            Store name
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ArticlesInStockViewModel.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Models.ArticleViewModel">
+            <summary>
+            Data for a Article
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ArticleViewModel.Id">
+            <summary>
+            Article Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ArticleViewModel.Name">
+            <summary>
+            Name of Article
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ArticleViewModel.Model">
+            <summary>
+            Model of Article
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ArticleViewModel.Title">
+            <summary>
+            Title of Article
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ArticleViewModel.Description">
+            <summary>
+            Description of Article
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ArticleViewModel.DeliveryNumber">
+            <summary>
+            Delivery Number of Article
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ArticleViewModel.UnitId">
+            <summary>
+            Unit Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ArticleViewModel.Unit">
+            <summary>
+            Unit Data
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ArticleViewModel.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Models.CityViewModel">
+            <summary>
+            Data for a City
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.CityViewModel.Country">
+            <summary>
+            Countri data
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.CityViewModel.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Models.CityViewModelCreate">
+            <summary>
+            Data for a City
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.CityViewModelCreate.Name">
+            <summary>
+            Name of City
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.CityViewModelCreate.CountryId">
+            <summary>
+            Country Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.CityViewModelCreate.Countries">
+            <summary>
+            List of Countries
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Models.CityViewModelEdit">
+            <summary>
+            Data for a City
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.CityViewModelEdit.Id">
+            <summary>
+            City Identifier
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Models.ContragentViewModel">
+            <summary>
+            Data for a Contragent (Client or Supplier)
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Models.ContragentViewModel.#ctor">
+            <summary>
+            Init new Contragent
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ContragentViewModel.Id">
+            <summary>
+            Contragent Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ContragentViewModel.FirstName">
+            <summary>
+            First Name of Contragent
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ContragentViewModel.LastName">
+            <summary>
+            Last Name of Contragent
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ContragentViewModel.Addresses">
+            <summary>
+            List os addresses for the contragent
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ContragentViewModel.VatNumber">
+            <summary>
+            Vat Number of Contragent (EGN when private person)
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ContragentViewModel.IsClient">
+            <summary>
+            Flag is the contragent can be client
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ContragentViewModel.IsSupplier">
+            <summary>
+            Flag is the contragent can be supplier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.ContragentViewModel.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Models.CountryViewModel">
+            <summary>
+            Data for a Country
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Models.CountryViewModel.#ctor">
+            <summary>
+            Initialise new Country
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.CountryViewModel.Id">
+            <summary>
+            Country Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.CountryViewModel.Name">
+            <summary>
+            Name of Country
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.CountryViewModel.Code">
+            <summary>
+            Code of Country
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.CountryViewModel.IsEu">
+            <summary>
+            Flag for EU countries
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.CountryViewModel.Cities">
+            <summary>
+            List of Cities
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Models.CountryViewModel.GetCitiesSelectListItems">
+            <summary>
+            List of Cities as Select list items
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SBS.Core.Models.CountryViewModel.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Models.DeliveryDetailViewModel">
+            <summary>
+            Deatails for the Delivery
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryDetailViewModel.Id">
+            <summary>
+            Delivery Detail Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryDetailViewModel.DeliveryId">
+            <summary>
+            Parent Delivery Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryDetailViewModel.Delivery">
+            <summary>
+            Parent Delivery data
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryDetailViewModel.ArticleId">
+            <summary>
+            Article Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryDetailViewModel.Article">
+            <summary>
+            Article data
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryDetailViewModel.Qty">
+            <summary>
+            Delivered Quantity
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryDetailViewModel.Price">
+            <summary>
+            Delivered Price
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryDetailViewModel.TotalPrice">
+            <summary>
+            Total price
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryDetailViewModel.UnitId">
+            <summary>
+            Unit Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryDetailViewModel.Unit">
+            <summary>
+            Unit data
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryDetailViewModel.PartidesInStores">
+            <summary>
+            Partides in stores data
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryDetailViewModel.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Models.DeliveryViewModel">
+            <summary>
+            Data for a Delivery
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryViewModel.Id">
+            <summary>
+            Delivery Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryViewModel.ContragentId">
+            <summary>
+            Contargent (Supplier) Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryViewModel.Contragent">
+            <summary>
+            Contargent (Supplier) data
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryViewModel.CreateDatetime">
+            <summary>
+            DateTime of creation
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryViewModel.StoreId">
+            <summary>
+            Store Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryViewModel.Store">
+            <summary>
+            Store data
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryViewModel.IsConfirmed">
+            <summary>
+            Flag for confermrd sell 
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryViewModel.Details">
+            <summary>
+            Details List
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.DeliveryViewModel.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Models.PagerViewModel">
+            <summary>
+            Page data
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.PagerViewModel.TotalItems">
+            <summary>
+            Count for total items
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.PagerViewModel.CurrentPage">
+            <summary>
+            Curen page
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.PagerViewModel.PageSize">
+            <summary>
+            Size of the page
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.PagerViewModel.TotalPages">
+            <summary>
+            Total pages number
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.PagerViewModel.StartPage">
+            <summary>
+            Start page
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.PagerViewModel.EndPage">
+            <summary>
+            End page
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.PagerViewModel.StartRecord">
+            <summary>
+            Start record
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.PagerViewModel.EndRecord">
+            <summary>
+            End Record
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.PagerViewModel.Action">
+            <summary>
+            Action name
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.PagerViewModel.SortExpression">
+            <summary>
+            Expression for sorting
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Models.PagerViewModel.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Init page data
+            </summary>
+            <param name="totalItems"></param>
+            <param name="currentPage"></param>
+            <param name="pageSize"></param>
+        </member>
+        <member name="M:SBS.Core.Models.PagerViewModel.GetPageSizes">
+            <summary>
+            List for page sizes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Models.PartidesInStoreViewModel">
+            <summary>
+            Partides quantity in the stores
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.PartidesInStoreViewModel.StoreId">
+            <summary>
+            Store Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.PartidesInStoreViewModel.Store">
+            <summary>
+            Store Data
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.PartidesInStoreViewModel.DeliveryDetailId">
+            <summary>
+            DeliveryDetail (Partide) Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.PartidesInStoreViewModel.DeliveryDetail">
+            <summary>
+            DeliveryDetail (Partide) Data
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.PartidesInStoreViewModel.Qty">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Models.SellDetailViewModel">
+            <summary>
+            Deatails for the Sells
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellDetailViewModel.Id">
+            <summary>
+            Sell Detail Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellDetailViewModel.SellId">
+            <summary>
+            Parent Sell Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellDetailViewModel.Sell">
+            <summary>
+            Parent Sell 
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellDetailViewModel.StoreId">
+            <summary>
+            Store Sell Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellDetailViewModel.DeliveryDetailId">
+            <summary>
+            DeliveryDetail Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellDetailViewModel.PartidesInStore">
+            <summary>
+            Partide data
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellDetailViewModel.Qty">
+            <summary>
+            Quantity to sell
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellDetailViewModel.Price">
+            <summary>
+            Sell price
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellDetailViewModel.TotalPrice">
+            <summary>
+            Total Price
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellDetailViewModel.UnitId">
+            <summary>
+            Unit Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellDetailViewModel.Unit">
+            <summary>
+            Unit 
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellDetailViewModel.PartidesInStores">
+            <summary>
+            Partides in store
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellDetailViewModel.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Models.SellViewModel">
+            <summary>
+            Data for a Sell
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellViewModel.Id">
+            <summary>
+            Sell Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellViewModel.ContragentId">
+            <summary>
+            Contargent (Client) Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellViewModel.Contragent">
+            <summary>
+            Contargent (Client)
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellViewModel.CreateDatetime">
+            <summary>
+            DateTime of creation
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellViewModel.StoreId">
+            <summary>
+            Store Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellViewModel.Store">
+            <summary>
+            Store Data
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellViewModel.SellTotalPrice">
+            <summary>
+            Total price
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellViewModel.Details">
+            <summary>
+            Details List
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.SellViewModel.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Models.StoreViewModel">
+            <summary>
+            Store Data
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.StoreViewModel.Id">
+            <summary>
+            Store Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.StoreViewModel.Name">
+            <summary>
+            Store Name
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.StoreViewModel.Description">
+            <summary>
+            Store Description
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.StoreViewModel.AddressId">
+            <summary>
+            Store Address Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.StoreViewModel.Address">
+            <summary>
+            Store Address
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.StoreViewModel.IsActive">
+            <summary>
+            Flag for deleted/in use Store
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Models.TransferDetailViewModel">
+            <summary>
+            Deatails for the Transfers
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.TransferDetailViewModel.Id">
+            <summary>
+            Tarnsfer Detail Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.TransferDetailViewModel.TransferId">
+            <summary>
+            Parent Tarnsfer Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.TransferDetailViewModel.Transfer">
+            <summary>
+            Parent Tarnsfer
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.TransferDetailViewModel.DeliveryDetailId">
+            <summary>
+            Delivery Detail Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.TransferDetailViewModel.DeliveryDetail">
+            <summary>
+            Delivery Detail
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.TransferDetailViewModel.Qty">
+            <summary>
+            Transfered Quantity
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.TransferDetailViewModel.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Models.TransferViewModel">
+            <summary>
+            Data for the Transfers
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.TransferViewModel.Id">
+            <summary>
+            Tarnsfer Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.TransferViewModel.CreateDatetime">
+            <summary>
+            Tarnsfer Date of creation
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.TransferViewModel.FromStoreId">
+            <summary>
+            Tarnsfer source store Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.TransferViewModel.FromStore">
+            <summary>
+            Tarnsfer source store
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.TransferViewModel.ToStoreId">
+            <summary>
+            Tarnsfer destination store Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.TransferViewModel.ToStore">
+            <summary>
+            Tarnsfer destination store 
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.TransferViewModel.Details">
+            <summary>
+            List of transfer details 
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.TransferViewModel.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Models.UnitFilterViewModel">
+            <summary>
+            Data for Unit fiter
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.UnitFilterViewModel.Name">
+            <summary>
+            Unit Filter Name
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.UnitFilterViewModel.Description">
+            <summary>
+            Unit Filter Description
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Models.UnitViewModel">
+            <summary>
+            Measuring units
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.UnitViewModel.Id">
+            <summary>
+            Unit Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.UnitViewModel.Name">
+            <summary>
+            Unit Short Name
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.UnitViewModel.Description">
+            <summary>
+            Unit Description
+            </summary>
+        </member>
+        <member name="P:SBS.Core.Models.UnitViewModel.IsActive">
+            <summary>
+            Flag for deleted/in use Unit
+            </summary>
+        </member>
+        <member name="T:SBS.Core.Services.AddressService">
+            <summary>
+            Service for Address
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Services.AddressService.#ctor(SBS.Infrastructure.Data.Common.ISbsRepository)">
+            <summary>
+            Init Service
+            </summary>
+            <param name="repo"></param>
+        </member>
+        <member name="M:SBS.Core.Services.AddressService.Add(SBS.Core.Models.AddressViewModel)">
+            <summary>
+            Add Address in repository
+            </summary>
+            <param name="addressViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.AddressService.Delete(System.Guid)">
+            <summary>
+            Delete address from repository
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.AddressService.Get(System.Guid)">
+            <summary>
+            Gets address from repository by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.AddressService.GetAll">
+            <summary>
+            Get list of all Addresses
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.AddressService.Update(SBS.Core.Models.AddressViewModel)">
+            <summary>
+            Updates an Address
+            </summary>
+            <param name="addressViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Services.ArticleService">
+            <summary>
+            Service for Articles
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Services.ArticleService.#ctor(SBS.Infrastructure.Data.Common.ISbsRepository)">
+            <summary>
+            Init service
+            </summary>
+            <param name="repo"></param>
+        </member>
+        <member name="M:SBS.Core.Services.ArticleService.Add(SBS.Core.Models.ArticleViewModel)">
+            <summary>
+            Add Article in repository
+            </summary>
+            <param name="articleViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.ArticleService.Delete(System.Guid)">
+            <summary>
+            Delete Article from repository
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.ArticleService.GetAll">
+            <summary>
+            Get list of all Articles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.ArticleService.Get(System.Guid)">
+            <summary>
+            Gets Article from repository by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.ArticleService.Update(SBS.Core.Models.ArticleViewModel)">
+            <summary>
+            Updates a Article
+            </summary>
+            <param name="articleViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Services.ArticlesInStockService">
+            <summary>
+            Service for Articles in Stores
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Services.ArticlesInStockService.#ctor(SBS.Infrastructure.Data.Common.ISbsRepository)">
+            <summary>
+            Init Service
+            </summary>
+            <param name="repo"></param>
+        </member>
+        <member name="M:SBS.Core.Services.ArticlesInStockService.GetAll">
+            <summary>
+            Get All Data for Articles in Sotores
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Services.CityService">
+            <summary>
+            Service for City
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Services.CityService.#ctor(SBS.Infrastructure.Data.Common.ISbsRepository)">
+            <summary>
+            Init service
+            </summary>
+            <param name="repo"></param>
+        </member>
+        <member name="M:SBS.Core.Services.CityService.Add(SBS.Core.Models.CityViewModelCreate)">
+            <summary>
+            Add city in repository
+            </summary>
+            <param name="cityViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.CityService.Delete(System.Guid)">
+            <summary>
+            Delete city from repository
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.CityService.Get(System.Guid)">
+            <summary>
+            Gets city from repository by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.CityService.GetAll">
+            <summary>
+            Get list of all cities
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.CityService.Update(SBS.Core.Models.CityViewModelEdit)">
+            <summary>
+            Updates a city
+            </summary>
+            <param name="cityViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.CityService.GetAllCountries">
+            <summary>
+             Get list of all countries
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.CityService.GetForCountry(System.Guid)">
+            <summary>
+            Get all cities for country
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Services.ContragentService">
+            <summary>
+            Service for Contragents
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Services.ContragentService.#ctor(SBS.Infrastructure.Data.Common.ISbsRepository)">
+            <summary>
+            Init service
+            </summary>
+            <param name="repo"></param>
+        </member>
+        <member name="M:SBS.Core.Services.ContragentService.Add(SBS.Core.Models.ContragentViewModel)">
+            <summary>
+            Add contragent in repository
+            </summary>
+            <param name="contragentViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.ContragentService.Delete(System.Guid)">
+            <summary>
+            Delete contragent from repository
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.ContragentService.Get(System.Guid)">
+            <summary>
+            Gets country from repository by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.ContragentService.GetAll">
+            <summary>
+            Get list of all contragents
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.ContragentService.Update(SBS.Core.Models.ContragentViewModel)">
+            <summary>
+            Updates a contragent
+            </summary>
+            <param name="contragentViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Services.CountryService">
+            <summary>
+            Service for Country
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Services.CountryService.#ctor(SBS.Infrastructure.Data.Common.ISbsRepository)">
+            <summary>
+            Init Service
+            </summary>
+            <param name="repo"></param>
+        </member>
+        <member name="M:SBS.Core.Services.CountryService.Add(SBS.Core.Models.CountryViewModel)">
+            <summary>
+            Add country in repository
+            </summary>
+            <param name="countryViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.CountryService.Delete(System.Guid)">
+            <summary>
+            Delete country from repository
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.CountryService.Get(System.Guid)">
+            <summary>
+            Gets country from repository by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.CountryService.GetAll">
+            <summary>
+            Get list of all Countries
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.CountryService.Update(SBS.Core.Models.CountryViewModel)">
+            <summary>
+            Updates an country
+            </summary>
+            <param name="countryViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Services.DeliveryService">
+            <summary>
+            Service for Deliveries
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Services.DeliveryService.#ctor(SBS.Infrastructure.Data.Common.ISbsRepository)">
+            <summary>
+            Init service
+            </summary>
+            <param name="repo"></param>
+        </member>
+        <member name="M:SBS.Core.Services.DeliveryService.Add(SBS.Core.Models.DeliveryViewModel)">
+            <summary>
+            Add Delivery in repository
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.DeliveryService.Confirm(SBS.Core.Models.DeliveryViewModel)">
+            <summary>
+            Do comfirmation for a Delivery
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.DeliveryService.Delete(System.Guid)">
+            <summary>
+            Delete Delivery from repository
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.DeliveryService.Get(System.Guid)">
+            <summary>
+            Gets Delivery from repository by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.DeliveryService.GetPartide(System.Guid)">
+            <summary>
+            Get a partide by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.DeliveryService.GetAll">
+            <summary>
+            Get list of all Deliveries
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.DeliveryService.Update(SBS.Core.Models.DeliveryViewModel)">
+            <summary>
+            Update Delivery in repository
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Services.PartidesInStoresService">
+            <summary>
+            Service for Partides in Stores
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Services.PartidesInStoresService.#ctor(SBS.Infrastructure.Data.Common.ISbsRepository)">
+            <summary>
+            Init service
+            </summary>
+            <param name="repo"></param>
+        </member>
+        <member name="M:SBS.Core.Services.PartidesInStoresService.GetAll">
+            <summary>
+            Get list of all Partides in Stores
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Services.SellService">
+            <summary>
+            Service for Sells
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Services.SellService.#ctor(SBS.Infrastructure.Data.Common.ISbsRepository)">
+            <summary>
+            Init service
+            </summary>
+            <param name="repo"></param>
+        </member>
+        <member name="M:SBS.Core.Services.SellService.Add(SBS.Core.Models.SellViewModel)">
+            <summary>
+            Add Sell in repository
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.SellService.Delete(System.Guid)">
+            <summary>
+            Delete Sell from repository
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.SellService.Get(System.Guid)">
+            <summary>
+            Gets sell from Transfer by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:SBS.Core.Services.SellService.GetAll" -->
+        <member name="M:SBS.Core.Services.SellService.Update(SBS.Core.Models.SellViewModel)">
+            <summary>
+            Update Sell in repository
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Services.StoreService">
+            <summary>
+            Service for Stores
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Services.StoreService.#ctor(SBS.Infrastructure.Data.Common.ISbsRepository)">
+            <summary>
+            Init service
+            </summary>
+            <param name="repo"></param>
+        </member>
+        <member name="M:SBS.Core.Services.StoreService.Add(SBS.Core.Models.StoreViewModel)">
+            <summary>
+            Add store in repository
+            </summary>
+            <param name="storeViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.StoreService.Delete(System.Guid)">
+            <summary>
+            Delete Store from repository
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.StoreService.Get(System.Guid)">
+            <summary>
+            Gets store from repository by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.StoreService.GetAll">
+            <summary>
+            Get list of all stores
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.StoreService.GetAllExcluded(System.Guid)">
+            <summary>
+            Get list of all stores that has 1 or more quantity in it, but exclude store with given Id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.StoreService.GetAllNotEmpty">
+            <summary>
+            Get list of all stores that has 1 or more quantity in it
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.StoreService.Update(SBS.Core.Models.StoreViewModel)">
+            <summary>
+            Updates an store
+            </summary>
+            <param name="storeViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Services.TransferService">
+            <summary>
+            Service for Units
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Services.TransferService.#ctor(SBS.Infrastructure.Data.Common.ISbsRepository)">
+            <summary>
+            Init service
+            </summary>
+            <param name="repo"></param>
+        </member>
+        <member name="M:SBS.Core.Services.TransferService.Add(SBS.Core.Models.TransferViewModel)">
+            <summary>
+            Add Transfer in repository
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.TransferService.Get(System.Guid)">
+            <summary>
+            Get list of all Transfers
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.TransferService.GetAll">
+            <summary>
+            Get list of all Transfers
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Core.Services.UnitService">
+            <summary>
+            Service for Units
+            </summary>
+        </member>
+        <member name="M:SBS.Core.Services.UnitService.#ctor(SBS.Infrastructure.Data.Common.ISbsRepository)">
+            <summary>
+            Init service
+            </summary>
+            <param name="repo"></param>
+        </member>
+        <member name="M:SBS.Core.Services.UnitService.Add(SBS.Core.Models.UnitViewModel)">
+            <summary>
+            Add Unit in repository
+            </summary>
+            <param name="unitViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.UnitService.Delete(System.Guid)">
+            <summary>
+            Delete Unit from repository
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.UnitService.Get(System.Guid)">
+            <summary>
+            Gets unit from repository by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.UnitService.GetAll(SBS.Core.Models.UnitFilterViewModel,SBS.Tools.SortHelper,System.Int32,System.Int32)">
+            <summary>
+            Get list of all units sorted and paginated
+            </summary>
+            <param name="filter"></param>
+            <param name="sortHelper"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.UnitService.GetAll">
+            <summary>
+            Get list of all units
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.UnitService.GetCount(SBS.Core.Models.UnitFilterViewModel)">
+            <summary>
+            Get count of filtered units
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.UnitService.Update(SBS.Core.Models.UnitViewModel)">
+            <summary>
+            Updates an Unit
+            </summary>
+            <param name="unitViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.UnitService.IsExists(System.String)">
+            <summary>
+            Checks is unit exists
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Core.Services.UnitService.IsExists(System.String,System.Guid)">
+            <summary>
+            Checks is unit exists
+            </summary>
+            <param name="name"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

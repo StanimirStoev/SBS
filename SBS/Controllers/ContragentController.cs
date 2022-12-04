@@ -7,6 +7,9 @@ using SBS.Tools;
 
 namespace SBS.Controllers
 {
+    /// <summary>
+    /// Controller for Deliveries
+    /// </summary>
     [Authorize]
     [AutoValidateAntiforgeryToken]
     public class ContragentController : Controller
@@ -15,6 +18,12 @@ namespace SBS.Controllers
         private readonly ICountryService countryService;
         private readonly ICityService cityService;
 
+        /// <summary>
+        /// Init conreoller
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="countryService"></param>
+        /// <param name="cityService"></param>
         public ContragentController(
             IContragentService service, 
             ICountryService countryService,
@@ -25,7 +34,11 @@ namespace SBS.Controllers
             this.cityService = cityService;
         }
 
-        // GET: ContragentController
+        /// <summary>
+        /// Prepare data for contragents view
+        /// </summary>
+        /// <param name="sortExpression"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Index(string sortExpression = "")
         {
@@ -46,7 +59,10 @@ namespace SBS.Controllers
             return View(contragents);
         }
 
-        // GET: ContragentController/Create
+        /// <summary>
+        /// Prepare data for create new contragent view 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Create()
         {
@@ -56,8 +72,11 @@ namespace SBS.Controllers
             ViewBag.CountriesList = await GetCountries();
             return View(model);
         }
-
-        // POST: ContragentController/Create
+        /// <summary>
+        /// Process Create new contragent view data
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> Create(ContragentViewModel viewModel)
         {
@@ -81,14 +100,17 @@ namespace SBS.Controllers
             }
         }
 
-        // GET: ContragentController/Edit/5
+        /// <summary>
+        /// Prepare data for edit view 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Edit(Guid id)
         {
             var contragent = await service.Get(id);
 
             ViewBag.CountriesList = await GetCountries();
-            //ViewBag.CitiesList = await GetCities();
 
             if (contragent != null)
             {
@@ -97,8 +119,11 @@ namespace SBS.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
-        // POST: ContragentController/Edit/5
+        /// <summary>
+        /// Process Edit view data
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> EditAsync(ContragentViewModel viewModel)
         {
@@ -120,7 +145,11 @@ namespace SBS.Controllers
             }
         }
 
-        // POST: ContragentController/Delete/5
+        /// <summary>
+        /// Process delete view data
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> Delete(Guid id)
         {
@@ -136,6 +165,11 @@ namespace SBS.Controllers
             }
         }
 
+        /// <summary>
+        /// Get cities
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<JsonResult> GetCities(Guid id)
         {
@@ -152,6 +186,10 @@ namespace SBS.Controllers
             return Json(result);
         }
 
+        /// <summary>
+        /// Get countries as SelectListItems
+        /// </summary>
+        /// <returns></returns>
         private async Task<IEnumerable<SelectListItem>> GetCountries()
         {
             var result = new List<SelectListItem>();
@@ -168,6 +206,10 @@ namespace SBS.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Get cities as SelectListItems
+        /// </summary>
+        /// <returns></returns>
         private async Task<IEnumerable<SelectListItem>> GetCities()
         {
             var result = new List<SelectListItem>();

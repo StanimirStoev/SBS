@@ -5,18 +5,27 @@ using SBS.Core.Models;
 
 namespace SBS.Controllers
 {
+    /// <summary>
+    /// Controller for Addresses
+    /// </summary>
     [Authorize]
     [AutoValidateAntiforgeryToken]
     public class AddressController : Controller
     {
         private readonly IAddressService addressService;
-
+        /// <summary>
+        /// Init controller
+        /// </summary>
+        /// <param name="addressService"></param>
         public AddressController(IAddressService addressService)
         {
             this.addressService = addressService;
         }
 
-        // GET: AddressController
+        /// <summary>
+        /// Prepare data for addresses view
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Index()
         {
@@ -26,15 +35,21 @@ namespace SBS.Controllers
             return View(addresses);
         }
 
-        // GET: AddressController/Create
+        /// <summary>
+        /// Prepare data for create new address view
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Create()
         {
             var model = new AddressViewModel();
             return View(model);
         }
-
-        // POST: AddressController/Create
+        /// <summary>
+        /// Process Create new address view data
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> Create(AddressViewModel viewModel)
         {
@@ -56,7 +71,11 @@ namespace SBS.Controllers
             }
         }
 
-        // GET: AddressController/Edit/5
+        /// <summary>
+        /// Prepare data for edit view
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Edit(Guid id)
         {
@@ -69,8 +88,11 @@ namespace SBS.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
-        // POST: AddressController/Edit/5
+        /// <summary>
+        /// Process Edit view data
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> EditAsync(AddressViewModel viewModel)
         {
@@ -92,7 +114,11 @@ namespace SBS.Controllers
             }
         }
 
-        // POST: AddressController/Delete/5
+        /// <summary>
+        /// Process delete view data
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> Delete(Guid id)
         {

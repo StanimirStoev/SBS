@@ -6,15 +6,24 @@ using SBS.Infrastructure.Data.Models;
 
 namespace SBS.Core.Services
 {
+    /// <summary>
+    /// Service for Articles in Stores
+    /// </summary>
     public class ArticlesInStockService : IArticlesInStockService
     {
         private readonly ISbsRepository repo;
-
+        /// <summary>
+        /// Init Service
+        /// </summary>
+        /// <param name="repo"></param>
         public ArticlesInStockService(ISbsRepository repo)
         {
             this.repo = repo;
         }
-
+        /// <summary>
+        /// Get All Data for Articles in Sotores
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<ArticlesInStockViewModel>> GetAll()
         {
             List< ArticlesInStockViewModel> result = await repo.AllReadonly<PartidesInStore>()

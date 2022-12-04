@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-SBS-AA426E41-E374-4700-8B3F-A4D303B2A864</UserSecretsId>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>SbsDocumentation.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

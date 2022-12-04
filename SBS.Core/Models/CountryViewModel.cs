@@ -4,32 +4,56 @@ using static SBS.Core.Constants.DataConstants.Country;
 
 namespace SBS.Core.Models
 {
+    /// <summary>
+    /// Data for a Country
+    /// </summary>
     public class CountryViewModel
     {
+        /// <summary>
+        /// Initialise new Country
+        /// </summary>
         public CountryViewModel()
         {
             Cities = new HashSet<CityViewModel>();
-            //Addresses = new HashSet<Address>();
         }
 
+        /// <summary>
+        /// Country Identifier
+        /// </summary>
         [Key]
         public Guid Id { get; set; }
 
+        /// <summary>
+        /// Name of Country
+        /// </summary>
         [Required]
         [Display(Name = "Country Name")]
         [StringLength(NameMaxLenght, MinimumLength = NameMinLenght, ErrorMessage = "The field '{0}' must be between {2} and {1} characters lenght.")]
         public string Name { get; set; } = null!;
 
+        /// <summary>
+        /// Code of Country
+        /// </summary>
         [Required]
         [StringLength(CodeMaxLenght, ErrorMessage = "The field '{0}' can contains max {1} characters.")]
         public string Code { get; set; } = null!;
 
+        /// <summary>
+        /// Flag for EU countries
+        /// </summary>
         [Required]
         [Display(Name = "EU")]
         public bool IsEu { get; set; } = false;
 
+        /// <summary>
+        /// List of Cities
+        /// </summary>
         public virtual ICollection<CityViewModel> Cities { get; set; }
 
+        /// <summary>
+        /// List of Cities as Select list items
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<SelectListItem> GetCitiesSelectListItems()
         {
             var result = new List<SelectListItem>();
@@ -44,8 +68,9 @@ namespace SBS.Core.Models
             return result;
         }
 
-        //public virtual ICollection<Address> Addresses { get; set; }
-
+        /// <summary>
+        /// Flag for deleted/in use 
+        /// </summary>
         [Required]
         public bool IsActive { get; set; } = true;
     }

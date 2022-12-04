@@ -7,15 +7,26 @@ using SBS.Tools;
 
 namespace SBS.Core.Services
 {
+    /// <summary>
+    /// Service for Contragents
+    /// </summary>
     public class ContragentService : IContragentService
     {
         private readonly ISbsRepository repo;
-
+        /// <summary>
+        /// Init service
+        /// </summary>
+        /// <param name="repo"></param>
         public ContragentService(ISbsRepository repo)
         {
             this.repo = repo;
         }
 
+        /// <summary>
+        /// Add contragent in repository
+        /// </summary>
+        /// <param name="contragentViewModel"></param>
+        /// <returns></returns>
         public async Task Add(ContragentViewModel contragentViewModel)
         {
             Sanitizer.Sanitize(contragentViewModel);
@@ -45,6 +56,11 @@ namespace SBS.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Delete contragent from repository
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task Delete(Guid id)
         {
             var contragent = await repo.All<Contragent>()
@@ -58,6 +74,11 @@ namespace SBS.Core.Services
             }
         }
 
+        /// <summary>
+        /// Gets country from repository by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ContragentViewModel> Get(Guid id)
         {
             ContragentViewModel model = new ContragentViewModel();
@@ -120,6 +141,10 @@ namespace SBS.Core.Services
             return model;
         }
 
+        /// <summary>
+        /// Get list of all contragents
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<ContragentViewModel>> GetAll()
         {
             return await repo.AllReadonly<Contragent>()
@@ -136,6 +161,11 @@ namespace SBS.Core.Services
                     }).ToListAsync();
         }
 
+        /// <summary>
+        /// Updates a contragent
+        /// </summary>
+        /// <param name="contragentViewModel"></param>
+        /// <returns></returns>
         public async Task Update(ContragentViewModel contragentViewModel)
         {
             Sanitizer.Sanitize(contragentViewModel);

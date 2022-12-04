@@ -3,9 +3,15 @@ using System.Reflection;
 
 namespace SBS.Tools
 {
+    /// <summary>
+    /// Sanitizing string values logic
+    /// </summary>
     public static class Sanitizer
     {
-        //private static HtmlSanitizer sanitizer = new HtmlSanitizer();
+        /// <summary>
+        /// Sanitize all public string properties in a ViewModel object
+        /// </summary>
+        /// <param name="viewModel">ViewModel object to be sanitized</param>
         public static void Sanitize(object viewModel)
         {
             PropertyInfo[] properties= viewModel.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);

@@ -7,15 +7,25 @@ using SBS.Tools;
 
 namespace SBS.Core.Services
 {
+    /// <summary>
+    /// Service for Articles
+    /// </summary>
     public class ArticleService : IArticleService
     {
         private readonly ISbsRepository repo;
-
+        /// <summary>
+        /// Init service
+        /// </summary>
+        /// <param name="repo"></param>
         public ArticleService(ISbsRepository repo)
         {
             this.repo = repo;
         }
-
+        /// <summary>
+        /// Add Article in repository
+        /// </summary>
+        /// <param name="articleViewModel"></param>
+        /// <returns></returns>
         public async Task Add(ArticleViewModel articleViewModel)
         {
             Sanitizer.Sanitize(articleViewModel);
@@ -32,7 +42,11 @@ namespace SBS.Core.Services
             await repo.AddAsync(article);
             await repo.SaveChangesAsync();
         }
-
+        /// <summary>
+        /// Delete Article from repository
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task Delete(Guid id)
         {
             var product = await repo.All<Article>()
@@ -45,7 +59,10 @@ namespace SBS.Core.Services
                 await repo.SaveChangesAsync();
             }
         }
-
+        /// <summary>
+        /// Get list of all Articles
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<ArticleViewModel>> GetAll()
         {
             return await repo.AllReadonly<Article>()
@@ -61,7 +78,11 @@ namespace SBS.Core.Services
                 Title = p.Title,
             }).ToListAsync();
         }
-
+        /// <summary>
+        /// Gets Article from repository by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ArticleViewModel> Get(Guid id)
         {
             ArticleViewModel model = new ArticleViewModel();
@@ -69,7 +90,6 @@ namespace SBS.Core.Services
                 .Where(a => a.Id == id)
                 .Include(a => a.Unit)
                 .FirstOrDefaultAsync();
-                
 
             if (product != null)
             {
@@ -94,7 +114,11 @@ namespace SBS.Core.Services
             }
             return model;
         }
-
+        /// <summary>
+        /// Updates a Article
+        /// </summary>
+        /// <param name="articleViewModel"></param>
+        /// <returns></returns>
         public async Task Update(ArticleViewModel articleViewModel)
         {
             Sanitizer.Sanitize(articleViewModel);

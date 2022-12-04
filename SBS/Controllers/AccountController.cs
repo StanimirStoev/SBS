@@ -6,13 +6,20 @@ using SBS.Models;
 
 namespace SBS.Controllers
 {
+    /// <summary>
+    /// Controller for Addresses
+    /// </summary>
     [AutoValidateAntiforgeryToken]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly HtmlSanitizer sanitizer;
-
+        /// <summary>
+        /// Init controller
+        /// </summary>
+        /// <param name="userManager"></param>
+        /// <param name="signInManager"></param>
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager)
@@ -22,12 +29,21 @@ namespace SBS.Controllers
             this.sanitizer= new HtmlSanitizer();
         }
 
+        /// <summary>
+        /// Prepare data for new regestration view
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Register()
         {
             var model = new RegisterViewModel();
             return View(model);
         }
+        /// <summary>
+        /// Process data for new regestration
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -60,6 +76,11 @@ namespace SBS.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Prepare data for login view
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Login(string? returnUrl = null!)
         {
@@ -69,6 +90,11 @@ namespace SBS.Controllers
             };
             return View(model);
         }
+        /// <summary>
+        /// Process data for login
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
@@ -96,6 +122,10 @@ namespace SBS.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Process data for logout
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();

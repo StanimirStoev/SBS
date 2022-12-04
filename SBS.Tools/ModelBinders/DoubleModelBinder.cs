@@ -1,17 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 
 
 namespace SBS.Tools.ModelBinders
 {
+    /// <summary>
+    /// Model bindig methods for double numbers
+    /// </summary>
     public class DoubleModelBinder : IModelBinder
     {
+        /// <summary>
+        /// Model bindig for double number
+        /// </summary>
+        /// <param name="bindingContext">Context Data </param>
+        /// <returns></returns>
         public Task BindModelAsync(ModelBindingContext bindingContext)
         {
             ValueProviderResult valueResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);

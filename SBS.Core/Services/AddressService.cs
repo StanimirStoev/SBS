@@ -7,15 +7,25 @@ using SBS.Tools;
 
 namespace SBS.Core.Services
 {
+    /// <summary>
+    /// Service for Address
+    /// </summary>
     public class AddressService : IAddressService
     {
         private readonly ISbsRepository repo;
-
+        /// <summary>
+        /// Init Service
+        /// </summary>
+        /// <param name="repo"></param>
         public AddressService(ISbsRepository repo)
         {
             this.repo = repo;
         }
-
+        /// <summary>
+        /// Add Address in repository
+        /// </summary>
+        /// <param name="addressViewModel"></param>
+        /// <returns></returns>
         public async Task Add(AddressViewModel addressViewModel)
         {
             Sanitizer.Sanitize(addressViewModel);
@@ -31,7 +41,11 @@ namespace SBS.Core.Services
             await repo.AddAsync(address);
             await repo.SaveChangesAsync();
         }
-
+        /// <summary>
+        /// Delete address from repository
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task Delete(Guid id)
         {
             var address = await repo.All<Address>()
@@ -44,7 +58,11 @@ namespace SBS.Core.Services
                 await repo.SaveChangesAsync();
             }
         }
-
+        /// <summary>
+        /// Gets address from repository by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<AddressViewModel> Get(Guid id)
         {
             AddressViewModel model = new AddressViewModel();
@@ -74,7 +92,10 @@ namespace SBS.Core.Services
             }
             return model;
         }
-
+        /// <summary>
+        /// Get list of all Addresses
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<AddressViewModel>> GetAll()
         {
             return await repo.AllReadonly<Address>()
@@ -99,7 +120,11 @@ namespace SBS.Core.Services
                     IsActive = a.IsActive,
                 }).ToListAsync();
         }
-
+        /// <summary>
+        /// Updates an Address
+        /// </summary>
+        /// <param name="addressViewModel"></param>
+        /// <returns></returns>
         public async Task Update(AddressViewModel addressViewModel)
         {
             Sanitizer.Sanitize(addressViewModel);

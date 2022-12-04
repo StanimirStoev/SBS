@@ -7,15 +7,27 @@ using SBS.Tools;
 
 namespace SBS.Core.Services
 {
+    /// <summary>
+    /// Service for Sells
+    /// </summary>
     public class SellService : ISellService
     {
         private readonly ISbsRepository repo;
 
+        /// <summary>
+        /// Init service
+        /// </summary>
+        /// <param name="repo"></param>
         public SellService(ISbsRepository repo)
         {
             this.repo = repo;
         }
 
+        /// <summary>
+        /// Add Sell in repository
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         public async Task Add(SellViewModel viewModel)
         {
             Sanitizer.Sanitize(viewModel);
@@ -55,6 +67,11 @@ namespace SBS.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Delete Sell from repository
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task Delete(Guid id)
         {
             var sell = await repo.All<Sell>()
@@ -68,6 +85,11 @@ namespace SBS.Core.Services
             }
         }
 
+        /// <summary>
+        /// Gets sell from Transfer by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<SellViewModel> Get(Guid id)
         {
             SellViewModel model = new SellViewModel();
@@ -141,6 +163,10 @@ namespace SBS.Core.Services
             return model;
         }
 
+        // <summary>
+        /// Get list of all Sells
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<SellViewModel>> GetAll()
         {
             List<SellViewModel> result = await repo.AllReadonly<Sell>()
@@ -192,6 +218,11 @@ namespace SBS.Core.Services
             return result;
         }
 
+        /// <summary>
+        /// Update Sell in repository
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         public async Task Update(SellViewModel viewModel)
         {
             Sanitizer.Sanitize(viewModel);

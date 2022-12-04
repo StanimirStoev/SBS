@@ -1,0 +1,1093 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SBS.Infrastructure</name>
+    </assembly>
+    <members>
+        <member name="T:SBS.Infrastructure.Constants.DataConstants">
+            <summary>
+            Constants for Data layer
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Constants.DataConstants.Address">
+            <summary>
+            Address constants
+            </summary>
+        </member>
+        <member name="F:SBS.Infrastructure.Constants.DataConstants.Address.AddressLineMaxLenght">
+            <summary>
+            Max Address line lenght
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Constants.DataConstants.Article">
+            <summary>
+            Article constants
+            </summary>
+        </member>
+        <member name="F:SBS.Infrastructure.Constants.DataConstants.Article.NameMaxLenght">
+            <summary>
+            Max Article Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Infrastructure.Constants.DataConstants.Article.ModelMaxLenght">
+            <summary>
+            Max Article Model lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Infrastructure.Constants.DataConstants.Article.TitleMaxLenght">
+            <summary>
+            Max Article Title lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Infrastructure.Constants.DataConstants.Article.DescriptionMaxLenght">
+            <summary>
+            Max Article Description lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Infrastructure.Constants.DataConstants.Article.DeliveryNumberMaxLenght">
+            <summary>
+            Max Article DeliveryNumber lenght
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Constants.DataConstants.City">
+            <summary>
+            City constants
+            </summary>
+        </member>
+        <member name="F:SBS.Infrastructure.Constants.DataConstants.City.NameMaxLenght">
+            <summary>
+            Max City Name lenght
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Constants.DataConstants.Contragent">
+            <summary>
+            Conragent constants
+            </summary>
+        </member>
+        <member name="F:SBS.Infrastructure.Constants.DataConstants.Contragent.FirstNameMaxLenght">
+            <summary>
+            Max Contragent First Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Infrastructure.Constants.DataConstants.Contragent.LastNameMaxLenght">
+            <summary>
+            Max Contragent Last Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Infrastructure.Constants.DataConstants.Contragent.VatNumberMaxLenght">
+            <summary>
+            Max Contragent VAT number lenght
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Constants.DataConstants.Country">
+            <summary>
+            Country constants
+            </summary>
+        </member>
+        <member name="F:SBS.Infrastructure.Constants.DataConstants.Country.NameMaxLenght">
+            <summary>
+            Max Country Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Infrastructure.Constants.DataConstants.Country.CodeMaxLenght">
+            <summary>
+            Max Country Code lenght
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Constants.DataConstants.Store">
+            <summary>
+            Store constants
+            </summary>
+        </member>
+        <member name="F:SBS.Infrastructure.Constants.DataConstants.Store.NameMaxLenght">
+            <summary>
+            Max Country Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Infrastructure.Constants.DataConstants.Store.DescriptionMaxLenght">
+            <summary>
+            Max Country Description lenght
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Constants.DataConstants.Unit">
+            <summary>
+            Unit constants
+            </summary>
+        </member>
+        <member name="F:SBS.Infrastructure.Constants.DataConstants.Unit.NameMaxLenght">
+            <summary>
+            Max Unit Name lenght
+            </summary>
+        </member>
+        <member name="F:SBS.Infrastructure.Constants.DataConstants.Unit.DescriptionMaxLenght">
+            <summary>
+            Max Unit Description lenght
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.ApplicationDbContext">
+            <summary>
+            Database context for application
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.ApplicationDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{SBS.Infrastructure.Data.ApplicationDbContext})">
+            <summary>
+            Initialise 
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.ApplicationDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Prepare Database context
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.ApplicationDbContext.Addresses">
+            <summary>
+            Present Address entity data.
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.ApplicationDbContext.Articles">
+            <summary>
+            Present Articles entity data.
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.ApplicationDbContext.Cities">
+            <summary>
+            Present Cities entity data.
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.ApplicationDbContext.Contragents">
+            <summary>
+            Present Contragents entity data.
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.ApplicationDbContext.Countries">
+            <summary>
+            Present Countries entity data.
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.ApplicationDbContext.Stores">
+            <summary>
+            Present Stores entity data.
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.ApplicationDbContext.Units">
+            <summary>
+            Present Units entity data.
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.ApplicationDbContext.Deliveries">
+            <summary>
+            Present Deliveries entity data.
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.ApplicationDbContext.DeliveryDetails">
+            <summary>
+            Present DeliveryDetails entity data.
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.ApplicationDbContext.PartidesInStores">
+            <summary>
+            Present PartidesInStores entity data.
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.ApplicationDbContext.Transfers">
+            <summary>
+            Present Transfers entity data.
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.ApplicationDbContext.TransferDetails">
+            <summary>
+            Present TransferDetails entity data.
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.ApplicationDbContext.Sells">
+            <summary>
+            Present Sells entity data.
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.ApplicationDbContext.SellDetails">
+            <summary>
+            Present SellDetails entity data.
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Common.IRepository">
+            <summary>
+            Abstraction of repository access methods
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.IRepository.All``1">
+            <summary>
+            All records in a table
+            </summary>
+            <returns>Queryable expression tree</returns>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.IRepository.All``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            All records in a table
+            </summary>
+            <returns>Queryable expression tree</returns>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.IRepository.AllReadonly``1">
+            <summary>
+            The result collection won't be tracked by the context
+            </summary>
+            <returns>Expression tree</returns>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.IRepository.AllReadonly``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            The result collection won't be tracked by the context
+            </summary>
+            <returns>Expression tree</returns>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.IRepository.GetByIdAsync``1(System.Object)">
+            <summary>
+            Gets specific record from database by primary key
+            </summary>
+            <param name="id">record identificator</param>
+            <returns>Single record</returns>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.IRepository.AddAsync``1(``0)">
+            <summary>
+            Adds entity to the database
+            </summary>
+            <param name="entity">Entity to add</param>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.IRepository.AddRangeAsync``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Ads collection of entities to the database
+            </summary>
+            <param name="entities">Enumerable list of entities</param>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.IRepository.Update``1(``0)">
+            <summary>
+            Updates a record in database
+            </summary>
+            <param name="entity">Entity for record to be updated</param>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.IRepository.UpdateRange``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Updates set of records in the database
+            </summary>
+            <param name="entities">Enumerable collection of entities to be updated</param>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.IRepository.DeleteAsync``1(System.Object)">
+            <summary>
+            Deletes a record from database
+            </summary>
+            <param name="id">Identificator of record to be deleted</param>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.IRepository.Delete``1(``0)">
+            <summary>
+            Deletes a record from database
+            </summary>
+            <param name="entity">Entity representing record to be deleted</param>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.IRepository.Detach``1(``0)">
+            <summary>
+            Detaches given entity from the context
+            </summary>
+            <param name="entity">Entity to be detached</param>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.IRepository.SaveChangesAsync">
+            <summary>
+            Saves all made changes in trasaction
+            </summary>
+            <returns>Error code</returns>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Common.ISbsRepository">
+            <summary>
+            Abstraction of repository access methods
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Common.Repository">
+            <summary>
+            Implementation of repository access methods
+            for Relational Database Engine
+            </summary>
+            <typeparam name="T">Type of the data table to which 
+            current reposity is attached</typeparam>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Common.Repository.Context">
+            <summary>
+            Entity framework DB context holding connection information and properties
+            and tracking entity states 
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.Repository.DbSet``1">
+            <summary>
+            Representation of table in database
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.Repository.AddAsync``1(``0)">
+            <summary>
+            Adds entity to the database
+            </summary>
+            <param name="entity">Entity to add</param>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.Repository.AddRangeAsync``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Ads collection of entities to the database
+            </summary>
+            <param name="entities">Enumerable list of entities</param>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.Repository.All``1">
+            <summary>
+            All records in a table
+            </summary>
+            <returns>Queryable expression tree</returns>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.Repository.AllReadonly``1">
+            <summary>
+            The result collection won't be tracked by the context
+            </summary>
+            <returns>Expression tree</returns>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.Repository.DeleteAsync``1(System.Object)">
+            <summary>
+            Deletes a record from database
+            </summary>
+            <param name="id">Identificator of record to be deleted</param>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.Repository.Delete``1(``0)">
+            <summary>
+            Deletes a record from database
+            </summary>
+            <param name="entity">Entity representing record to be deleted</param>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.Repository.Detach``1(``0)">
+            <summary>
+            Detaches given entity from the context
+            </summary>
+            <param name="entity">Entity to be detached</param>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.Repository.Dispose">
+            <summary>
+            Disposing the context when it is not neede
+            Don't have to call this method explicitely
+            Leave it to the IoC container
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.Repository.GetByIdAsync``1(System.Object)">
+            <summary>
+            Gets specific record from database by primary key
+            </summary>
+            <param name="id">record identificator</param>
+            <returns>Single record</returns>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.Repository.SaveChangesAsync">
+            <summary>
+            Saves all made changes in trasaction
+            </summary>
+            <returns>Error code</returns>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.Repository.Update``1(``0)">
+            <summary>
+            Updates a record in database
+            </summary>
+            <param name="entity">Entity for record to be updated</param>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.Repository.UpdateRange``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Updates set of records in the database
+            </summary>
+            <param name="entities">Enumerable collection of entities to be updated</param>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Common.SbsRepository">
+            <summary>
+            Repository access methods
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Common.SbsRepository.#ctor(SBS.Infrastructure.Data.ApplicationDbContext)">
+            <summary>
+            Initialise Repository 
+            </summary>
+            <param name="context">Database context</param>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Models.Account.ApplicationUser">
+            <summary>
+            Extended IdentityUser
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Account.ApplicationUser.FirstName">
+            <summary>
+            First Name of ApplicationUser
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Account.ApplicationUser.LastName">
+            <summary>
+            Last Name of ApplicationUser
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Models.Address">
+            <summary>
+            Data for a Address
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Address.Id">
+            <summary>
+            Address Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Address.CountryId">
+            <summary>
+            Country Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Address.Country">
+            <summary>
+            Country data
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Address.CityId">
+            <summary>
+            City Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Address.City">
+            <summary>
+            City data
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Address.AddressLine1">
+            <summary>
+             Line 1 of Address
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Address.AddressLine2">
+            <summary>
+             Line 2 of Address
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Address.ContragentId">
+            <summary>
+            Contragent Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Address.Contragent">
+            <summary>
+            Contragent data
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Address.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Models.Article">
+            <summary>
+            Data for a Article
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Models.Article.#ctor">
+            <summary>
+            init new Article
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Article.Id">
+            <summary>
+            Article Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Article.Name">
+            <summary>
+            Name of Article
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Article.Model">
+            <summary>
+            Model of Article
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Article.Title">
+            <summary>
+            Title of Article
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Article.Description">
+            <summary>
+            Description of Article
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Article.DeliveryNumber">
+            <summary>
+            Delivery Number of Article
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Article.UnitId">
+            <summary>
+            Unit Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Article.Unit">
+            <summary>
+            Unit Data
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Article.Partides">
+            <summary>
+            List Partides (Delivery Details)
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Article.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Models.City">
+            <summary>
+            Data for a City
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Models.City.#ctor">
+            <summary>
+            Init new city
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.City.Id">
+            <summary>
+            City Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.City.Name">
+            <summary>
+            Name of City
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.City.CountryId">
+            <summary>
+            Country Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.City.Country">
+            <summary>
+            Countri data
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.City.Addresses">
+            <summary>
+            List of Addresses
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.City.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Models.Contragent">
+            <summary>
+            Data for a Contragent (Client or Supplier)
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Models.Contragent.#ctor">
+            <summary>
+            Init new Contragent
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Contragent.Id">
+            <summary>
+            Contragent Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Contragent.FirstName">
+            <summary>
+            First Name of Contragent
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Contragent.LastName">
+            <summary>
+            Last Name of Contragent
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Contragent.Addresses">
+            <summary>
+            List os addresses for the contragent
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Contragent.VatNumber">
+            <summary>
+            Vat Number of Contragent (EGN when private person)
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Contragent.IsClient">
+            <summary>
+            Flag is the contragent can be client
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Contragent.IsSupplier">
+            <summary>
+            Flag is the contragent can be supplier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Contragent.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Models.Country">
+            <summary>
+            Data for a Country
+            </summary>
+        </member>
+        <member name="M:SBS.Infrastructure.Data.Models.Country.#ctor">
+            <summary>
+            Initialise new Country
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Country.Id">
+            <summary>
+            Country Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Country.Name">
+            <summary>
+            Name of Country
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Country.Code">
+            <summary>
+            Code of Country
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Country.IsEu">
+            <summary>
+            Flag for EU countries
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Country.Cities">
+            <summary>
+            List of Cities
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Country.Addresses">
+            <summary>
+            List of Addresses
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Country.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Models.Delivery">
+            <summary>
+            Data for a Delivery
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Delivery.Id">
+            <summary>
+            Delivery Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Delivery.ContragentId">
+            <summary>
+            Contargent (Supplier) Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Delivery.Contragent">
+            <summary>
+            Contargent (Supplier) data
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Delivery.CreateDatetime">
+            <summary>
+            DateTime of creation
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Delivery.StoreId">
+            <summary>
+            Store Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Delivery.Store">
+            <summary>
+            Store data
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Delivery.Details">
+            <summary>
+            Details List
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Delivery.IsConfirmed">
+            <summary>
+            Flag for confermrd sell 
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Delivery.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Models.DeliveryDetail">
+            <summary>
+            Deatails for the Delivery
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.DeliveryDetail.Id">
+            <summary>
+            Delivery Detail Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.DeliveryDetail.DeliveryId">
+            <summary>
+            Parent Delivery Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.DeliveryDetail.Delivery">
+            <summary>
+            Parent Delivery data
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.DeliveryDetail.ArticleId">
+            <summary>
+            Article Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.DeliveryDetail.Article">
+            <summary>
+            Article data
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.DeliveryDetail.UnitId">
+            <summary>
+            Unit Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.DeliveryDetail.Unit">
+            <summary>
+            Unit data
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.DeliveryDetail.Qty">
+            <summary>
+            Delivered Quantity
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.DeliveryDetail.Price">
+            <summary>
+            Delivered Price
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.DeliveryDetail.PartidesInStores">
+            <summary>
+            Partides in stores data
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.DeliveryDetail.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Models.PartidesInStore">
+            <summary>
+            Partides quantity in the stores
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.PartidesInStore.StoreId">
+            <summary>
+            Store Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.PartidesInStore.Store">
+            <summary>
+            Store Data
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.PartidesInStore.DeliveryDetailId">
+            <summary>
+            DeliveryDetail (Partide) Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.PartidesInStore.DeliveryDetail">
+            <summary>
+            DeliveryDetail (Partide) Data
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.PartidesInStore.Qty">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Models.Sell">
+            <summary>
+            Data for a Sell
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Sell.Id">
+            <summary>
+            Sell Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Sell.ContragentId">
+            <summary>
+            Contargent (Client) Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Sell.Contragent">
+            <summary>
+            Contargent (Client)
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Sell.CreateDatetime">
+            <summary>
+            DateTime of creation
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Sell.StoreId">
+            <summary>
+            Store Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Sell.Store">
+            <summary>
+            Store Data
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Sell.Details">
+            <summary>
+            Details List
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Sell.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Models.SellDetail">
+            <summary>
+            Deatails for the Sells
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.SellDetail.Id">
+            <summary>
+            Sell Detail Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.SellDetail.SellId">
+            <summary>
+            Parent Sell Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.SellDetail.Sell">
+            <summary>
+            Parent Sell 
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.SellDetail.StoreId">
+            <summary>
+            Store Sell Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.SellDetail.DeliveryDetailId">
+            <summary>
+            DeliveryDetail Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.SellDetail.PartidesInStore">
+            <summary>
+            Partide data
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.SellDetail.UnitId">
+            <summary>
+            Unit Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.SellDetail.Unit">
+            <summary>
+            Unit 
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.SellDetail.Qty">
+            <summary>
+            Quantity to sell
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.SellDetail.Price">
+            <summary>
+            Sell price
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.SellDetail.PartidesInStores">
+            <summary>
+            Partides in store
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.SellDetail.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Models.Store">
+            <summary>
+            Store Data
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Store.Id">
+            <summary>
+            Store Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Store.Name">
+            <summary>
+            Store Name
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Store.Description">
+            <summary>
+            Store Description
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Store.AddressId">
+            <summary>
+            Store Address Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Store.Address">
+            <summary>
+            Store Address
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Store.IsActive">
+            <summary>
+            Flag for deleted/in use Store
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Store.PartidesInStores">
+            <summary>
+            List to PartidesInStore
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Store.TransferStoresFrom">
+            <summary>
+            List to TransferStoresFrom
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Store.TransferStoresTo">
+            <summary>
+            List to TransferStoresTo
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Models.Transfer">
+            <summary>
+            Transfer Data
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Transfer.Id">
+            <summary>
+            Tarnsfer Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Transfer.CreateDatetime">
+            <summary>
+            Tarnsfer Date of creation
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Transfer.FromStoreId">
+            <summary>
+            Tarnsfer source store Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Transfer.FromStore">
+            <summary>
+            Tarnsfer source store
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Transfer.ToStoreId">
+            <summary>
+            Tarnsfer destination store Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Transfer.ToStore">
+            <summary>
+            Tarnsfer destination store 
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Transfer.Details">
+            <summary>
+            List of transfer details 
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Transfer.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Models.TransferDetail">
+            <summary>
+            Deatails for the Transfers
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.TransferDetail.Id">
+            <summary>
+            Tarnsfer Detail Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.TransferDetail.TransferId">
+            <summary>
+            Parent Tarnsfer Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.TransferDetail.Transfer">
+            <summary>
+            Parent Tarnsfer
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.TransferDetail.DeliveryDetailId">
+            <summary>
+            Delivery Detail Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.TransferDetail.DeliveryDetail">
+            <summary>
+            Delivery Detail
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.TransferDetail.Qty">
+            <summary>
+            Transfered Quantity
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.TransferDetail.IsActive">
+            <summary>
+            Flag for deleted/in use 
+            </summary>
+        </member>
+        <member name="T:SBS.Infrastructure.Data.Models.Unit">
+            <summary>
+            Measuring units
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Unit.Id">
+            <summary>
+            Unit Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Unit.Name">
+            <summary>
+            Unit Short Name
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Unit.Description">
+            <summary>
+            Unit Description
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Unit.DeliveryDetails">
+            <summary>
+            List of delivery details
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Unit.SellDetails">
+            <summary>
+            List of sell details
+            </summary>
+        </member>
+        <member name="P:SBS.Infrastructure.Data.Models.Unit.IsActive">
+            <summary>
+            Flag for deleted/in use Unit
+            </summary>
+        </member>
+    </members>
+</doc>

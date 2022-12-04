@@ -1,0 +1,1087 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SBS</name>
+    </assembly>
+    <members>
+        <member name="T:SBS.Areas.Administration.Constants.AdministrationConstants">
+            <summary>
+            Constants for admin constants
+            </summary>
+        </member>
+        <member name="F:SBS.Areas.Administration.Constants.AdministrationConstants.AreaName">
+            <summary>
+            Name of area
+            </summary>
+        </member>
+        <member name="F:SBS.Areas.Administration.Constants.AdministrationConstants.AdminRoleName">
+            <summary>
+            Name of admin role
+            </summary>
+        </member>
+        <member name="F:SBS.Areas.Administration.Constants.AdministrationConstants.AdminEmail">
+            <summary>
+            Admin email
+            </summary>
+        </member>
+        <member name="T:SBS.Areas.Administration.Controllers.AdminController">
+            <summary>
+            Base admin data
+            </summary>
+        </member>
+        <member name="T:SBS.Areas.Administration.Controllers.HomeController">
+            <summary>
+            Home Admin data
+            </summary>
+        </member>
+        <member name="M:SBS.Areas.Administration.Controllers.HomeController.Index">
+            <summary>
+            Prepare data for main admin view
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Areas.Administration.Controllers.RoleController">
+            <summary>
+            Controller for roles
+            </summary>
+        </member>
+        <member name="M:SBS.Areas.Administration.Controllers.RoleController.#ctor(Microsoft.AspNetCore.Identity.RoleManager{Microsoft.AspNetCore.Identity.IdentityRole})">
+            <summary>
+            Init controller
+            </summary>
+            <param name="roleManager"></param>
+        </member>
+        <member name="M:SBS.Areas.Administration.Controllers.RoleController.Index">
+            <summary>
+            Prepare data for roles view
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Areas.Administration.Controllers.RoleController.Create">
+            <summary>
+            Prepare data for create new role view 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Areas.Administration.Controllers.RoleController.Create(SBS.Areas.Administration.Models.RoleViewModel)">
+            <summary>
+            Process Create new role view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Areas.Administration.Controllers.RoleController.Edit(System.Guid)">
+            <summary>
+            Prepare data for edit view
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Areas.Administration.Controllers.RoleController.EditAsync(SBS.Areas.Administration.Models.RoleViewModel)">
+            <summary>
+            Process Edit view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Areas.Administration.Controllers.UserRoleController">
+            <summary>
+            Controller for Users with roles
+            </summary>
+        </member>
+        <member name="M:SBS.Areas.Administration.Controllers.UserRoleController.#ctor(Microsoft.AspNetCore.Identity.UserManager{SBS.Infrastructure.Data.Models.Account.ApplicationUser},Microsoft.AspNetCore.Identity.RoleManager{Microsoft.AspNetCore.Identity.IdentityRole})">
+            <summary>
+            Init controller
+            </summary>
+            <param name="userManager"></param>
+            <param name="roleManager"></param>
+        </member>
+        <member name="M:SBS.Areas.Administration.Controllers.UserRoleController.Index">
+            <summary>
+            Prepare data for Users with roles view
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Areas.Administration.Controllers.UserRoleController.Edit(System.Guid)">
+            <summary>
+            Prepare data for edit view 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Areas.Administration.Controllers.UserRoleController.EditAsync(SBS.Areas.Administration.Models.UserRoleViewModel)">
+            <summary>
+            Process Edit view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Areas.Administration.Controllers.UserRoleController.GetAllRoleViewModels">
+            <summary>
+            Get roles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Areas.Administration.Models.RoleViewModel">
+            <summary>
+            Role data
+            </summary>
+        </member>
+        <member name="P:SBS.Areas.Administration.Models.RoleViewModel.Id">
+            <summary>
+            Role Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Areas.Administration.Models.RoleViewModel.Name">
+            <summary>
+            Role Name
+            </summary>
+        </member>
+        <member name="P:SBS.Areas.Administration.Models.RoleViewModel.Selected">
+            <summary>
+            Flag for Role is selected
+            </summary>
+        </member>
+        <member name="T:SBS.Areas.Administration.Models.UserRoleViewModel">
+            <summary>
+            Data for a User with rolesRole
+            </summary>
+        </member>
+        <member name="P:SBS.Areas.Administration.Models.UserRoleViewModel.Id">
+            <summary>
+            User Identifier
+            </summary>
+        </member>
+        <member name="P:SBS.Areas.Administration.Models.UserRoleViewModel.Name">
+            <summary>
+            User Name
+            </summary>
+        </member>
+        <member name="P:SBS.Areas.Administration.Models.UserRoleViewModel.Roles">
+            <summary>
+            Roles as SelectListItems
+            </summary>
+        </member>
+        <member name="T:SBS.Controllers.AccountController">
+            <summary>
+            Controller for Addresses
+            </summary>
+        </member>
+        <member name="M:SBS.Controllers.AccountController.#ctor(Microsoft.AspNetCore.Identity.UserManager{SBS.Infrastructure.Data.Models.Account.ApplicationUser},Microsoft.AspNetCore.Identity.SignInManager{SBS.Infrastructure.Data.Models.Account.ApplicationUser})">
+            <summary>
+            Init controller
+            </summary>
+            <param name="userManager"></param>
+            <param name="signInManager"></param>
+        </member>
+        <member name="M:SBS.Controllers.AccountController.Register">
+            <summary>
+            Prepare data for new regestration view
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.AccountController.Register(SBS.Models.RegisterViewModel)">
+            <summary>
+            Process data for new regestration
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.AccountController.Login(System.String)">
+            <summary>
+            Prepare data for login view
+            </summary>
+            <param name="returnUrl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.AccountController.Login(SBS.Models.LoginViewModel)">
+            <summary>
+            Process data for login
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.AccountController.Logout">
+            <summary>
+            Process data for logout
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Controllers.AddressController">
+            <summary>
+            Controller for Addresses
+            </summary>
+        </member>
+        <member name="M:SBS.Controllers.AddressController.#ctor(SBS.Core.Contract.IAddressService)">
+            <summary>
+            Init controller
+            </summary>
+            <param name="addressService"></param>
+        </member>
+        <member name="M:SBS.Controllers.AddressController.Index">
+            <summary>
+            Prepare data for addresses view
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.AddressController.Create">
+            <summary>
+            Prepare data for create new address view
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.AddressController.Create(SBS.Core.Models.AddressViewModel)">
+            <summary>
+            Process Create new address view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.AddressController.Edit(System.Guid)">
+            <summary>
+            Prepare data for edit view
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.AddressController.EditAsync(SBS.Core.Models.AddressViewModel)">
+            <summary>
+            Process Edit view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.AddressController.Delete(System.Guid)">
+            <summary>
+            Process delete view data
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Controllers.ArticleController">
+            <summary>
+            Controller for Articles
+            </summary>
+        </member>
+        <member name="M:SBS.Controllers.ArticleController.#ctor(SBS.Core.Contract.IArticleService,SBS.Core.Contract.IUnitService)">
+            <summary>
+            Init controller
+            </summary>
+            <param name="articleService"></param>
+            <param name="unitService"></param>
+        </member>
+        <member name="M:SBS.Controllers.ArticleController.Index(System.String)">
+            <summary>
+            Prepare data for articles view
+            </summary>
+            <param name="sortExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.ArticleController.CreateAsync">
+            <summary>
+            Prepare data for create new article view 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.ArticleController.Create(SBS.Core.Models.ArticleViewModel)">
+            <summary>
+            Process Create new city view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.ArticleController.Edit(System.Guid)">
+            <summary>
+            Prepare data for edit view
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.ArticleController.EditAsync(SBS.Core.Models.ArticleViewModel)">
+            <summary>
+            Process Edit view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.ArticleController.Delete(System.Guid)">
+            <summary>
+            Process delete view data
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.ArticleController.GetUnits">
+            <summary>
+            Get Units as SelectListItems
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Controllers.ArticlesInStockController">
+            <summary>
+            Controller for article in stores
+            </summary>
+        </member>
+        <member name="M:SBS.Controllers.ArticlesInStockController.#ctor(SBS.Core.Contract.IArticlesInStockService)">
+            <summary>
+            Init controller
+            </summary>
+            <param name="articleService"></param>
+        </member>
+        <member name="M:SBS.Controllers.ArticlesInStockController.IndexAsync">
+            <summary>
+            Prepare data for article in stores view
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Controllers.CityController">
+            <summary>
+            Controller for Cities
+            </summary>
+        </member>
+        <member name="M:SBS.Controllers.CityController.#ctor(SBS.Core.Contract.ICityService)">
+            <summary>
+            Init Controller
+            </summary>
+            <param name="cityService"></param>
+        </member>
+        <member name="M:SBS.Controllers.CityController.Index">
+            <summary>
+            Prepare data for cities view
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.CityController.Create">
+            <summary>
+            Prepare data for create new city view 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.CityController.Create(SBS.Core.Models.CityViewModelCreate)">
+            <summary>
+            Process Create new city view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.CityController.Edit(System.Guid)">
+            <summary>
+            Prepare data for edit view 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.CityController.EditAsync(SBS.Core.Models.CityViewModelEdit)">
+            <summary>
+            Process Edit view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.CityController.Delete(System.Guid)">
+            <summary>
+            Process delete view data
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Controllers.ContragentController">
+            <summary>
+            Controller for Deliveries
+            </summary>
+        </member>
+        <member name="M:SBS.Controllers.ContragentController.#ctor(SBS.Core.Contract.IContragentService,SBS.Core.Contract.ICountryService,SBS.Core.Contract.ICityService)">
+            <summary>
+            Init conreoller
+            </summary>
+            <param name="service"></param>
+            <param name="countryService"></param>
+            <param name="cityService"></param>
+        </member>
+        <member name="M:SBS.Controllers.ContragentController.Index(System.String)">
+            <summary>
+            Prepare data for contragents view
+            </summary>
+            <param name="sortExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.ContragentController.Create">
+            <summary>
+            Prepare data for create new contragent view 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.ContragentController.Create(SBS.Core.Models.ContragentViewModel)">
+            <summary>
+            Process Create new contragent view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.ContragentController.Edit(System.Guid)">
+            <summary>
+            Prepare data for edit view 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.ContragentController.EditAsync(SBS.Core.Models.ContragentViewModel)">
+            <summary>
+            Process Edit view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.ContragentController.Delete(System.Guid)">
+            <summary>
+            Process delete view data
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.ContragentController.GetCities(System.Guid)">
+            <summary>
+            Get cities
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.ContragentController.GetCountries">
+            <summary>
+            Get countries as SelectListItems
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.ContragentController.GetCities">
+            <summary>
+            Get cities as SelectListItems
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Controllers.CountryController">
+            <summary>
+            Controller for Deliveries
+            </summary>
+        </member>
+        <member name="M:SBS.Controllers.CountryController.#ctor(SBS.Core.Contract.ICountryService)">
+            <summary>
+            Init controller
+            </summary>
+            <param name="countryService"></param>
+        </member>
+        <member name="M:SBS.Controllers.CountryController.Index">
+            <summary>
+            Prepare data for countries view
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.CountryController.Create">
+            <summary>
+            Prepare data for create new country view 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.CountryController.Create(SBS.Core.Models.CountryViewModel)">
+            <summary>
+            Process Create new country view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.CountryController.Edit(System.Guid)">
+            <summary>
+            Prepare data for edit view 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.CountryController.EditAsync(SBS.Core.Models.CountryViewModel)">
+            <summary>
+            Process Edit view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.CountryController.Delete(System.Guid)">
+            <summary>
+            Process delete view data
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Controllers.DeliveryController">
+            <summary>
+            Controller for Deliveries
+            </summary>
+        </member>
+        <member name="M:SBS.Controllers.DeliveryController.#ctor(SBS.Core.Contract.IDeliveryService,SBS.Core.Contract.IContragentService,SBS.Core.Contract.IStoreService,SBS.Core.Contract.IArticleService,SBS.Core.Contract.IUnitService)">
+            <summary>
+            Init Controller
+            </summary>
+            <param name="service"></param>
+            <param name="contragentService"></param>
+            <param name="storeService"></param>
+            <param name="articleService"></param>
+            <param name="unitService"></param>
+        </member>
+        <member name="M:SBS.Controllers.DeliveryController.IndexAsync">
+            <summary>
+            Prepare data for Deliveries view 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.DeliveryController.CreateAsync">
+            <summary>
+            Prepare data for create new Delivery view 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.DeliveryController.Create(SBS.Core.Models.DeliveryViewModel)">
+            <summary>
+            Process Create new Delivery view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.DeliveryController.Details(System.Guid)">
+            <summary>
+            Prepare data for details view 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.DeliveryController.Edit(System.Guid)">
+            <summary>
+            Prepare data for edit view 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.DeliveryController.EditAsync(SBS.Core.Models.DeliveryViewModel)">
+            <summary>
+            Process Edit view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.DeliveryController.Delete(System.Guid)">
+            <summary>
+            Prepare data for delete view 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.DeliveryController.Delete(SBS.Core.Models.DeliveryViewModel)">
+            <summary>
+            Process delete view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.DeliveryController.ConfirmAsync(SBS.Core.Models.DeliveryViewModel)">
+            <summary>
+            Process conferming view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.DeliveryController.GetContragents">
+            <summary>
+            Get contragents as SelectListItems
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.DeliveryController.GetStores">
+            <summary>
+            Get stores as SelectListItems
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.DeliveryController.GetArticles">
+            <summary>
+            Get Articles as SelectListItems
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.DeliveryController.GetUnits">
+            <summary>
+            Get units as SelectListItems
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Controllers.HomeController">
+            <summary>
+            Controller for Home view
+            </summary>
+        </member>
+        <member name="M:SBS.Controllers.HomeController.#ctor(Microsoft.Extensions.Logging.ILogger{SBS.Controllers.HomeController})">
+            <summary>
+            Init controller
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="M:SBS.Controllers.HomeController.Index">
+            <summary>
+            Prepare data for index view
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.HomeController.Privacy">
+            <summary>
+            Prepare data for privacy view
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.HomeController.Error">
+            <summary>
+            Prepare data for Error view
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.HomeController.AccessDenied">
+            <summary>
+            Prepare data for Access Denied view
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Controllers.SellController">
+            <summary>
+            Controller for Sells
+            </summary>
+        </member>
+        <member name="M:SBS.Controllers.SellController.#ctor(SBS.Core.Contract.ISellService,SBS.Core.Contract.IContragentService,SBS.Core.Contract.IStoreService,SBS.Core.Contract.IPartidesInStoresService,SBS.Core.Contract.IUnitService,SBS.Core.Contract.IDeliveryService)">
+            <summary>
+            Init controller
+            </summary>
+            <param name="service"></param>
+            <param name="contragentService"></param>
+            <param name="storeService"></param>
+            <param name="partidesInStoresService"></param>
+            <param name="unitService"></param>
+            <param name="deliveryService"></param>
+        </member>
+        <member name="M:SBS.Controllers.SellController.IndexAsync">
+            <summary>
+            Prepare data for Sells view 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.SellController.CreateAsync">
+            <summary>
+            Prepare data for create new Sell view 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.SellController.Create(SBS.Core.Models.SellViewModel)">
+            <summary>
+            Process Create new Sell view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.SellController.Details(System.Guid)">
+            <summary>
+            Prepare data for details Sell view 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.SellController.Edit(System.Guid)">
+            <summary>
+            Prepare data for Edit view
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.SellController.EditAsync(SBS.Core.Models.SellViewModel)">
+            <summary>
+            Process Edit view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.SellController.Delete(System.Guid)">
+            <summary>
+            Prepare data for Delete view
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.SellController.Delete(SBS.Core.Models.SellViewModel)">
+            <summary>
+            Process Delete view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.SellController.GetArticlesInStore(System.Guid)">
+            <summary>
+            Get all articles in store
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.SellController.GetUnitForArticle(System.Guid)">
+            <summary>
+            Get article Unit
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.SellController.GetUnitIdForArticle(System.Guid)">
+            <summary>
+            Get article Unit Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.SellController.GetContragents">
+            <summary>
+            Get contragents as SelectListItems
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.SellController.GetStores">
+            <summary>
+            Get stores as SelectListItems
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.SellController.GetPartidesInStore(System.Nullable{System.Guid})">
+            <summary>
+            Get partides in store as SelectListItems
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.SellController.GetUnits">
+            <summary>
+            Get Units as SelectListItems
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Controllers.StoreController">
+            <summary>
+            Controller for Stores
+            </summary>
+        </member>
+        <member name="M:SBS.Controllers.StoreController.#ctor(SBS.Core.Contract.IStoreService,SBS.Core.Contract.ICountryService,SBS.Core.Contract.ICityService)">
+            <summary>
+            Init controller
+            </summary>
+            <param name="service"></param>
+            <param name="countryService"></param>
+            <param name="cityService"></param>
+        </member>
+        <member name="M:SBS.Controllers.StoreController.Index">
+            <summary>
+            Prepare data for Stores view 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.StoreController.CreateAsync">
+            <summary>
+            Prepare data for create new Store view 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.StoreController.Create(SBS.Core.Models.StoreViewModel)">
+            <summary>
+            Process Create Store view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.StoreController.Edit(System.Guid)">
+            <summary>
+            Prepare edit view data
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.StoreController.EditAsync(SBS.Core.Models.StoreViewModel)">
+            <summary>
+            Process edit data from view
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.StoreController.Delete(System.Guid)">
+            <summary>
+            Process delete data from view
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.StoreController.GetCities(System.Guid)">
+            <summary>
+            Get all cities
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.StoreController.GetCountries">
+            <summary>
+            Get all countries
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.StoreController.GetCities">
+            <summary>
+            Get Cities
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Controllers.TransferController">
+            <summary>
+            Controller for Transfers
+            </summary>
+        </member>
+        <member name="M:SBS.Controllers.TransferController.#ctor(SBS.Core.Contract.ITransferService,SBS.Core.Contract.IArticleService,SBS.Core.Contract.IStoreService,SBS.Core.Contract.IUnitService,SBS.Core.Contract.IPartidesInStoresService,SBS.Core.Contract.IDeliveryService)">
+            <summary>
+            Init Controller
+            </summary>
+            <param name="service"></param>
+            <param name="articleService"></param>
+            <param name="storeService"></param>
+            <param name="unitService"></param>
+            <param name="partidesInStoresService"></param>
+            <param name="deliveryService"></param>
+        </member>
+        <member name="M:SBS.Controllers.TransferController.IndexAsync">
+            <summary>
+            Prepare data for Transfers view 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.TransferController.CreateAsync">
+            <summary>
+            Prepare data for create new Transfer view 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.TransferController.Create(SBS.Core.Models.TransferViewModel)">
+            <summary>
+            Process Create Transfer view data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.TransferController.Details(System.Guid)">
+            <summary>
+            Prepare data for details Transfer view 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.TransferController.GetToStores(System.Guid)">
+            <summary>
+            Get list of possible destination stores
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.TransferController.GetArticlesInStore(System.Guid)">
+            <summary>
+            Get Articles quontity for store
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.TransferController.GetUnitForArticle(System.Guid)">
+            <summary>
+            Get Unit for article
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.TransferController.GetFromStores">
+            <summary>
+            Get All stores that can be used for sources (has 1 or more article in it)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.TransferController.GetPartidesInStore(System.Nullable{System.Guid})">
+            <summary>
+            Get all pertides in store
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.TransferController.GetUnits">
+            <summary>
+            Get list of all units
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Controllers.UnitController">
+            <summary>
+            Controller for Units
+            </summary>
+        </member>
+        <member name="M:SBS.Controllers.UnitController.#ctor(SBS.Core.Contract.IUnitService)">
+            <summary>
+            Init Controller
+            </summary>
+            <param name="service"></param>
+        </member>
+        <member name="M:SBS.Controllers.UnitController.Index(System.String,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Sorted, Filtered and Paged Units List 
+            </summary>
+            <param name="sortExpression"></param>
+            <param name="filterName"></param>
+            <param name="filterDescription"></param>
+            <param name="pg"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.UnitController.Create">
+            <summary>
+            Prepare data for create view
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.UnitController.Create(SBS.Core.Models.UnitViewModel)">
+            <summary>
+            Process Create Unit voew data
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.UnitController.Details(System.Guid)">
+            <summary>
+            Prepare details view data
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.UnitController.Edit(System.Guid)">
+            <summary>
+            Prepare edit view data
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.UnitController.EditAsync(SBS.Core.Models.UnitViewModel)">
+            <summary>
+            Process edit data from view
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.UnitController.Delete(System.Guid)">
+            <summary>
+            Prepare delete view data
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.UnitController.Delete(SBS.Core.Models.UnitViewModel)">
+            <summary>
+            Process delete data from view
+            </summary>
+            <param name="viewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Extentions.ClaimsPrincipalExtension">
+            <summary>
+            Extension for geting user Id from claims
+            </summary>
+        </member>
+        <member name="M:SBS.Extentions.ClaimsPrincipalExtension.Id(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Get UserId
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SBS.Models.ErrorViewModel">
+            <summary>
+            Data for error page
+            </summary>
+        </member>
+        <member name="P:SBS.Models.ErrorViewModel.RequestId">
+            <summary>
+            Id of requested item
+            </summary>
+        </member>
+        <member name="P:SBS.Models.ErrorViewModel.ShowRequestId">
+            <summary>
+            Flag to show requested Id
+            </summary>
+        </member>
+        <member name="T:SBS.Models.LoginViewModel">
+            <summary>
+            Login data
+            </summary>
+        </member>
+        <member name="P:SBS.Models.LoginViewModel.Email">
+            <summary>
+            Email of User
+            </summary>
+        </member>
+        <member name="P:SBS.Models.LoginViewModel.Password">
+            <summary>
+            User Pasword
+            </summary>
+        </member>
+        <member name="P:SBS.Models.LoginViewModel.ReturnUrl">
+            <summary>
+            Data for return URL
+            </summary>
+        </member>
+        <member name="P:SBS.Models.LoginViewModel.RememberMe">
+            <summary>
+            Flag to remember User login data
+            </summary>
+        </member>
+        <member name="T:SBS.Models.RegisterViewModel">
+            <summary>
+            Data for User Registrtion
+            </summary>
+        </member>
+        <member name="P:SBS.Models.RegisterViewModel.Username">
+            <summary>
+            User Name
+            </summary>
+        </member>
+        <member name="P:SBS.Models.RegisterViewModel.Email">
+            <summary>
+            User Emale
+            </summary>
+        </member>
+        <member name="P:SBS.Models.RegisterViewModel.Password">
+            <summary>
+            User Pasword
+            </summary>
+        </member>
+        <member name="P:SBS.Models.RegisterViewModel.PasswordRepeat">
+            <summary>
+            Repeated Pasword
+            </summary>
+        </member>
+        <member name="P:SBS.Models.RegisterViewModel.FirstName">
+            <summary>
+            User First Name
+            </summary>
+        </member>
+        <member name="P:SBS.Models.RegisterViewModel.LastName">
+            <summary>
+            User Last Name
+            </summary>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.SbsServiceCollectionExtension">
+            <summary>
+            Extension for dependenci injection
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SbsServiceCollectionExtension.AddApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Add application dependenci injection
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -7,15 +7,27 @@ using SBS.Tools;
 
 namespace SBS.Core.Services
 {
+    /// <summary>
+    /// Service for Units
+    /// </summary>
     public class TransferService : ITransferService
     {
         private readonly ISbsRepository repo;
 
+        /// <summary>
+        /// Init service
+        /// </summary>
+        /// <param name="repo"></param>
         public TransferService(ISbsRepository repo)
         {
             this.repo = repo;
         }
 
+        /// <summary>
+        /// Add Transfer in repository
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         public async Task Add(TransferViewModel viewModel)
         {
             Sanitizer.Sanitize(viewModel);
@@ -67,6 +79,10 @@ namespace SBS.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Get list of all Transfers
+        /// </summary>
+        /// <returns></returns>
         public async Task<TransferViewModel> Get(Guid id)
         {
             TransferViewModel model = new TransferViewModel();
@@ -126,6 +142,10 @@ namespace SBS.Core.Services
             return model;
         }
 
+        /// <summary>
+        /// Get list of all Transfers
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<TransferViewModel>> GetAll()
         {
             var result = await repo.AllReadonly<Transfer>()

@@ -6,6 +6,9 @@ using SBS.Core.Models;
 
 namespace SBS.Controllers
 {
+    /// <summary>
+    /// Controller for Stores
+    /// </summary>
     [Authorize]
     [AutoValidateAntiforgeryToken]
     public class StoreController : Controller
@@ -14,6 +17,12 @@ namespace SBS.Controllers
         private readonly ICountryService countryService;
         private readonly ICityService cityService;
 
+        /// <summary>
+        /// Init controller
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="countryService"></param>
+        /// <param name="cityService"></param>
         public StoreController(
             IStoreService service, 
             ICountryService countryService, 
@@ -24,7 +33,10 @@ namespace SBS.Controllers
             this.cityService = cityService;
         }
 
-        // GET: ContragentController
+        /// <summary>
+        /// Prepare data for Stores view 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Index()
         {
@@ -34,7 +46,10 @@ namespace SBS.Controllers
             return View(stores);
         }
 
-        // GET: ContragentController/Create
+        /// <summary>
+        /// Prepare data for create new Store view 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> CreateAsync()
         {
@@ -47,7 +62,11 @@ namespace SBS.Controllers
             return View(model);
         }
 
-        // POST: ContragentController/Create
+        /// <summary>
+        /// Process Create Store view data
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> Create(StoreViewModel viewModel)
         {
@@ -69,7 +88,11 @@ namespace SBS.Controllers
             }
         }
 
-        // GET: ContragentController/Edit/5
+        /// <summary>
+        /// Prepare edit view data
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Edit(Guid id)
         {
@@ -84,8 +107,11 @@ namespace SBS.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
-        // POST: ContragentController/Edit/5
+        /// <summary>
+        /// Process edit data from view
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> EditAsync(StoreViewModel viewModel)
         {
@@ -107,7 +133,11 @@ namespace SBS.Controllers
             }
         }
 
-        // POST: ContragentController/Delete/5
+        /// <summary>
+        /// Process delete data from view
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> Delete(Guid id)
         {
@@ -123,6 +153,11 @@ namespace SBS.Controllers
             }
         }
 
+        /// <summary>
+        /// Get all cities
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<JsonResult> GetCities(Guid id)
         {
@@ -139,6 +174,10 @@ namespace SBS.Controllers
             return Json(result);
         }
 
+        /// <summary>
+        /// Get all countries
+        /// </summary>
+        /// <returns></returns>
         private async Task<IEnumerable<SelectListItem>> GetCountries()
         {
             var result = new List<SelectListItem>();
@@ -155,6 +194,10 @@ namespace SBS.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Get Cities
+        /// </summary>
+        /// <returns></returns>
         private async Task<IEnumerable<SelectListItem>> GetCities()
         {
             var result = new List<SelectListItem>();

@@ -7,15 +7,27 @@ using SBS.Tools;
 
 namespace SBS.Core.Services
 {
+    /// <summary>
+    /// Service for Units
+    /// </summary>
     public class UnitService : IUnitService
     {
         private readonly ISbsRepository repo;
 
+        /// <summary>
+        /// Init service
+        /// </summary>
+        /// <param name="repo"></param>
         public UnitService(ISbsRepository repo)
         {
             this.repo = repo;
         }
 
+        /// <summary>
+        /// Add Unit in repository
+        /// </summary>
+        /// <param name="unitViewModel"></param>
+        /// <returns></returns>
         public async Task Add(UnitViewModel unitViewModel)
         {
             Sanitizer.Sanitize(unitViewModel);
@@ -30,6 +42,11 @@ namespace SBS.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Delete Unit from repository
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task Delete(Guid id)
         {
             var unit = await repo.All<Unit>()
@@ -43,6 +60,11 @@ namespace SBS.Core.Services
             }
         }
 
+        /// <summary>
+        /// Gets unit from repository by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<UnitViewModel> Get(Guid id)
         {
             UnitViewModel model = new UnitViewModel();
@@ -62,6 +84,14 @@ namespace SBS.Core.Services
             return model;
         }
 
+        /// <summary>
+        /// Get list of all units sorted and paginated
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="sortHelper"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public async Task<List<UnitViewModel>> GetAll(UnitFilterViewModel filter, SortHelper sortHelper, int pageIndex = 1, int pageSize = 5)
         {
             IQueryable<Unit> units =  repo.AllReadonly<Unit>()
@@ -94,6 +124,10 @@ namespace SBS.Core.Services
             return unitViewModels;
         }
 
+        /// <summary>
+        /// Get list of all units
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<UnitViewModel>> GetAll()
         {
             return await repo.AllReadonly<Unit>()
@@ -109,6 +143,11 @@ namespace SBS.Core.Services
 
         }
 
+        /// <summary>
+        /// Get count of filtered units
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public int GetCount(UnitFilterViewModel filter)
         {
             IQueryable<Unit> units = repo.AllReadonly<Unit>()
@@ -125,6 +164,11 @@ namespace SBS.Core.Services
             return units.Count();
         }
 
+        /// <summary>
+        /// Updates an Unit
+        /// </summary>
+        /// <param name="unitViewModel"></param>
+        /// <returns></returns>
         public async Task Update(UnitViewModel unitViewModel)
         {
             Sanitizer.Sanitize(unitViewModel);
@@ -139,10 +183,21 @@ namespace SBS.Core.Services
             }
         }
 
+        /// <summary>
+        /// Checks is unit exists
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public bool IsExists(string name)
         {
             return repo.All<Unit>().Where(n => n.Name.ToLower() == name.ToLower()).Count() > 0;
         }
+        /// <summary>
+        /// Checks is unit exists
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool IsExists(string name, Guid id)
         {
             return repo.All<Unit>().Where(n => n.Name.ToLower() == name.ToLower() && n.Id != id).Count() > 0;
