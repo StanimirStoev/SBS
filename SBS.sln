@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SBS.Core", "SBS.Core\SBS.Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SBS.Infrastructure", "SBS.Infrastructure\SBS.Infrastructure.csproj", "{DB267CB6-7343-475F-82D5-A7917D19EECF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SBS.Tools", "SBS.Tools\SBS.Tools.csproj", "{E7C1B8FC-B202-41AD-845A-CAA977FF8918}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SBS.Tools", "SBS.Tools\SBS.Tools.csproj", "{E7C1B8FC-B202-41AD-845A-CAA977FF8918}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SBS.UnitTests", "SBS.UnitTests\SBS.UnitTests.csproj", "{5971DA4A-7B31-458E-8986-A917BC7F721A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{E7C1B8FC-B202-41AD-845A-CAA977FF8918}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7C1B8FC-B202-41AD-845A-CAA977FF8918}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7C1B8FC-B202-41AD-845A-CAA977FF8918}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5971DA4A-7B31-458E-8986-A917BC7F721A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5971DA4A-7B31-458E-8986-A917BC7F721A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5971DA4A-7B31-458E-8986-A917BC7F721A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5971DA4A-7B31-458E-8986-A917BC7F721A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
