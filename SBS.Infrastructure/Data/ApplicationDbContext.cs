@@ -11,13 +11,24 @@ namespace SBS.Infrastructure.Data
     /// </summary>
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        private bool seedDb;
         /// <summary>
         /// Initialise 
         /// </summary>
         /// <param name="options"></param>
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            :base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, bool seedDb = true)
+            : base(options)
         {
+            if (this.Database.IsRelational())
+            {
+                this.Database.Migrate();
+            }
+            else
+            {
+                this.Database.EnsureCreated();
+            }
+
+            this.seedDb = seedDb;
         }
         /// <summary>
         /// Prepare Database context
@@ -63,16 +74,19 @@ namespace SBS.Infrastructure.Data
                 .WithMany(u => u.SellDetails)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.ApplyConfiguration(new UserConfiguration());
-            builder.ApplyConfiguration(new RoleConfiguration());
-            builder.ApplyConfiguration(new UserRoleConfiguration());
-            builder.ApplyConfiguration(new UnitConfiguration());
-            builder.ApplyConfiguration(new CountryConfiguration());
-            builder.ApplyConfiguration(new CityConfiguration());
-            builder.ApplyConfiguration(new ArticleConfiguration());
-            builder.ApplyConfiguration(new AddressConfiguration());
-            builder.ApplyConfiguration(new ContragentConfiguration());
-            builder.ApplyConfiguration(new StoreConfiguration());
+            if (this.seedDb)
+            {
+                builder.ApplyConfiguration(new UserConfiguration());
+                builder.ApplyConfiguration(new RoleConfiguration());
+                builder.ApplyConfiguration(new UserRoleConfiguration());
+                builder.ApplyConfiguration(new UnitConfiguration());
+                builder.ApplyConfiguration(new CountryConfiguration());
+                builder.ApplyConfiguration(new CityConfiguration());
+                builder.ApplyConfiguration(new ArticleConfiguration());
+                builder.ApplyConfiguration(new AddressConfiguration());
+                builder.ApplyConfiguration(new ContragentConfiguration());
+                builder.ApplyConfiguration(new StoreConfiguration());
+            }
         }
 
         /// <summary>
