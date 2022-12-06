@@ -1,12 +1,7 @@
 ﻿using SBS.Core.Contract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SBS.Core.Models;
 using SBS.Core.Services;
 using SBS.Infrastructure.Data.Models;
-using SBS.Core.Models;
 
 namespace SBS.UnitTests.UnitTests
 {
@@ -15,7 +10,7 @@ namespace SBS.UnitTests.UnitTests
     {
         private IUnitService unitService;
 
-        [OneTimeSetUp]
+        [SetUp]
         public void SetUp()
         {
             unitService = new UnitService(this.repo);
@@ -75,10 +70,11 @@ namespace SBS.UnitTests.UnitTests
             List<UnitViewModel> allUnits = await unitService.GetAll();
             int expected = allUnits.Count();
 
-            //Act
             await this.unitService.Add(viewModel);
-            viewModel = allUnits.First(u => u.Name == viewModel.Name && u.Description == viewModel.Description);
-            await unitService.Delete(viewModel.Id);
+            allUnits = await unitService.GetAll();
+
+            //Act
+            await unitService.Delete(allUnits[1].Id);
             allUnits = await unitService.GetAll();
             int actual = allUnits.Count();
 
@@ -251,14 +247,12 @@ namespace SBS.UnitTests.UnitTests
             //Act
             bool notExists1 = unitService.IsExists("UnexistedName", viewModel.Id);
             bool exists = unitService.IsExists(viewModel.Name, new Guid());
-            bool notExists3 = unitService.IsExists("UnexistedName", new Guid());
-            bool notExists2 = unitService.IsExists(viewModel.Name, viewModel.Id);
+            bool notExists2 = unitService.IsExists("UnexistedName", new Guid());
 
             //Assert
             Assert.IsFalse(notExists1);
             Assert.IsTrue(exists);
             Assert.IsFalse(notExists2);
-            Assert.IsFalse(notExists3);
         }
     }
 }

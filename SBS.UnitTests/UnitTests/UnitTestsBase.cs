@@ -3,11 +3,6 @@ using SBS.Infrastructure.Data.Common;
 using SBS.Infrastructure.Data.Models;
 using SBS.Infrastructure.Data.Models.Account;
 using SBS.UnitTests.Mocks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SBS.UnitTests.UnitTests
 {
@@ -16,7 +11,7 @@ namespace SBS.UnitTests.UnitTests
         protected ApplicationDbContext data;
         protected SbsRepository repo;
 
-        [OneTimeSetUp] 
+        [SetUp] 
         public void SetUpBase() 
         {
             this.data = DatabaseMock.Instance;
@@ -55,7 +50,7 @@ namespace SBS.UnitTests.UnitTests
             this.data.SaveChanges();
         }
 
-        [OneTimeTearDown] 
+        [TearDown] 
         public void TearDownBase() 
         { 
             this.data.Dispose();
