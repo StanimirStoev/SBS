@@ -40,6 +40,7 @@ namespace SBS.UnitTests.UnitTests
                 LastName = "Добрева",
                 EmailConfirmed = true,
             };
+            this.data.Users.Add(this.User);
 
             this.Unit = new Unit()
             {
@@ -48,6 +49,10 @@ namespace SBS.UnitTests.UnitTests
                 Description = "Pieces",
                 IsActive = true,
             };
+            this.data.Units.Add(this.Unit);
+
+
+            this.data.SaveChanges();
         }
 
         [OneTimeTearDown] 

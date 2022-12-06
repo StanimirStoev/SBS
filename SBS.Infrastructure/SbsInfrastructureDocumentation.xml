@@ -129,7 +129,7 @@
             Database context for application
             </summary>
         </member>
-        <member name="M:SBS.Infrastructure.Data.ApplicationDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{SBS.Infrastructure.Data.ApplicationDbContext})">
+        <member name="M:SBS.Infrastructure.Data.ApplicationDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{SBS.Infrastructure.Data.ApplicationDbContext},System.Boolean)">
             <summary>
             Initialise 
             </summary>
