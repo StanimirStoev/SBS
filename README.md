@@ -54,9 +54,9 @@ Items in stock - check the availability of items by warehouse.
 
 
 When generating the database, several Users with associated roles are added:
-Alex - alex@mail.com - Admin
-Dido - dido@mail.com
-Nikki - nikki@mail.com - Manager
-Stefan - stefan@mail.com
+Alex - alex@mail.com - Admin;
+Dido - dido@mail.com;
+Nikki - nikki@mail.com - Manager;
+Stefan - stefan@mail.com;
 
 A password has been set for all "!QAZ2wsx"
