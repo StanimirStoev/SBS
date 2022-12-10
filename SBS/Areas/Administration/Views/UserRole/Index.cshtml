@@ -2,14 +2,14 @@
 @model IEnumerable<SBS.Areas.Administration.Models.UserRoleViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Roles for Users";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="container-fluid btn-group">
+    <div class="col-10">
+        <h1 class="col-4">Roles for Users</h1>
+    </div>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -33,9 +33,6 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 @foreach (SelectListItem role in (List<SelectListItem>)item.Roles)
@@ -45,7 +42,7 @@
                     </td>
                 }
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.Id })
+                    <a asp-controller="UserRole" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
                 </td>
                 
             </tr>
