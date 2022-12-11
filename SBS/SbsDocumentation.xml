@@ -609,6 +609,20 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SBS.Controllers.DeliveryController.GetUnitForArticle(System.Guid)">
+            <summary>
+            Get article Unit
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBS.Controllers.DeliveryController.GetUnitIdForArticle(System.Guid)">
+            <summary>
+            Get article Unit Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:SBS.Controllers.HomeController">
             <summary>
             Controller for Home view

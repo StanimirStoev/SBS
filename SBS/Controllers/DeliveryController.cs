@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SBS.Core.Contract;
 using SBS.Core.Models;
+using SBS.Core.Services;
 
 namespace SBS.Controllers
 {
@@ -323,6 +324,37 @@ namespace SBS.Controllers
 
             result.Insert(0, new SelectListItem() { Value = "", Text = "Select Unit" });
             return result;
+        }
+
+        /// <summary>
+        /// Get article Unit
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<JsonResult> GetUnitForArticle(Guid id)
+        {
+            var result = "";
+
+            ArticleViewModel article = await articleService.Get(id);
+            result = article.Unit.Name;
+
+            return Json(result);
+        }
+        /// <summary>
+        /// Get article Unit Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<JsonResult> GetUnitIdForArticle(Guid id)
+        {
+            var result = "";
+
+            ArticleViewModel article = await articleService.Get(id);
+            result = article.Unit.Id.ToString();
+
+            return Json(result);
         }
     }
 }

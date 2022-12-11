@@ -3,6 +3,11 @@
 @{
     ViewData["Title"] = "Create";
 }
+<style>
+    .detSelect {
+        /*Just for marking*/
+    }
+</style>
 
 <h1>Create</h1>
 
@@ -41,7 +46,7 @@
 
     <div class="col-12 ml-5">
         <h5>Details</h5>
-        <table id="addressTable" class="table table-sm ">
+        <table id="detailsTable" class="table table-sm ">
             <thead>
                 <tr>
                     <th>
@@ -67,25 +72,24 @@
                 {
                     <tr>
                         <td>
-                            <select asp-for="@Model.Details[i].ArticleId" class="form-control" asp-items="ViewBag.ArticlesList" ></select>
+                            <select id="selDelivDet--@i" asp-for="@Model.Details[i].ArticleId" class="form-control detSelect" asp-items="ViewBag.ArticlesList" onchange="SetUnit(this)"></select>
                         </td>
                         <td>
                             <span asp-validation-for="@Model.Details[i].Qty" class="text-danger"></span>
-                            @Html.EditorFor(m => m.Details[i].Qty, new{htmlAttributes = new{@class = "form-control"}})
+                            <input id="qty--@i" asp-for="@Model.Details[i].Qty" class="form-control" onchange="CalculateRowTotal(this)" />
                         </td>
                         <td>
-                            <select asp-for="@Model.Details[i].UnitId" class="form-control" asp-items="ViewBag.UnitsList"></select>
+                            <input id="delivDetUnit--@i" class="form-control" disabled />
+                            <input id="delivDetUnitId--@i" asp-for="@Model.Details[i].UnitId" class="form-control" hidden />
                         </td>
                         <td>
                             <span asp-validation-for="@Model.Details[i].Price" class="text-danger"></span>
-                            @Html.EditorFor(m => m.Details[i].Price, new{htmlAttributes = new{@class = "form-control"}})
+                            <input id="price--@i" asp-for="@Model.Details[i].Price" class="form-control" onchange="CalculateRowTotal(this)" />
                         </td>
                         <td>
-                            <span asp-validation-for="@Model.Details[i].TotalPrice" class="text-danger"></span>
-                            @Html.EditorFor(m => m.Details[i].TotalPrice, new{htmlAttributes = new{@class = "form-control"}})
+                            <input id="totalPrice--@i" class="form-control" disabled />
                         </td>
                         <td>
-                            @*<button id="dummybtn--@i" type="button" class="btn btn-sm btn-secondary invisible">Dummy</button>*@
                             <input asp-for="@Model.Details[i].IsActive" class="form-control visually-hidden invisible" size="5" type="text" id="IsActive--@i" />
                             <button id="addbtn--@i" type="button" class="btn btn-sm btn-secondary visible"
                                 onclick="AddItm(this)">
@@ -116,9 +120,79 @@
 
     <script>
 
+        function FillDetailsSelect(masterSelectControl) {
+
+            var selectedItem = masterSelectControl.options[masterSelectControl.selectedIndex].value;
+
+            var details = document.getElementsByClassName("detSelect");
+
+            for (var i = 0; i < details.length; i++) {
+                setDetailItems(details[i].id, selectedItem);
+            };
+            return;
+        }
+
+        function setDetailItems(detailId, selectedItem) {
+
+            var lstItems = $("#" + detailId);
+            lstItems.empty();
+            $.getJSON('@Url.Action("GetArticlesInStore")', { id: selectedItem }, function (items) {
+                if (items != null && !jQuery.isEmptyObject(items)) {
+
+                    $.each(items, function (index, item) {
+
+                        lstItems.append($('<option/>',
+                            {
+                                value: item.value,
+                                text: item.text
+                            }
+                        ));
+                    });
+                };
+            });
+            return;
+        }
+
+        function SetUnit(partideSelectControl) {
+            var selectedItem = partideSelectControl.options[partideSelectControl.selectedIndex].value;
+            var dat = partideSelectControl.id.split("--");
+            var index = dat[dat.length - 1];
+
+            var unitControl = document.getElementById("delivDetUnit--" + index)
+            $.getJSON('@Url.Action("GetUnitForArticle")', { id: selectedItem }, function (result) {
+                unitControl.setAttribute('value', result);
+            });
+
+            var unitIdControl = document.getElementById("delivDetUnitId--" + index)
+            $.getJSON('@Url.Action("GetUnitIdForArticle")', { id: selectedItem }, function (result) {
+                unitIdControl.setAttribute('value', result);
+            });
+
+            var storeIdSelect = document.getElementById("storeId");
+            var storeIdControl = document.getElementById("delivDetStoreId--" + index);
+            storeIdControl.setAttribute('value', storeIdSelect.options[storeIdSelect.selectedIndex].value);
+
+        }
+
+        function CalculateRowTotal(partideControl) {
+
+            var dat = partideControl.id.split("--");
+            var index = dat[dat.length - 1];
+
+            var qty = document.getElementById("qty--" + index).value;
+            var priceTxt = document.getElementById("price--" + index).value;
+            var price = parseFloat(priceTxt.replace(',', '.').replace(' ', ''));
+
+            var tot = qty * price;
+            var total = document.getElementById("totalPrice--" + index);
+
+            total.setAttribute('value', tot.toString());
+
+        }
+
         function AddItm(btn) {
             var table;
-            table = document.getElementById('addressTable');
+            table = document.getElementById('detailsTable');
 
             var rows = table.getElementsByTagName('tr');
             var rowOuterHtml = rows[rows.length - 1].outerHTML;

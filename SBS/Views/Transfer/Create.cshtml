@@ -37,7 +37,7 @@
         <div class="col-md-5">
             <div class="form-group">
                 <label asp-for="CreateDatetime" class="control-label"></label>
-                <input asp-for="CreateDatetime" class="form-control" />
+                <input asp-for="CreateDatetime" class="form-control" data-date-format="DD-MM-YYYY HH:mm:ss" type="text" readonly />
                 <span asp-validation-for="CreateDatetime" class="text-danger"></span>
             </div>
         </div>

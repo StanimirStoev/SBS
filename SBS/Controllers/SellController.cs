@@ -34,8 +34,7 @@ namespace SBS.Controllers
             IContragentService contragentService,
             IStoreService storeService,
             IPartidesInStoresService partidesInStoresService,
-            IUnitService unitService
-,
+            IUnitService unitService,
             IDeliveryService deliveryService)
         {
             this.service = service;
