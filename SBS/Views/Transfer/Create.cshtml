@@ -175,7 +175,6 @@
             var selectedItem = partideSelectControl.options[partideSelectControl.selectedIndex].value;
             var dat = partideSelectControl.id.split("--");
             var index = dat[dat.length-1];
-            window.alert("here")
             var unitControl = document.getElementById("delivDetUnit--" + index)
 
             $.getJSON('@Url.Action("GetUnitForArticle")', { id: selectedItem }, function (result) {
